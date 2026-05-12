@@ -2426,6 +2426,49 @@
     .image-landing-content::before {
       background: linear-gradient(90deg, rgba(56, 31, 14, .34), rgba(56, 31, 14, .13), transparent) !important;
     }
+
+    /* hero glass readability: 검정 덩어리 제거, 은은한 유리막 */
+    .image-landing {
+      background:
+        radial-gradient(ellipse at 23% 70%, rgba(255, 232, 174, .26) 0%, rgba(255, 232, 174, .13) 34%, rgba(255,255,255,.04) 58%, transparent 76%),
+        linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(35, 28, 20, .03) 48%, rgba(38, 26, 15, .18) 100%),
+        url("./assets/jeju-hero.png") center / cover no-repeat !important;
+    }
+
+    .image-landing-content {
+      width: min(440px, 100%);
+      padding: clamp(16px, 2.2vw, 24px);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,246,221,.10));
+      border: 1px solid rgba(255,255,255,.32);
+      backdrop-filter: blur(12px) saturate(1.08);
+      -webkit-backdrop-filter: blur(12px) saturate(1.08);
+      box-shadow: 0 20px 54px rgba(74, 39, 14, .16), inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .image-landing-content::before {
+      inset: 0 !important;
+      border-radius: inherit !important;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255,255,255,.30), transparent 30%),
+        linear-gradient(90deg, rgba(255, 238, 190, .18), rgba(255, 238, 190, .05), transparent) !important;
+      filter: none !important;
+    }
+
+    .image-landing h1 {
+      color: #ffeec4 !important;
+      -webkit-text-stroke: .35px rgba(80, 43, 18, .34);
+      text-shadow:
+        0 2px 0 rgba(80, 42, 18, .26),
+        0 5px 14px rgba(38, 25, 12, .46),
+        0 18px 36px rgba(38, 25, 12, .26) !important;
+    }
+
+    .image-landing p {
+      color: #fff7e7 !important;
+      text-shadow: 0 2px 8px rgba(42, 25, 11, .46) !important;
+    }
   </style>
 </head>
 <body>
@@ -2463,11 +2506,11 @@
       <section class="image-landing reveal" aria-label="je-ju.net 제주 대표 이미지">
         <div class="image-landing-content">
           <span class="image-badge">je-ju.net</span>
-          <h1>제주를 잇다,<br />우리를 잇다</h1>
-          <p>제주 감귤빛과 바다 감성을 담은 개인 도메인 게이트.</p>
+          <h1 data-i18n-html="imageHeroTitle">제주를 잇다,<br />우리를 잇다</h1>
+          <p data-i18n="imageHeroDesc">제주 감귤빛과 바다 감성을 담은 개인 도메인 게이트.</p>
           <div class="image-actions">
-            <button class="btn primary passport-toggle top-passport-toggle" type="button">여권 펼치기 🍊</button>
-            <a class="btn ghost" href="#address">주소 보기</a>
+            <button class="btn primary passport-toggle top-passport-toggle" type="button" data-i18n="imageBtnPassport">여권 펼치기 🍊</button>
+            <a class="btn ghost" href="#address" data-i18n="imageBtnAddress">주소 보기</a>
           </div>
         </div>
       </section>
@@ -2626,7 +2669,7 @@
     const translations = {
       ko: {
         pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 제주 감성의 개인 도메인 게이트.',
-        navProject: '제주입구', navAddress: '주소정리', navMap: '제주기록', navMail: '개인메일', navGate: 'Mail Gate',
+        navProject: '제주입구', navAddress: '주소정리', navMap: '제주기록', navMail: '개인메일', navGate: 'Mail Gate', imageHeroTitle: '제주를 잇다,<br />우리를 잇다', imageHeroDesc: '제주 감귤빛과 바다 감성을 담은 개인 도메인 게이트.', imageBtnPassport: '여권 펼치기 🍊', imageBtnAddress: '주소 보기',
         eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>안녕,</span>제주.', heroSubtitle: '귤빛 바람과 파도 사이에 둔<br />작은 개인 도메인 여권', heroDesc: '공개 문의 사이트보다는, 내가 쓰는 주소와 제주 감성 프로젝트를 한 장의 여권처럼 정리해두는 개인 게이트입니다.', heroBtnPrimary: '여권 펼치기 🌊', heroBtnSecondary: '주소 확인 🍊', quickWorkspace: 'Private Domain', railA: '귤빛 우편', railB: '느린 바람', railC: '작은 주소', railD: '노을 도장', bookKicker: 'JEJU PASSPORT', bookTitle: '귤빛 주소<br />입국 기록', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '조용한 개인 도메인을 제주 감귤빛 여권처럼 정리했습니다.',
         mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '제주 감성 페이지의 중심 주소입니다. 랜딩, 링크, 작은 프로젝트를 이 주소에 모아둡니다.', tagMain: '대표 주소', tagJejuProject: '제주 프로젝트', tagLinks: '링크 모음', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '“안녕, 제주” 느낌의 보조 입구입니다. 메인 주소로 연결하거나 짧은 소개 페이지로 쓰기 좋습니다.', tagGate: '감성 입구', tagSubLanding: '보조 랜딩', tagPrivateAddress: '개인용 주소',
         projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '그냥 랜딩이 아니라,<br />제주 입국 도장처럼.', projectDesc: '바다, 귤, 오름, 도메인을 여권 스탬프처럼 묶었습니다. 흔한 카드형 홈페이지보다 조금 더 기억에 남는 구조입니다.', tileBigTitle: '느리게 열리는 제주 무드', tileBigDesc: '파도와 종이 질감, 여권 도장 느낌으로 개인 도메인 게이트를 조금 더 특별하게 만들었습니다.', tileWeatherTitle: '귤빛 입구', tileWeatherDesc: '첫 화면은 강한 홍보보다, 조용히 기억나는 제주 인사말처럼 보이게 구성했습니다.', tileLinksTitle: '주소 지도', tileLinksDesc: '두 주소의 역할을 복잡하지 않게 나누고, 한눈에 이해되도록 배치합니다.', tileArchiveTitle: '개인 메일 게이트', tileArchiveDesc: '메일은 방문자 문의용이 아니라, 개인적으로 쓰는 주소를 차분하게 표시하는 영역으로 정리합니다.',
@@ -2635,7 +2678,7 @@
       },
       en: {
         pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. A private Jeju-inspired domain gate.',
-        navProject: 'Gate', navAddress: 'Address', navMap: 'Record', navMail: 'Mail', navGate: 'Mail Gate',
+        navProject: 'Gate', navAddress: 'Address', navMap: 'Record', navMail: 'Mail', navGate: 'Mail Gate', imageHeroTitle: 'Connecting Jeju,<br />connecting us', imageHeroDesc: 'A private domain gate with Jeju mandarin light and ocean mood.', imageBtnPassport: 'Open passport 🍊', imageBtnAddress: 'View address',
         eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>Hi,</span>Jeju.', heroSubtitle: 'A small private domain passport<br />between mandarin wind and waves', heroDesc: 'Rather than a public inquiry site, this is a private gate that keeps my addresses and Jeju-inspired projects like a passport page.', heroBtnPrimary: 'Open passport 🌊', heroBtnSecondary: 'View address 🍊', quickWorkspace: 'Private Domain', railA: 'Orange mail', railB: 'Slow breeze', railC: 'Small address', railD: 'Sunset stamp', bookKicker: 'JEJU PASSPORT', bookTitle: 'Orange address<br />entry record', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: 'A quiet personal domain arranged like a Jeju mandarin passport.',
         mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: 'The main address for the Jeju-inspired page. Landing pages, links, and small projects gather here.', tagMain: 'Main address', tagJejuProject: 'Jeju project', tagLinks: 'Links', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: 'A soft secondary gate with the feeling of “Hi, Jeju.” Good for redirecting to the main site or hosting a short intro.', tagGate: 'Soft gate', tagSubLanding: 'Sub landing', tagPrivateAddress: 'Private address',
         projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'Not just a landing page,<br />more like a Jeju entry stamp.', projectDesc: 'The sea, mandarins, oreum, and domains are grouped like passport stamps, making the structure more memorable than ordinary cards.', tileBigTitle: 'A slow Jeju mood', tileBigDesc: 'Waves, paper texture, and passport-stamp details make the private domain gate feel more special.', tileWeatherTitle: 'Mandarin-colored gate', tileWeatherDesc: 'The first impression feels like a quiet Jeju greeting, not loud promotion.', tileLinksTitle: 'Address map', tileLinksDesc: 'The roles of the two addresses are separated clearly and arranged for quick understanding.', tileArchiveTitle: 'Private mail gate', tileArchiveDesc: 'Mail is not treated as a visitor inquiry button, but as a calm display of personal addresses.',
@@ -2644,7 +2687,7 @@
       },
       ja: {
         pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 済州感性の個人ドメインゲート。',
-        navProject: '済州入口', navAddress: '住所整理', navMap: '済州記録', navMail: '個人メール', navGate: 'Mail Gate',
+        navProject: '済州入口', navAddress: '住所整理', navMap: '済州記録', navMail: '個人メール', navGate: 'Mail Gate', imageHeroTitle: '済州をつなぎ、<br />私たちをつなぐ', imageHeroDesc: '済州のみかん色と海の感性を込めた個人ドメインゲート。', imageBtnPassport: 'パスポートを開く 🍊', imageBtnAddress: '住所を見る',
         eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>こんにちは、</span>済州。', heroSubtitle: 'みかん色の風と波の間に置いた<br />小さな個人ドメインパスポート', heroDesc: '公開問い合わせサイトではなく、自分の住所と済州感性プロジェクトを一枚のパスポートのように整理する個人ゲートです。', heroBtnPrimary: 'パスポートを開く 🌊', heroBtnSecondary: '住所を見る 🍊', quickWorkspace: 'Private Domain', railA: 'みかん色の郵便', railB: 'ゆっくりした風', railC: '小さな住所', railD: '夕焼けスタンプ', bookKicker: 'JEJU PASSPORT', bookTitle: 'みかん色の住所<br />入国記録', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '静かな個人ドメインを済州みかん色のパスポートのように整理しました。',
         mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '済州感性ページの中心住所です。ランディング、リンク、小さなプロジェクトをこの住所にまとめます。', tagMain: '代表住所', tagJejuProject: '済州プロジェクト', tagLinks: 'リンク集', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '「こんにちは、済州」の雰囲気を持つ補助入口です。メイン住所へつなげたり、短い紹介ページとして使えます。', tagGate: '感性入口', tagSubLanding: '補助ランディング', tagPrivateAddress: '個人用住所',
         projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'ただのランディングではなく、<br />済州の入国スタンプのように。', projectDesc: '海、みかん、オルム、ドメインをパスポートスタンプのようにまとめました。普通のカード型サイトより記憶に残る構造です。', tileBigTitle: 'ゆっくり開く済州ムード', tileBigDesc: '波、紙の質感、パスポートスタンプの雰囲気で個人ドメインゲートを少し特別にしました。', tileWeatherTitle: 'みかん色の入口', tileWeatherDesc: '最初の画面は強い宣伝ではなく、静かに記憶に残る済州の挨拶のように構成しました。', tileLinksTitle: '住所マップ', tileLinksDesc: '二つの住所の役割をわかりやすく分け、一目で理解できるように配置します。', tileArchiveTitle: '個人メールゲート', tileArchiveDesc: 'メールは訪問者問い合わせ用ではなく、個人用住所を落ち着いて表示する領域です。',
@@ -2653,7 +2696,7 @@
       },
       zh: {
         pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 济州风格个人域名入口。',
-        navProject: '济州入口', navAddress: '地址整理', navMap: '济州记录', navMail: '个人邮箱', navGate: 'Mail Gate',
+        navProject: '济州入口', navAddress: '地址整理', navMap: '济州记录', navMail: '个人邮箱', navGate: 'Mail Gate', imageHeroTitle: '连接济州，<br />连接我们', imageHeroDesc: '融合济州橘光与海风氛围的个人域名入口。', imageBtnPassport: '打开护照 🍊', imageBtnAddress: '查看地址',
         eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>你好，</span>济州。', heroSubtitle: '放在橘色微风与海浪之间的<br />小小个人域名护照', heroDesc: '这不是公开咨询网站，而是像一页护照一样整理个人地址和济州风格项目的私人入口。', heroBtnPrimary: '打开护照 🌊', heroBtnSecondary: '查看地址 🍊', quickWorkspace: 'Private Domain', railA: '橘光邮件', railB: '慢慢的风', railC: '小小地址', railD: '日落印章', bookKicker: 'JEJU PASSPORT', bookTitle: '橘光地址<br />入境记录', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '把安静的个人域名整理成济州橘光护照。',
         mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '济州风格页面的中心地址。落地页、链接和小项目都会放在这里。', tagMain: '代表地址', tagJejuProject: '济州项目', tagLinks: '链接集合', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '带有“你好，济州”感觉的辅助入口。可以跳转到主地址，也可以做成简短介绍页。', tagGate: '感性入口', tagSubLanding: '辅助落地页', tagPrivateAddress: '个人地址',
         projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '不只是落地页，<br />更像济州入境印章。', projectDesc: '把大海、橘子、오름和域名像护照印章一样组合起来，比普通卡片式主页更容易记住。', tileBigTitle: '慢慢打开的济州氛围', tileBigDesc: '用海浪、纸张质感和护照印章感，让个人域名入口更特别。', tileWeatherTitle: '橘光入口', tileWeatherDesc: '第一屏不是强烈宣传，而像一句安静又容易记住的济州问候。', tileLinksTitle: '地址地图', tileLinksDesc: '清楚区分两个地址的作用，让人一眼就能理解。', tileArchiveTitle: '个人邮箱入口', tileArchiveDesc: '邮箱不是访客咨询按钮，而是安静展示个人地址的区域。',
