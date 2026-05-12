@@ -2354,6 +2354,47 @@
         width: 100%;
       }
     }
+
+    /* hero readability fix: 이미지 방해 없이 글자만 선명하게 */
+    .image-landing {
+      background:
+        radial-gradient(ellipse at 24% 70%, rgba(18, 14, 9, .68) 0%, rgba(18, 14, 9, .46) 34%, rgba(18, 14, 9, .18) 58%, transparent 76%),
+        linear-gradient(180deg, rgba(24, 41, 45, .02) 0%, rgba(31, 28, 20, .04) 48%, rgba(28, 25, 18, .30) 100%),
+        url("./assets/jeju-hero.png") center / cover no-repeat !important;
+    }
+
+    .image-landing-content {
+      text-shadow: 0 3px 10px rgba(0,0,0,.62), 0 16px 34px rgba(0,0,0,.42);
+    }
+
+    .image-landing-content::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -20px -28px -18px -24px;
+      border-radius: 28px;
+      background: linear-gradient(90deg, rgba(26, 21, 14, .48), rgba(26, 21, 14, .20), transparent);
+      pointer-events: none;
+    }
+
+    .image-landing h1 {
+      color: #fffaf0;
+      text-shadow: 0 3px 9px rgba(0,0,0,.78), 0 18px 36px rgba(0,0,0,.46);
+    }
+
+    .image-landing p {
+      color: rgba(255,255,255,.96);
+      text-shadow: 0 2px 8px rgba(0,0,0,.70);
+    }
+
+    .image-badge {
+      background: rgba(255, 246, 221, .94);
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+    }
+
+    .image-actions {
+      text-shadow: none;
+    }
   </style>
 </head>
 <body>
