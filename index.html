@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>je-ju.net — Private Island Gate</title>
+  <meta name="description" content="Hi, Jeju. 제주 감성의 개인 도메인 게이트." />
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/earlyaccess/jejugothic.css');
+    @import url('https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css');
+    @import url('https://fonts.googleapis.com/earlyaccess/jejuhallasan.css');
+    :root {
+      --ink: #3b2518;
+      --muted: #8a684f;
+      --paper: #fff2d1;
+      --paper2: #fffaf0;
+      --sea: #2aa6a5;
+      --deep: #b84f18;
+      --orange: #ff9f1c;
+      --orange2: #f26722;
+      --green: #4caa72;
+      --line: rgba(89, 45, 16, .14);
+      --white: rgba(255,255,255,.80);
+      --shadow: 0 30px 90px rgba(209, 104, 25, .18);
+      --soft: 0 16px 38px rgba(209, 104, 25, .12);
+      --radius: 34px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 159, 28, .40), transparent 27%),
+        radial-gradient(circle at 86% 10%, rgba(255, 196, 86, .34), transparent 25%),
+        radial-gradient(circle at 72% 80%, rgba(42, 166, 165, .14), transparent 30%),
+        linear-gradient(135deg, #fff8df 0%, #ffe5af 45%, #fff7e8 100%);
+      overflow-x: hidden;
+      word-break: keep-all;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      pointer-events: none;
+      opacity: .36;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(184,79,24,.08) 0 1px, transparent 1px 42px),
+        repeating-linear-gradient(90deg, rgba(184,79,24,.07) 0 1px, transparent 1px 42px);
+      mask-image: linear-gradient(to bottom, #000, transparent 78%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+      opacity: .22;
+      background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23a)' opacity='.45'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .cursor-light {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -3;
+      opacity: .56;
+      background: radial-gradient(circle, rgba(255,255,255,.72), transparent 62%);
+    }
+
+    .topo {
+      position: fixed;
+      inset: auto -18vw -24vw -18vw;
+      height: 54vw;
+      min-height: 460px;
+      z-index: -2;
+      opacity: .6;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(255,159,28,.46), rgba(242,103,34,.18) 42%, transparent 68%),
+        repeating-radial-gradient(ellipse at 50% 30%, rgba(184,79,24,.16) 0 2px, transparent 2px 28px);
+      filter: blur(1px);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 18px 0 34px;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      transition: transform .32s ease, opacity .32s ease;
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.78);
+      background: rgba(255,255,255,.58);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 18px 42px rgba(209, 104, 25, .12);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px 6px 6px;
+      border-radius: 999px;
+      font-weight: 1000;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background:
+        radial-gradient(circle at 34% 27%, #fff9b4 0 8%, transparent 9%),
+        linear-gradient(135deg, var(--orange), var(--orange2));
+      box-shadow: inset 0 -8px 18px rgba(107,38,8,.15), 0 12px 24px rgba(241,94,34,.18);
+      text-transform: lowercase;
+      font-size: .9rem;
+      font-weight: 760;
+      letter-spacing: -.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      color: #6b3b20;
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,.68);
+      transform: translateY(-1px);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+
+    .lang-btn {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #385960;
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 1000;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      color: #fff;
+      background: var(--ink);
+      box-shadow: 0 9px 18px rgba(22,48,57,.18);
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      box-shadow: 0 13px 24px rgba(242,103,34,.24);
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, .93fr) minmax(420px, 1.07fr);
+      gap: 28px;
+      align-items: stretch;
+      padding: 62px 0 48px;
+    }
+
+    .passport {
+      position: relative;
+      min-height: 650px;
+      padding: clamp(24px, 4vw, 46px);
+      border-radius: 42px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.20), transparent 28%),
+        radial-gradient(circle at 20% 82%, rgba(255,220,118,.45), transparent 25%),
+        linear-gradient(145deg, #7a3a14, #f26722 55%, #ffb23a);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .passport::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,.22);
+      pointer-events: none;
+    }
+
+    .passport::after {
+      content: "JEJU";
+      position: absolute;
+      right: -18px;
+      bottom: -36px;
+      z-index: -1;
+      color: rgba(255,255,255,.07);
+      font-size: clamp(6rem, 18vw, 15rem);
+      line-height: .8;
+      font-weight: 1000;
+      letter-spacing: -.09em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.20);
+      font-size: .88rem;
+      font-weight: 1000;
+      letter-spacing: .05em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 6px rgba(255,140,42,.18);
+    }
+
+    .hero h1 {
+      margin: 34px 0 0;
+      font-size: clamp(4.4rem, 9vw, 8.8rem);
+      line-height: .9;
+      letter-spacing: -.065em;
+      font-weight: 1000;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: rgba(255,255,255,.68);
+      font-size: .42em;
+      line-height: 1.1;
+      letter-spacing: -.04em;
+    }
+
+    .hero-subtitle {
+      width: min(100%, 620px);
+      margin: 28px 0 0;
+      font-size: clamp(1.26rem, 2.4vw, 2.05rem);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+      font-weight: 1000;
+    }
+
+    .hero-desc {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.77);
+      font-size: 1.05rem;
+      line-height: 1.82;
+      font-weight: 650;
+    }
+
+    .hero-actions,
+    .quick-row,
+    .ticket-tags,
+    .mail-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-actions { margin-top: 28px; }
+    .quick-row { margin-top: 22px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font: inherit;
+      cursor: pointer;
+      font-weight: 1000;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+    .btn.primary { color: var(--ink); background: var(--paper2); box-shadow: 0 18px 34px rgba(4,49,58,.18); }
+    .btn.ghost { color: #fff; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); }
+
+    .quick-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .passport-stamp {
+      position: absolute;
+      right: clamp(18px, 4vw, 46px);
+      bottom: clamp(22px, 4vw, 48px);
+      width: 170px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 4px double rgba(255,255,255,.56);
+      border-radius: 50%;
+      color: rgba(255,255,255,.70);
+      font-size: 1.05rem;
+      font-weight: 1000;
+      letter-spacing: .12em;
+      transform: rotate(-13deg);
+      text-align: center;
+    }
+
+    .passport-stamp::before {
+      content: "🍊";
+      display: block;
+      font-size: 2.3rem;
+      letter-spacing: 0;
+    }
+
+    .gate-board {
+      display: grid;
+      gap: 16px;
+      align-content: stretch;
+    }
+
+    .boarding {
+      position: relative;
+      min-height: 262px;
+      padding: 26px;
+      border-radius: 34px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.86);
+      box-shadow: var(--soft);
+      backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .boarding::before,
+    .boarding::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff8e7;
+      border: 1px solid rgba(22,48,57,.06);
+    }
+
+    .boarding::before { left: -16px; }
+    .boarding::after { right: -16px; }
+
+    .ticket-line { display: none !important; }
+
+    .ticket-kicker {
+      display: inline-flex;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--orange2);
+      background: rgba(255,159,28,.16);
+      font-size: .78rem;
+      font-weight: 1000;
+      letter-spacing: .08em;
+    }
+
+    .domain-name {
+      margin: 20px 0 8px;
+      font-size: clamp(2.4rem, 5vw, 4.75rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-weight: 1000;
+      overflow-wrap: anywhere;
+    }
+
+    .boarding p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .ticket-tags { margin-top: 20px; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 11px;
+      border-radius: 999px;
+      color: #6b3b20;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.86);
+      font-size: .88rem;
+      font-weight: 950;
+    }
+
+    .stub { display: none !important; }
+
+    .stub strong { display: none !important; }
+
+    section { padding: 58px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .kicker {
+      color: var(--orange2);
+      font-size: .85rem;
+      font-weight: 1000;
+      letter-spacing: .08em;
+    }
+
+    h2 {
+      margin: 7px 0 0;
+      font-size: clamp(2rem, 4.4vw, 4.3rem);
+      line-height: 1.07;
+      letter-spacing: -.055em;
+      font-weight: 1000;
+    }
+
+    .section-desc {
+      max-width: 460px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      font-weight: 700;
+    }
+
+    .stamp-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      gap: 16px;
+    }
+
+    .stamp-card {
+      position: relative;
+      min-height: 270px;
+      padding: 26px;
+      border-radius: 34px;
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: var(--soft);
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+      transition: transform .24s ease, box-shadow .24s ease;
+    }
+
+    .stamp-card:hover {
+      transform: translateY(-7px) rotate(-.4deg);
+      box-shadow: 0 26px 58px rgba(13, 91, 103, .15);
+    }
+
+    .stamp-card.big {
+      grid-row: span 2;
+      color: #fff;
+      background:
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.24), transparent 28%),
+        linear-gradient(145deg, #c55717, #ff8f1f 58%, #ffbf4b);
+    }
+
+    .stamp-card.wide { grid-column: span 2; }
+
+    .stamp-icon {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background: rgba(255,255,255,.76);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 24px rgba(13,91,103,.08);
+      font-size: 1.9rem;
+    }
+
+    .stamp-card.big .stamp-icon { background: rgba(255,255,255,.18); }
+
+    .stamp-card h3 {
+      margin: 24px 0 8px;
+      font-size: clamp(1.28rem, 2.2vw, 1.92rem);
+      line-height: 1.24;
+      letter-spacing: -.04em;
+      font-weight: 1000;
+    }
+
+    .stamp-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .stamp-card.big p { color: rgba(255,255,255,.80); }
+
+    .mini-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .mini {
+      display: inline-flex;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #6b3b20;
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(255,255,255,.72);
+      font-size: .86rem;
+      font-weight: 950;
+    }
+
+    .stamp-card.big .mini { color: #fff; background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.2); }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+    }
+
+    .map-visual,
+    .route-card,
+    .mail-card {
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,.78);
+      background: rgba(255,255,255,.64);
+      box-shadow: var(--soft);
+      backdrop-filter: blur(20px);
+    }
+
+    .map-visual {
+      position: relative;
+      min-height: 470px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(255,159,28,.30), transparent 26%),
+        radial-gradient(circle at 18% 80%, rgba(255,205,92,.28), transparent 28%),
+        rgba(255,255,255,.66);
+    }
+
+    .map-visual::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px dashed rgba(11,95,114,.20);
+      border-radius: 26px;
+    }
+
+    .jeju-shape {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(66%, 500px);
+      aspect-ratio: 1.85 / 1;
+      transform: translate(-50%, -44%) rotate(-8deg);
+      border-radius: 56% 44% 47% 53% / 58% 42% 58% 42%;
+      background:
+        radial-gradient(circle at 38% 38%, rgba(255,255,255,.32), transparent 13%),
+        linear-gradient(145deg, #80cc8d, #3e9e72);
+      box-shadow: inset -16px -18px 30px rgba(30,93,62,.12), 0 28px 54px rgba(33,118,103,.18);
+    }
+
+    .pin {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.88);
+      color: #9f4918;
+      font-size: .9rem;
+      font-weight: 1000;
+      box-shadow: 0 12px 24px rgba(13,91,103,.10);
+      animation: bob 4s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    .pin::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .pin.a { left: 14%; top: 30%; animation-delay: -.4s; }
+    .pin.b { right: 13%; top: 44%; animation-delay: -2s; }
+    .pin.c { left: 36%; bottom: 23%; animation-delay: -3.2s; }
+
+    @keyframes bob { 50% { transform: translateY(-10px); } }
+
+    .route-card {
+      padding: 28px;
+    }
+
+    .route-card h3 {
+      margin: 0 0 18px;
+      font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+      line-height: 1.18;
+      letter-spacing: -.04em;
+      font-weight: 1000;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .time-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: #fff;
+      font-weight: 1000;
+      background: linear-gradient(135deg, var(--orange2), var(--orange));
+    }
+
+    .time-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 1000;
+    }
+
+    .time-item span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.56;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+
+    .mail-card {
+      position: relative;
+      margin: 48px 0 20px;
+      padding: clamp(26px, 5vw, 50px);
+      color: #fff;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,.24), transparent 20%),
+        radial-gradient(circle at 88% 22%, rgba(255,221,112,.42), transparent 24%),
+        linear-gradient(135deg, #6f3513, #e85f1e 56%, #ffaf35);
+      overflow: hidden;
+    }
+
+    .mail-card::after {
+      content: "MAIL";
+      position: absolute;
+      right: -8px;
+      bottom: -34px;
+      color: rgba(255,255,255,.08);
+      font-size: clamp(5rem, 14vw, 12rem);
+      line-height: .8;
+      font-weight: 1000;
+      letter-spacing: -.08em;
+    }
+
+    .mail-card h2,
+    .mail-card p,
+    .mail-row { position: relative; z-index: 1; }
+
+    .mail-card h2 { color: #fff; margin: 0; }
+
+    .mail-card p {
+      max-width: 660px;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.80);
+      line-height: 1.78;
+      font-weight: 700;
+    }
+
+    .mail-row { margin-top: 28px; }
+
+    .mail-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 15px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.24);
+      color: #fff;
+      font-weight: 950;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 0 10px;
+      color: #687d84;
+      font-size: .92rem;
+      font-weight: 800;
+    }
+
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1080px) {
+      .nav { grid-template-columns: 1fr auto; border-radius: 28px; }
+      .nav-links { display: none; }
+      .hero,
+      .map-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 50px; }
+      .passport { min-height: 560px; }
+      .stamp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stamp-card.big { grid-row: auto; }
+      .stamp-card.wide { grid-column: span 2; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100% - 24px, 1240px); padding-top: 12px; }
+      .nav-wrap { top: 10px; }
+      .nav { display: flex; flex-direction: column; align-items: stretch; padding: 10px; }
+      .brand { justify-content: center; }
+      .nav-actions { flex-direction: column; }
+      .lang-switch, .nav-pill { width: 100%; justify-content: center; }
+      .passport { min-height: 600px; border-radius: 32px; padding: 24px; }
+      .passport::before { inset: 12px; border-radius: 24px; }
+      .passport-stamp { width: 122px; right: 24px; bottom: 28px; font-size: .82rem; }
+      .hero h1 { font-size: clamp(3.7rem, 20vw, 5rem); }
+      .hero-subtitle { font-size: 1.28rem; }
+      .hero-actions .btn { width: 100%; }
+      .boarding { min-height: auto; padding: 22px; }
+      .ticket-line, .stub { display: none; }
+      .domain-name { font-size: clamp(2.15rem, 12vw, 3rem); }
+      section { padding: 42px 0; }
+      h2 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
+      .stamp-grid { grid-template-columns: 1fr; }
+      .stamp-card.wide { grid-column: auto; }
+      .stamp-card,
+      .route-card,
+      .mail-card { padding: 22px; border-radius: 28px; }
+      .map-visual { min-height: 360px; border-radius: 28px; }
+      .pin { padding: 8px 10px; font-size: .78rem; }
+      .pin.b { right: 8%; }
+      .time-item { grid-template-columns: 38px 1fr; padding: 12px; }
+      .num { width: 38px; height: 38px; border-radius: 14px; }
+      .mail-chip { width: 100%; justify-content: center; text-align: center; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+  
+
+    /* typography + multilingual overflow polish */
+    body {
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .brand-name {
+      letter-spacing: -.035em;
+      font-size: 1.02rem;
+      font-weight: 760;
+    }
+
+    .nav-links a {
+      padding-inline: 10px;
+    }
+
+    .hero-subtitle,
+    .hero-desc,
+    .stamp-card p,
+    .time-item span,
+    .mail-card p,
+    .boarding p {
+      overflow-wrap: anywhere;
+    }
+
+    .boarding .domain-name {
+      max-width: 100%;
+    }
+
+    .boarding p {
+      max-width: 100%;
+    }
+
+    .tag,
+    .mail-chip,
+    .quick-chip {
+      max-width: 100%;
+    }
+
+    html:lang(ja) body {
+      font-family: "Noto Sans JP", "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, sans-serif;
+      word-break: normal;
+    }
+
+    html:lang(zh) body {
+      font-family: "Noto Sans SC", "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, sans-serif;
+      word-break: normal;
+    }
+
+    html:lang(ja) .nav-links,
+    html:lang(zh) .nav-links {
+      font-size: .82rem;
+      gap: 0;
+    }
+
+    html:lang(ja) .nav-links a,
+    html:lang(zh) .nav-links a {
+      padding-inline: 8px;
+    }
+
+    html:lang(ja) .hero h1,
+    html:lang(zh) .hero h1 {
+      font-size: clamp(3.5rem, 7.4vw, 6.7rem);
+      letter-spacing: -.075em;
+    }
+
+    html:lang(ja) .hero h1 span,
+    html:lang(zh) .hero h1 span {
+      font-size: .36em;
+      letter-spacing: -.055em;
+    }
+
+    html:lang(ja) .hero-subtitle,
+    html:lang(zh) .hero-subtitle {
+      font-size: clamp(1.12rem, 2vw, 1.68rem);
+      line-height: 1.36;
+    }
+
+    html:lang(ja) .domain-name,
+    html:lang(zh) .domain-name {
+      font-size: clamp(2rem, 4.2vw, 3.85rem);
+      letter-spacing: -.045em;
+    }
+
+    html:lang(ja) .boarding p,
+    html:lang(zh) .boarding p {
+      font-size: .95rem;
+      line-height: 1.72;
+    }
+
+    html:lang(ja) h2,
+    html:lang(zh) h2 {
+      font-size: clamp(1.85rem, 3.7vw, 3.55rem);
+      letter-spacing: -.045em;
+      line-height: 1.16;
+    }
+
+    html:lang(ja) .stamp-card h3,
+    html:lang(zh) .stamp-card h3 {
+      font-size: clamp(1.12rem, 1.9vw, 1.58rem);
+      line-height: 1.34;
+    }
+
+    @media (max-width: 680px) {
+      .boarding .domain-name,
+      .boarding p {
+        max-width: 100%;
+      }
+
+      html:lang(ja) .hero h1,
+      html:lang(zh) .hero h1 {
+        font-size: clamp(3.15rem, 17vw, 4.35rem);
+      }
+    }
+
+    /* readability polish: 글자 숨 쉴 공간 확보 */
+    body {
+      letter-spacing: -0.012em;
+    }
+
+    p,
+    .hero-desc,
+    .boarding p,
+    .stamp-card p,
+    .section-desc,
+    .time-item span,
+    .mail-card p {
+      line-height: 1.9;
+      letter-spacing: -0.004em;
+    }
+
+    .hero-subtitle {
+      line-height: 1.38;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1,
+    h2,
+    .domain-name {
+      letter-spacing: -0.045em;
+    }
+
+    .stamp-card h3,
+    .route-card h3,
+    .time-item strong {
+      letter-spacing: -0.022em;
+      line-height: 1.36;
+    }
+
+    .boarding {
+      padding: 34px 34px 32px;
+    }
+
+    .boarding p {
+      margin-top: 12px;
+    }
+
+    .domain-name {
+      margin: 26px 0 10px;
+      line-height: 1.08;
+    }
+
+    .ticket-tags {
+      margin-top: 26px;
+      gap: 11px;
+    }
+
+    .tag,
+    .mini,
+    .quick-chip,
+    .mail-chip,
+    .ticket-kicker,
+    .nav-pill,
+    .nav-links a {
+      letter-spacing: -0.006em;
+    }
+
+    .stamp-card {
+      padding: 32px;
+    }
+
+    .stamp-card h3 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+
+    .stamp-icon {
+      margin-bottom: 2px;
+    }
+
+    .mini-list {
+      margin-top: 28px;
+      gap: 10px;
+    }
+
+    .route-card {
+      padding: 34px;
+    }
+
+    .route-card h3 {
+      margin-bottom: 24px;
+    }
+
+    .timeline {
+      gap: 16px;
+    }
+
+    .time-item {
+      gap: 16px;
+      padding: 18px;
+    }
+
+    .time-item strong {
+      margin-bottom: 7px;
+    }
+
+    .mail-card p {
+      margin-top: 22px;
+    }
+
+    .mail-row {
+      margin-top: 34px;
+      gap: 12px;
+    }
+
+    html:lang(ja) body,
+    html:lang(zh) body {
+      letter-spacing: 0;
+    }
+
+    html:lang(ja) p,
+    html:lang(ja) .hero-desc,
+    html:lang(ja) .boarding p,
+    html:lang(ja) .stamp-card p,
+    html:lang(ja) .section-desc,
+    html:lang(ja) .time-item span,
+    html:lang(ja) .mail-card p,
+    html:lang(zh) p,
+    html:lang(zh) .hero-desc,
+    html:lang(zh) .boarding p,
+    html:lang(zh) .stamp-card p,
+    html:lang(zh) .section-desc,
+    html:lang(zh) .time-item span,
+    html:lang(zh) .mail-card p {
+      line-height: 2;
+      letter-spacing: .01em;
+    }
+
+    html:lang(ja) .hero-subtitle,
+    html:lang(zh) .hero-subtitle {
+      line-height: 1.55;
+      letter-spacing: .006em;
+    }
+
+    html:lang(ja) .stamp-card h3,
+    html:lang(zh) .stamp-card h3,
+    html:lang(ja) .route-card h3,
+    html:lang(zh) .route-card h3 {
+      line-height: 1.48;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 680px) {
+      .boarding,
+      .stamp-card,
+      .route-card,
+      .mail-card {
+        padding: 26px;
+      }
+
+      .hero-subtitle {
+        line-height: 1.48;
+      }
+
+      p,
+      .hero-desc,
+      .boarding p,
+      .stamp-card p,
+      .section-desc,
+      .time-item span,
+      .mail-card p {
+        line-height: 1.86;
+      }
+
+      .time-item {
+        gap: 14px;
+        padding: 16px;
+      }
+    }
+
+    /* final palette balance: 감귤 기본 + 바다 포인트 */
+    :root {
+      --ink: #362418;
+      --muted: #7b6250;
+      --paper: #fff1cf;
+      --paper2: #fffaf0;
+      --sea: #2aa6a0;
+      --deep: #9b4a19;
+      --orange: #ff9f1c;
+      --orange2: #ef6b22;
+      --green: #4fa66f;
+      --line: rgba(108, 62, 25, .14);
+      --shadow: 0 30px 90px rgba(210, 111, 28, .18);
+      --soft: 0 16px 38px rgba(210, 111, 28, .11);
+    }
+
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 159, 28, .34), transparent 27%),
+        radial-gradient(circle at 82% 13%, rgba(255, 197, 83, .30), transparent 25%),
+        radial-gradient(circle at 75% 82%, rgba(42, 166, 160, .12), transparent 30%),
+        linear-gradient(135deg, #fff8e5 0%, #ffe4aa 45%, #fff4d4 100%);
+    }
+
+    body::before {
+      background-image:
+        repeating-linear-gradient(0deg, rgba(155,74,25,.075) 0 1px, transparent 1px 42px),
+        repeating-linear-gradient(90deg, rgba(155,74,25,.06) 0 1px, transparent 1px 42px);
+    }
+
+    .topo {
+      opacity: .42;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(255,159,28,.42), rgba(239,107,34,.16) 42%, transparent 68%),
+        repeating-radial-gradient(ellipse at 50% 30%, rgba(155,74,25,.13) 0 2px, transparent 2px 28px);
+    }
+
+    .nav {
+      background: rgba(255, 250, 240, .68);
+      box-shadow: 0 18px 42px rgba(210, 111, 28, .12);
+    }
+
+    .nav-links,
+    .nav-links a,
+    .tag,
+    .mini,
+    .quick-chip {
+      color: #6d442b;
+    }
+
+    .nav-pill,
+    .num {
+      background: linear-gradient(135deg, #ff9f1c, #ef6b22);
+      box-shadow: 0 13px 24px rgba(239, 107, 34, .24);
+    }
+
+    .brand-mark {
+      background:
+        radial-gradient(circle at 34% 27%, #fff9b4 0 8%, transparent 9%),
+        linear-gradient(135deg, var(--orange), var(--orange2));
+    }
+
+    .passport {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.20), transparent 28%),
+        radial-gradient(circle at 22% 82%, rgba(255,220,115,.36), transparent 25%),
+        radial-gradient(circle at 96% 90%, rgba(42,166,160,.18), transparent 26%),
+        linear-gradient(145deg, #7a3b16, #e96a20 56%, #ffae35);
+      box-shadow: var(--shadow);
+    }
+
+    .ticket-kicker,
+    .kicker {
+      color: #e7601f;
+    }
+
+    .boarding,
+    .stamp-card,
+    .route-card,
+    .map-visual {
+      background: rgba(255, 253, 247, .72);
+      box-shadow: var(--soft);
+    }
+
+    .boarding {
+      border-color: rgba(255,255,255,.88);
+    }
+
+    .ticket-kicker {
+      background: rgba(255, 159, 28, .15);
+    }
+
+    .stamp-card.big {
+      background:
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.24), transparent 28%),
+        radial-gradient(circle at 16% 86%, rgba(42,166,160,.16), transparent 30%),
+        linear-gradient(145deg, #bf5319, #ff8d1f 58%, #ffbf4b);
+    }
+
+    .map-visual {
+      background:
+        radial-gradient(circle at 80% 18%, rgba(255,159,28,.28), transparent 26%),
+        radial-gradient(circle at 18% 80%, rgba(255,205,92,.24), transparent 28%),
+        rgba(255,253,247,.72);
+    }
+
+    .pin {
+      color: #9b4a19;
+    }
+
+    .pin::before {
+      background: var(--sea);
+    }
+
+    .mail-card {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,.24), transparent 20%),
+        radial-gradient(circle at 88% 22%, rgba(255,222,116,.34), transparent 24%),
+        radial-gradient(circle at 92% 88%, rgba(42,166,160,.15), transparent 25%),
+        linear-gradient(135deg, #7a3b16, #e96a20 56%, #ffaf35);
+      box-shadow: var(--shadow);
+    }
+
+    /* emotional custom layer: 감성 + 가벼운 폰트 */
+    body {
+      font-weight: 450;
+    }
+
+    .brand,
+    .nav-links,
+    .nav-pill,
+    .lang-btn,
+    .eyebrow,
+    .ticket-kicker,
+    .tag,
+    .mini,
+    .quick-chip,
+    .btn,
+    .mail-chip,
+    .pin,
+    footer {
+      font-weight: 650 !important;
+    }
+
+    .hero h1 {
+      font-weight: 760 !important;
+      letter-spacing: -0.038em !important;
+    }
+
+    h2,
+    .mail-card h2 {
+      font-family: "Gowun Batang", "Pretendard Variable", serif;
+      font-weight: 700 !important;
+      letter-spacing: -0.025em !important;
+      line-height: 1.14;
+    }
+
+    .hero-subtitle,
+    .section-desc,
+    .hero-desc,
+    .boarding p,
+    .stamp-card p,
+    .time-item span,
+    .mail-card p {
+      font-family: "Gowun Dodum", "Pretendard Variable", sans-serif;
+      font-weight: 400 !important;
+      letter-spacing: -0.002em !important;
+    }
+
+    .domain-name {
+      font-weight: 720 !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .stamp-card h3,
+    .route-card h3,
+    .time-item strong {
+      font-weight: 680 !important;
+      letter-spacing: -0.012em !important;
+    }
+
+    .passport {
+      isolation: isolate;
+    }
+
+    .passport::before {
+      border-style: dashed;
+      opacity: .74;
+    }
+
+    .passport::after {
+      font-weight: 760;
+      opacity: .9;
+    }
+
+    .citrus-doodle {
+      position: absolute;
+      right: clamp(26px, 5vw, 72px);
+      top: clamp(92px, 13vw, 142px);
+      width: 132px;
+      height: 132px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 44% 56% 48% 52%;
+      background:
+        radial-gradient(circle at 35% 34%, rgba(255,255,255,.28), transparent 13%),
+        radial-gradient(circle, rgba(255,225,130,.30), transparent 62%);
+      transform: rotate(12deg);
+      opacity: .78;
+      animation: float-soft 7s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .citrus-doodle::before,
+    .citrus-doodle::after,
+    .citrus-doodle i {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.34);
+    }
+
+    .citrus-doodle::after {
+      inset: 38px;
+      border-style: dashed;
+      opacity: .75;
+    }
+
+    .citrus-doodle i:nth-child(1) {
+      inset: 22px auto auto 50%;
+      width: 1px;
+      height: 88px;
+      border: 0;
+      border-left: 1px solid rgba(255,255,255,.28);
+      transform: rotate(28deg);
+      transform-origin: bottom;
+    }
+
+    .citrus-doodle i:nth-child(2) {
+      inset: 22px auto auto 50%;
+      width: 1px;
+      height: 88px;
+      border: 0;
+      border-left: 1px solid rgba(255,255,255,.25);
+      transform: rotate(-26deg);
+      transform-origin: bottom;
+    }
+
+    .citrus-doodle i:nth-child(3) {
+      inset: 50% auto auto 20px;
+      width: 90px;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid rgba(255,255,255,.25);
+      transform: rotate(-8deg);
+    }
+
+    .hand-note {
+      position: absolute;
+      left: clamp(22px, 4vw, 52px);
+      bottom: clamp(126px, 11vw, 178px);
+      width: min(235px, calc(100% - 48px));
+      padding: 18px 18px 17px;
+      border-radius: 22px;
+      color: #5b321b;
+      background: rgba(255, 253, 240, .88);
+      border: 1px solid rgba(255,255,255,.70);
+      box-shadow: 0 20px 38px rgba(104, 43, 12, .16);
+      transform: rotate(-3.5deg);
+      backdrop-filter: blur(12px);
+      z-index: 2;
+    }
+
+    .hand-note::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -12px;
+      width: 74px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(255, 228, 164, .70);
+      border: 1px solid rgba(255,255,255,.48);
+      transform: translateX(-50%) rotate(4deg);
+      box-shadow: 0 8px 14px rgba(119, 68, 20, .08);
+    }
+
+    .hand-note span {
+      display: block;
+      margin-bottom: 8px;
+      color: #e76320;
+      font-family: "Gowun Dodum", sans-serif;
+      font-size: .82rem;
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+
+    .hand-note strong {
+      display: block;
+      font-family: "Gowun Batang", serif;
+      font-size: 1.04rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .boarding {
+      transform: rotate(-.25deg);
+    }
+
+    .boarding:nth-child(2) {
+      transform: rotate(.35deg);
+    }
+
+    .boarding::before,
+    .boarding::after {
+      background: #fff0c9;
+      opacity: .95;
+    }
+
+    .boarding::before {
+      box-shadow: 0 0 0 10px rgba(255, 159, 28, .055);
+    }
+
+    .boarding::after {
+      box-shadow: 0 0 0 10px rgba(42, 166, 160, .055);
+    }
+
+    .mood-rail {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0 0 38px;
+      margin-top: -18px;
+    }
+
+    .mood-rail::before {
+      content: "";
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(149, 82, 32, .28), transparent);
+      z-index: -1;
+    }
+
+    .mood-rail span {
+      display: grid;
+      min-height: 72px;
+      place-items: center;
+      padding: 12px;
+      border-radius: 24px 24px 28px 20px;
+      color: #724428;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,244,214,.76));
+      border: 1px solid rgba(255,255,255,.86);
+      box-shadow: 0 16px 32px rgba(210, 111, 28, .10);
+      font-family: "Gowun Dodum", sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: center;
+      transform: rotate(-1.5deg);
+    }
+
+    .mood-rail span:nth-child(2) { transform: rotate(1.4deg); color: #287a76; }
+    .mood-rail span:nth-child(3) { transform: rotate(-.6deg); }
+    .mood-rail span:nth-child(4) { transform: rotate(1.8deg); color: #d85e20; }
+
+    .stamp-card {
+      border-radius: 36px 30px 40px 28px;
+    }
+
+    .stamp-card::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px dashed rgba(239, 107, 34, .24);
+      opacity: .75;
+    }
+
+    .stamp-card.big::after,
+    .mail-card::before {
+      border-color: rgba(255,255,255,.36);
+    }
+
+    .mail-card::before {
+      content: "";
+      position: absolute;
+      right: 34px;
+      top: 32px;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,.32);
+      transform: rotate(-18deg);
+    }
+
+    @keyframes float-soft {
+      0%, 100% { transform: translateY(0) rotate(12deg); }
+      50% { transform: translateY(-12px) rotate(17deg); }
+    }
+
+    html:lang(ja) .hero-subtitle,
+    html:lang(ja) .hero-desc,
+    html:lang(ja) .boarding p,
+    html:lang(ja) .stamp-card p,
+    html:lang(ja) .section-desc,
+    html:lang(ja) .time-item span,
+    html:lang(zh) .hero-subtitle,
+    html:lang(zh) .hero-desc,
+    html:lang(zh) .boarding p,
+    html:lang(zh) .stamp-card p,
+    html:lang(zh) .section-desc,
+    html:lang(zh) .time-item span {
+      font-family: inherit;
+      font-weight: 400 !important;
+    }
+
+    @media (max-width: 1080px) {
+      .mood-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hand-note { bottom: 112px; }
+    }
+
+    @media (max-width: 680px) {
+      .citrus-doodle {
+        width: 92px;
+        height: 92px;
+        top: 86px;
+        right: 22px;
+      }
+
+      .hand-note {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 28px;
+        width: 100%;
+        transform: rotate(-1.5deg);
+      }
+
+      .mood-rail {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: -10px;
+      }
+
+      .mood-rail span {
+        min-height: 62px;
+        font-size: .94rem;
+      }
+
+      .boarding,
+      .boarding:nth-child(2) {
+        transform: none;
+      }
+    }
+
+    /* hero overlap fix: 메모지는 오른쪽으로 빼고, 본문 영역 분리 */
+    .passport {
+      min-height: 720px;
+      padding-bottom: 54px;
+    }
+
+    .passport > .eyebrow,
+    .passport > h1,
+    .passport > .hero-subtitle,
+    .passport > .hero-desc,
+    .passport > .hero-actions,
+    .passport > .quick-row {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-subtitle,
+    .hero-desc,
+    .hero-actions,
+    .quick-row {
+      max-width: min(100%, 455px);
+    }
+
+    .hero h1 {
+      max-width: 520px;
+    }
+
+    .hand-note {
+      left: auto !important;
+      right: clamp(24px, 4vw, 54px) !important;
+      top: 355px !important;
+      bottom: auto !important;
+      width: 218px !important;
+      transform: rotate(2.5deg) !important;
+      z-index: 4;
+    }
+
+    .passport-stamp {
+      width: 148px;
+      right: clamp(24px, 4vw, 48px);
+      bottom: 42px;
+      z-index: 2;
+      opacity: .82;
+    }
+
+    .citrus-doodle {
+      z-index: 1;
+      opacity: .52;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+    }
+
+    .quick-row {
+      margin-top: 24px;
+      padding-right: 120px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-subtitle,
+      .hero-desc,
+      .hero-actions,
+      .quick-row {
+        max-width: min(100%, 420px);
+      }
+
+      .hand-note {
+        top: 385px !important;
+        width: 205px !important;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .passport {
+        min-height: auto;
+        padding-bottom: 32px;
+      }
+
+      .hero-subtitle,
+      .hero-desc,
+      .hero-actions,
+      .quick-row,
+      .hero h1 {
+        max-width: 100%;
+      }
+
+      .hand-note {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: min(360px, 100%) !important;
+        margin: 30px 0 0 !important;
+        transform: rotate(-1.5deg) !important;
+      }
+
+      .passport-stamp {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: 28px 0 0 auto;
+      }
+
+      .quick-row {
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .passport {
+        min-height: auto !important;
+      }
+
+      .hand-note {
+        margin-top: 26px !important;
+        width: 100% !important;
+      }
+
+      .passport-stamp {
+        width: 118px;
+      }
+    }
+
+    /* real passport interaction: 펼치면 실제 여권 페이지 */
+    .passport-book {
+      position: absolute;
+      inset: 28px;
+      z-index: 8;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
+      min-height: calc(100% - 56px);
+      color: #4f2d1a;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: perspective(1200px) rotateX(8deg) scale(.92);
+      transform-origin: center;
+      transition: opacity .42s ease, visibility .42s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+      filter: drop-shadow(0 28px 42px rgba(102, 44, 12, .26));
+    }
+
+    .passport.open .passport-book {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: perspective(1200px) rotateX(0deg) scale(1);
+    }
+
+    .passport.open > .eyebrow,
+    .passport.open > h1,
+    .passport.open > .hero-subtitle,
+    .passport.open > .hero-desc,
+    .passport.open > .hero-actions,
+    .passport.open > .quick-row,
+    .passport.open > .passport-stamp,
+    .passport.open > .citrus-doodle {
+      display: none !important;
+    }
+
+    .book-page {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(22px, 3vw, 34px);
+      background:
+        linear-gradient(90deg, rgba(135,76,26,.10), transparent 13%, transparent 87%, rgba(135,76,26,.10)),
+        radial-gradient(circle at 24% 18%, rgba(255, 184, 68, .23), transparent 28%),
+        linear-gradient(135deg, #fff8e7, #ffe9bd 58%, #fff6df);
+      border: 1px solid rgba(255,255,255,.92);
+      box-shadow: inset 0 0 0 1px rgba(128, 73, 22, .09);
+    }
+
+    .book-left {
+      border-radius: 30px 12px 12px 30px;
+      transform-origin: right center;
+      animation: leftOpen .7s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .book-right {
+      border-radius: 12px 30px 30px 12px;
+      transform-origin: left center;
+      animation: rightOpen .7s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .book-spine {
+      position: relative;
+      background:
+        linear-gradient(90deg, rgba(86,45,15,.20), rgba(255,255,255,.42), rgba(86,45,15,.18));
+      box-shadow: inset 8px 0 12px rgba(94,42,13,.12), inset -8px 0 12px rgba(255,255,255,.32);
+    }
+
+    .book-spine::before {
+      content: "";
+      position: absolute;
+      inset: 12px 7px;
+      border-radius: 999px;
+      background: rgba(122,63,20,.18);
+    }
+
+    .book-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      z-index: 12;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(80, 43, 23, .86);
+      box-shadow: 0 14px 26px rgba(88, 37, 12, .22);
+      font: inherit;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .book-kicker {
+      display: inline-flex;
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: #d85e20;
+      background: rgba(255,159,28,.14);
+      font-size: .76rem;
+      font-weight: 650;
+      letter-spacing: .08em;
+    }
+
+    .book-page h3 {
+      margin: 18px 0 22px;
+      font-family: "Gowun Batang", serif;
+      font-size: clamp(2rem, 4.4vw, 3.85rem);
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      font-weight: 700;
+      color: #4b2b1a;
+    }
+
+    .book-photo {
+      width: min(190px, 70%);
+      aspect-ratio: 4 / 5;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.80), transparent 22%),
+        linear-gradient(145deg, rgba(255,159,28,.30), rgba(42,166,160,.18));
+      border: 1px dashed rgba(126,68,21,.22);
+    }
+
+    .book-photo span {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      filter: drop-shadow(0 12px 12px rgba(119,56,17,.18));
+    }
+
+    .book-lines {
+      margin-top: 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .book-lines span,
+    .book-info dt {
+      color: #9b6542;
+      font-size: .78rem;
+      font-weight: 650;
+      letter-spacing: .08em;
+    }
+
+    .book-lines strong {
+      font-size: 1.28rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .book-stamp {
+      position: absolute;
+      right: 24px;
+      top: 22px;
+      width: 112px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 3px double rgba(239,107,34,.34);
+      color: rgba(216,94,32,.70);
+      font-weight: 700;
+      font-size: .9rem;
+      line-height: 1.2;
+      text-align: center;
+      transform: rotate(-12deg);
+    }
+
+    .book-info {
+      margin: clamp(88px, 11vw, 120px) 0 0;
+      display: grid;
+      gap: 15px;
+    }
+
+    .book-info div {
+      padding: 14px 0 12px;
+      border-bottom: 1px dashed rgba(126,68,21,.22);
+    }
+
+    .book-info dt,
+    .book-info dd { margin: 0; }
+
+    .book-info dd {
+      margin-top: 6px;
+      font-size: clamp(1.2rem, 2.3vw, 1.72rem);
+      font-weight: 650;
+      letter-spacing: -.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .book-right p {
+      margin: 22px 0 0;
+      max-width: 360px;
+      color: #76543d;
+      font-family: "Gowun Dodum", sans-serif;
+      font-size: 1rem;
+      line-height: 1.82;
+      font-weight: 400;
+    }
+
+    .book-page::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -34% -20%;
+      height: 55%;
+      background: radial-gradient(ellipse at center, rgba(255,159,28,.13), transparent 62%);
+      pointer-events: none;
+    }
+
+    @keyframes leftOpen { from { transform: rotateY(20deg); } to { transform: rotateY(0deg); } }
+    @keyframes rightOpen { from { transform: rotateY(-20deg); } to { transform: rotateY(0deg); } }
+
+    @media (max-width: 680px) {
+      .passport-book {
+        position: relative;
+        inset: auto;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        min-height: auto;
+        margin-top: 24px;
+        filter: none;
+      }
+
+      .passport.open > .eyebrow,
+      .passport.open > h1,
+      .passport.open > .hero-subtitle,
+      .passport.open > .hero-desc,
+      .passport.open > .hero-actions,
+      .passport.open > .quick-row,
+      .passport.open > .passport-stamp,
+      .passport.open > .citrus-doodle {
+        display: none !important;
+      }
+
+      .book-spine { display: none; }
+      .book-left,
+      .book-right { border-radius: 26px; }
+      .book-close { top: -8px; right: -8px; }
+      .book-info { margin-top: 86px; }
+    }
+
+    /* fullscreen passport mode */
+    body.passport-locked {
+      overflow: hidden;
+    }
+
+    .passport.open {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      width: 100vw;
+      height: 100dvh;
+      min-height: 100dvh !important;
+      padding: clamp(22px, 4vw, 54px);
+      border-radius: 0;
+      overflow: hidden;
+      transform: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.25), transparent 22%),
+        radial-gradient(circle at 80% 18%, rgba(255,221,115,.34), transparent 26%),
+        radial-gradient(circle at 18% 84%, rgba(42,166,160,.16), transparent 28%),
+        linear-gradient(145deg, #7a3b16, #e96a20 55%, #ffae35);
+    }
+
+    .passport.open::before {
+      inset: clamp(14px, 2.2vw, 28px);
+      border-radius: clamp(22px, 3vw, 36px);
+      border-color: rgba(255,255,255,.26);
+      z-index: 0;
+    }
+
+    .passport.open::after {
+      right: -2vw;
+      bottom: -4vw;
+      font-size: clamp(8rem, 24vw, 22rem);
+      opacity: .68;
+    }
+
+    .passport.open .passport-book {
+      position: relative;
+      inset: auto;
+      width: min(1420px, calc(100vw - clamp(36px, 8vw, 108px)));
+      height: min(820px, calc(100dvh - clamp(44px, 8vw, 108px)));
+      max-height: calc(100dvh - 72px);
+      min-height: 0;
+      grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
+      z-index: 10;
+      filter: drop-shadow(0 42px 70px rgba(80, 32, 8, .34));
+    }
+
+    .passport.open .book-page {
+      padding: clamp(28px, 4vw, 58px);
+    }
+
+    .passport.open .book-page h3 {
+      font-size: clamp(2.8rem, 6vw, 6.2rem);
+      margin-top: 26px;
+      margin-bottom: clamp(24px, 4vw, 46px);
+    }
+
+    .passport.open .book-photo {
+      width: min(280px, 56%);
+      max-height: 330px;
+    }
+
+    .passport.open .book-info {
+      margin-top: clamp(118px, 15vh, 170px);
+      gap: clamp(16px, 2.3vh, 26px);
+    }
+
+    .passport.open .book-info div {
+      padding: clamp(14px, 2vh, 22px) 0;
+    }
+
+    .passport.open .book-info dd {
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+    }
+
+    .passport.open .book-right p {
+      max-width: 520px;
+      font-size: clamp(1rem, 1.4vw, 1.22rem);
+    }
+
+    .passport.open .book-stamp {
+      width: clamp(110px, 13vw, 168px);
+      right: clamp(28px, 4vw, 58px);
+      top: clamp(28px, 4vw, 58px);
+      font-size: clamp(.9rem, 1.3vw, 1.15rem);
+    }
+
+    .passport.open .book-close {
+      position: fixed;
+      top: clamp(18px, 3vw, 34px);
+      right: clamp(18px, 3vw, 34px);
+      width: 52px;
+      height: 52px;
+      font-size: 1.75rem;
+      background: rgba(55, 30, 18, .82);
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 900px) {
+      .passport.open {
+        padding: 18px;
+        overflow: auto;
+        align-items: start;
+      }
+
+      .passport.open .passport-book {
+        width: min(100%, 620px);
+        height: auto;
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin: 68px auto 28px;
+        filter: drop-shadow(0 28px 42px rgba(80, 32, 8, .26));
+      }
+
+      .passport.open .book-spine {
+        display: none;
+      }
+
+      .passport.open .book-left,
+      .passport.open .book-right {
+        border-radius: 30px;
+      }
+
+      .passport.open .book-page {
+        min-height: auto;
+        padding: 30px;
+      }
+
+      .passport.open .book-info {
+        margin-top: 110px;
+      }
+    }
+
+    /* 제주도 공식 감성 폰트 적용 */
+    body,
+    .nav,
+    .btn,
+    .tag,
+    .mini,
+    .quick-chip,
+    .mail-chip,
+    .pin,
+    .time-item,
+    .boarding p,
+    .stamp-card p,
+    .section-desc,
+    .mail-card p,
+    .hero-desc {
+      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    .brand-name,
+    .brand-mark,
+    .eyebrow,
+    .ticket-kicker,
+    .kicker,
+    .nav-pill,
+    .lang-btn,
+    .time-item strong,
+    .stamp-card h3,
+    .route-card h3,
+    .book-kicker,
+    .book-lines strong,
+    .book-info dd {
+      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    .hero h1,
+    .passport-stamp,
+    .book-stamp {
+      font-family: "Jeju Hallasan", "Jeju Gothic", "Pretendard Variable", sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.018em !important;
+    }
+
+    .hero h1 {
+      line-height: .96;
+    }
+
+    .hero h1 span {
+      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    h2,
+    .mail-card h2,
+    .book-page h3 {
+      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.018em !important;
+    }
+
+    .domain-name {
+      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.018em !important;
+    }
+
+    .hero-subtitle {
+      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
+      font-weight: 400 !important;
+      line-height: 1.5;
+      letter-spacing: -0.01em !important;
+    }
+
+    .mood-rail span {
+      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
+      font-weight: 400 !important;
+    }
+
+    html:lang(ja) body,
+    html:lang(ja) .nav,
+    html:lang(ja) .btn,
+    html:lang(ja) .tag,
+    html:lang(ja) .mini,
+    html:lang(ja) .quick-chip,
+    html:lang(ja) .mail-chip,
+    html:lang(ja) .pin,
+    html:lang(ja) .time-item,
+    html:lang(ja) h2,
+    html:lang(ja) .mail-card h2,
+    html:lang(ja) .book-page h3,
+    html:lang(ja) .hero h1,
+    html:lang(ja) .hero-subtitle,
+    html:lang(ja) .hero-desc,
+    html:lang(ja) .boarding p,
+    html:lang(ja) .stamp-card p,
+    html:lang(ja) .section-desc,
+    html:lang(ja) .mail-card p,
+    html:lang(ja) .mood-rail span {
+      font-family: "Noto Sans JP", "Pretendard Variable", Pretendard, sans-serif !important;
+    }
+
+    html:lang(zh) body,
+    html:lang(zh) .nav,
+    html:lang(zh) .btn,
+    html:lang(zh) .tag,
+    html:lang(zh) .mini,
+    html:lang(zh) .quick-chip,
+    html:lang(zh) .mail-chip,
+    html:lang(zh) .pin,
+    html:lang(zh) .time-item,
+    html:lang(zh) h2,
+    html:lang(zh) .mail-card h2,
+    html:lang(zh) .book-page h3,
+    html:lang(zh) .hero h1,
+    html:lang(zh) .hero-subtitle,
+    html:lang(zh) .hero-desc,
+    html:lang(zh) .boarding p,
+    html:lang(zh) .stamp-card p,
+    html:lang(zh) .section-desc,
+    html:lang(zh) .mail-card p,
+    html:lang(zh) .mood-rail span {
+      font-family: "Noto Sans SC", "Pretendard Variable", Pretendard, sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-light" aria-hidden="true"></div>
+  <div class="topo" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="주요 메뉴">
+        <a class="brand" href="#top" aria-label="je-ju.net 홈">
+          <span class="brand-mark">je</span>
+          <span class="brand-name">je-ju.net</span>
+        </a>
+
+        <div class="nav-links" aria-label="페이지 이동">
+          <a href="#project" data-i18n="navProject">제주입구</a>
+          <a href="#address" data-i18n="navAddress">주소정리</a>
+          <a href="#map" data-i18n="navMap">제주기록</a>
+          <a href="#mail" data-i18n="navMail">개인메일</a>
+        </div>
+
+        <div class="nav-actions">
+          <div class="lang-switch" aria-label="언어 선택">
+            <button type="button" class="lang-btn active" data-lang="ko">KR</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" data-lang="ja">JP</button>
+            <button type="button" class="lang-btn" data-lang="zh">CN</button>
+          </div>
+          <a class="nav-pill" href="#mail" data-i18n="navGate">Mail Gate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="passport reveal">
+          <div class="eyebrow" data-i18n="eyebrow">PRIVATE ISLAND GATE</div>
+          <h1 data-i18n-html="heroTitle"><span>안녕,</span>제주.</h1>
+          <div class="hero-subtitle" data-i18n-html="heroSubtitle">귤빛 바람과 파도 사이에 둔<br />작은 개인 도메인 여권</div>
+          <p class="hero-desc" data-i18n="heroDesc">공개 문의 사이트보다는, 내가 쓰는 주소와 제주 감성 프로젝트를 한 장의 여권처럼 정리해두는 개인 게이트입니다.</p>
+
+          <div class="hero-actions">
+            <button class="btn primary passport-toggle" type="button" data-i18n="heroBtnPrimary" aria-expanded="false">여권 펼치기 🌊</button>
+            <a class="btn ghost" href="#address" data-i18n="heroBtnSecondary">주소 확인 🍊</a>
+          </div>
+
+          <div class="quick-row" aria-label="요약 정보">
+            <span class="quick-chip">je-ju.net</span>
+            <span class="quick-chip">hi.jeju.kr</span>
+            <span class="quick-chip" data-i18n="quickWorkspace">Private Domain</span>
+          </div>
+
+          <div class="passport-stamp">ISLAND<br />GATE</div>
+
+          <div class="citrus-doodle" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </div>
+
+          <div class="passport-book" aria-hidden="true">
+            <button class="book-close" type="button" aria-label="여권 닫기">×</button>
+            <div class="book-page book-left">
+              <div class="book-kicker" data-i18n="bookKicker">JEJU PASSPORT</div>
+              <h3 data-i18n-html="bookTitle">귤빛 주소<br />입국 기록</h3>
+              <div class="book-photo" aria-hidden="true">
+                <span>🍊</span>
+              </div>
+              <div class="book-lines">
+                <span data-i18n="bookOwner">OWNER / PRIVATE</span>
+                <strong>HI, JEJU</strong>
+              </div>
+            </div>
+            <div class="book-spine" aria-hidden="true"></div>
+            <div class="book-page book-right">
+              <div class="book-stamp">JEJU<br />ENTRY</div>
+              <dl class="book-info">
+                <div><dt data-i18n="bookMain">MAIN DOMAIN</dt><dd>je-ju.net</dd></div>
+                <div><dt data-i18n="bookSub">SUB ENTRANCE</dt><dd>hi.jeju.kr</dd></div>
+                <div><dt data-i18n="bookMail">MAIL</dt><dd>hi@je-ju.net</dd></div>
+              </dl>
+              <p data-i18n="bookDesc">조용한 개인 도메인을 제주 감귤빛 여권처럼 정리했습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="gate-board reveal" id="address" aria-label="도메인 보딩패스">
+          <article class="boarding">
+            <div class="ticket-line" aria-hidden="true"></div>
+            <div class="ticket-kicker" data-i18n="mainSiteLabel">MAIN DOMAIN</div>
+            <div class="domain-name">je-ju.net</div>
+            <p data-i18n="mainSiteDesc">제주 감성 페이지의 중심 주소입니다. 랜딩, 링크, 작은 프로젝트를 이 주소에 모아둡니다.</p>
+            <div class="ticket-tags"><span class="tag" data-i18n="tagMain">대표 주소</span><span class="tag" data-i18n="tagJejuProject">제주 프로젝트</span><span class="tag" data-i18n="tagLinks">링크 모음</span></div>
+            <div class="stub">Gate<strong>01</strong></div>
+          </article>
+
+          <article class="boarding">
+            <div class="ticket-line" aria-hidden="true"></div>
+            <div class="ticket-kicker" data-i18n="subEntranceLabel">SUB ENTRANCE</div>
+            <div class="domain-name">hi.jeju.kr</div>
+            <p data-i18n="subEntranceDesc">“안녕, 제주” 느낌의 보조 입구입니다. 메인 주소로 연결하거나 짧은 소개 페이지로 쓰기 좋습니다.</p>
+            <div class="ticket-tags"><span class="tag" data-i18n="tagGate">감성 입구</span><span class="tag" data-i18n="tagSubLanding">보조 랜딩</span><span class="tag" data-i18n="tagPrivateAddress">개인용 주소</span></div>
+            <div class="stub">Gate<strong>02</strong></div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="mood-rail reveal" aria-label="제주 감성 메모">
+        <span data-i18n="railA">귤빛 우편</span>
+        <span data-i18n="railB">느린 바람</span>
+        <span data-i18n="railC">작은 주소</span>
+        <span data-i18n="railD">노을 도장</span>
+      </section>
+
+      <section id="project" class="reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker" data-i18n="projectKicker">JEJU PASSPORT NOTES</div>
+            <h2 data-i18n-html="projectTitle">그냥 랜딩이 아니라,<br />제주 입국 도장처럼.</h2>
+          </div>
+          <p class="section-desc" data-i18n="projectDesc">바다, 귤, 오름, 도메인을 여권 스탬프처럼 묶었습니다. 흔한 카드형 홈페이지보다 조금 더 기억에 남는 구조입니다.</p>
+        </div>
+
+        <div class="stamp-grid">
+          <article class="stamp-card big">
+            <div class="stamp-icon">🌊</div>
+            <h3 data-i18n="tileBigTitle">느리게 열리는 제주 무드</h3>
+            <p data-i18n="tileBigDesc">파도와 종이 질감, 여권 도장 느낌으로 개인 도메인 게이트를 조금 더 특별하게 만들었습니다.</p>
+            <div class="mini-list"><span class="mini">passport</span><span class="mini">wave</span><span class="mini">private</span></div>
+          </article>
+
+          <article class="stamp-card">
+            <div class="stamp-icon">🍊</div>
+            <h3 data-i18n="tileWeatherTitle">귤빛 입구</h3>
+            <p data-i18n="tileWeatherDesc">첫 화면은 강한 홍보보다, 조용히 기억나는 제주 인사말처럼 보이게 구성했습니다.</p>
+          </article>
+
+          <article class="stamp-card">
+            <div class="stamp-icon">🗺️</div>
+            <h3 data-i18n="tileLinksTitle">주소 지도</h3>
+            <p data-i18n="tileLinksDesc">두 주소의 역할을 복잡하지 않게 나누고, 한눈에 이해되도록 배치합니다.</p>
+          </article>
+
+          <article class="stamp-card wide">
+            <div class="stamp-icon">✉️</div>
+            <h3 data-i18n="tileArchiveTitle">개인 메일 게이트</h3>
+            <p data-i18n="tileArchiveDesc">메일은 방문자 문의용이 아니라, 개인적으로 쓰는 주소를 차분하게 표시하는 영역으로 정리합니다.</p>
+            <div class="mini-list"><span class="mini">hi@je-ju.net</span><span class="mini">Google Workspace</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="map" class="reveal">
+        <div class="map-grid">
+          <div class="map-visual" aria-label="제주 감성 지도">
+            <div class="jeju-shape"></div>
+            <div class="pin a" data-i18n="pinSea">바다</div>
+            <div class="pin b" data-i18n="pinOreum">오름</div>
+            <div class="pin c" data-i18n="pinMandarin">귤빛</div>
+          </div>
+
+          <aside class="route-card">
+            <h3 data-i18n="routeTitle">페이지 흐름</h3>
+            <div class="timeline">
+              <div class="time-item"><div class="num">1</div><div><strong data-i18n="step1Title">입구</strong><span data-i18n="step1Desc">처음에는 제주 여권 같은 랜딩 화면으로 시작합니다.</span></div></div>
+              <div class="time-item"><div class="num">2</div><div><strong data-i18n="step2Title">주소</strong><span data-i18n="step2Desc">je-ju.net과 hi.jeju.kr의 역할을 분리합니다.</span></div></div>
+              <div class="time-item"><div class="num">3</div><div><strong data-i18n="step3Title">기록</strong><span data-i18n="step3Desc">제주 감성의 지도와 기록 느낌을 더합니다.</span></div></div>
+              <div class="time-item"><div class="num">4</div><div><strong data-i18n="step4Title">메일</strong><span data-i18n="step4Desc">개인용 메일 주소를 조용하게 정리합니다.</span></div></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="mail" class="mail-card reveal">
+        <h2 data-i18n-html="mailTitle">개인 메일은<br />작은 도장처럼.</h2>
+        <p data-i18n="mailDesc">메일 주소는 방문자 문의 버튼처럼 크게 노출하지 않고, 개인 도메인 여권에 찍힌 작은 기록처럼 가볍게 둡니다.</p>
+        <div class="mail-row" aria-label="개인 메일 주소"><span class="mail-chip">hi@je-ju.net</span><span class="mail-chip">hi@hi.jeju.kr</span><span class="mail-chip">Google Workspace</span></div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> <span data-i18n="footerCopy">Hi, Jeju. Private island passport.</span></div>
+      <div class="footer-links"><a href="#top" data-i18n="footerTop">Top</a><a href="#address" data-i18n="footerAddress">Address</a><a href="#mail" data-i18n="footerMail">Mail</a></div>
+    </footer>
+  </div>
+
+  <script>
+    const translations = {
+      ko: {
+        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 제주 감성의 개인 도메인 게이트.',
+        navProject: '제주입구', navAddress: '주소정리', navMap: '제주기록', navMail: '개인메일', navGate: 'Mail Gate',
+        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>안녕,</span>제주.', heroSubtitle: '귤빛 바람과 파도 사이에 둔<br />작은 개인 도메인 여권', heroDesc: '공개 문의 사이트보다는, 내가 쓰는 주소와 제주 감성 프로젝트를 한 장의 여권처럼 정리해두는 개인 게이트입니다.', heroBtnPrimary: '여권 펼치기 🌊', heroBtnSecondary: '주소 확인 🍊', quickWorkspace: 'Private Domain', railA: '귤빛 우편', railB: '느린 바람', railC: '작은 주소', railD: '노을 도장', bookKicker: 'JEJU PASSPORT', bookTitle: '귤빛 주소<br />입국 기록', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '조용한 개인 도메인을 제주 감귤빛 여권처럼 정리했습니다.',
+        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '제주 감성 페이지의 중심 주소입니다. 랜딩, 링크, 작은 프로젝트를 이 주소에 모아둡니다.', tagMain: '대표 주소', tagJejuProject: '제주 프로젝트', tagLinks: '링크 모음', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '“안녕, 제주” 느낌의 보조 입구입니다. 메인 주소로 연결하거나 짧은 소개 페이지로 쓰기 좋습니다.', tagGate: '감성 입구', tagSubLanding: '보조 랜딩', tagPrivateAddress: '개인용 주소',
+        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '그냥 랜딩이 아니라,<br />제주 입국 도장처럼.', projectDesc: '바다, 귤, 오름, 도메인을 여권 스탬프처럼 묶었습니다. 흔한 카드형 홈페이지보다 조금 더 기억에 남는 구조입니다.', tileBigTitle: '느리게 열리는 제주 무드', tileBigDesc: '파도와 종이 질감, 여권 도장 느낌으로 개인 도메인 게이트를 조금 더 특별하게 만들었습니다.', tileWeatherTitle: '귤빛 입구', tileWeatherDesc: '첫 화면은 강한 홍보보다, 조용히 기억나는 제주 인사말처럼 보이게 구성했습니다.', tileLinksTitle: '주소 지도', tileLinksDesc: '두 주소의 역할을 복잡하지 않게 나누고, 한눈에 이해되도록 배치합니다.', tileArchiveTitle: '개인 메일 게이트', tileArchiveDesc: '메일은 방문자 문의용이 아니라, 개인적으로 쓰는 주소를 차분하게 표시하는 영역으로 정리합니다.',
+        pinSea: '바다', pinOreum: '오름', pinMandarin: '귤빛', routeTitle: '페이지 흐름', step1Title: '입구', step1Desc: '처음에는 제주 여권 같은 랜딩 화면으로 시작합니다.', step2Title: '주소', step2Desc: 'je-ju.net과 hi.jeju.kr의 역할을 분리합니다.', step3Title: '기록', step3Desc: '제주 감성의 지도와 기록 느낌을 더합니다.', step4Title: '메일', step4Desc: '개인용 메일 주소를 조용하게 정리합니다.',
+        mailTitle: '개인 메일은<br />작은 도장처럼.', mailDesc: '메일 주소는 방문자 문의 버튼처럼 크게 노출하지 않고, 개인 도메인 여권에 찍힌 작은 기록처럼 가볍게 둡니다.', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
+      },
+      en: {
+        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. A private Jeju-inspired domain gate.',
+        navProject: 'Gate', navAddress: 'Address', navMap: 'Record', navMail: 'Mail', navGate: 'Mail Gate',
+        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>Hi,</span>Jeju.', heroSubtitle: 'A small private domain passport<br />between mandarin wind and waves', heroDesc: 'Rather than a public inquiry site, this is a private gate that keeps my addresses and Jeju-inspired projects like a passport page.', heroBtnPrimary: 'Open passport 🌊', heroBtnSecondary: 'View address 🍊', quickWorkspace: 'Private Domain', railA: 'Orange mail', railB: 'Slow breeze', railC: 'Small address', railD: 'Sunset stamp', bookKicker: 'JEJU PASSPORT', bookTitle: 'Orange address<br />entry record', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: 'A quiet personal domain arranged like a Jeju mandarin passport.',
+        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: 'The main address for the Jeju-inspired page. Landing pages, links, and small projects gather here.', tagMain: 'Main address', tagJejuProject: 'Jeju project', tagLinks: 'Links', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: 'A soft secondary gate with the feeling of “Hi, Jeju.” Good for redirecting to the main site or hosting a short intro.', tagGate: 'Soft gate', tagSubLanding: 'Sub landing', tagPrivateAddress: 'Private address',
+        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'Not just a landing page,<br />more like a Jeju entry stamp.', projectDesc: 'The sea, mandarins, oreum, and domains are grouped like passport stamps, making the structure more memorable than ordinary cards.', tileBigTitle: 'A slow Jeju mood', tileBigDesc: 'Waves, paper texture, and passport-stamp details make the private domain gate feel more special.', tileWeatherTitle: 'Mandarin-colored gate', tileWeatherDesc: 'The first impression feels like a quiet Jeju greeting, not loud promotion.', tileLinksTitle: 'Address map', tileLinksDesc: 'The roles of the two addresses are separated clearly and arranged for quick understanding.', tileArchiveTitle: 'Private mail gate', tileArchiveDesc: 'Mail is not treated as a visitor inquiry button, but as a calm display of personal addresses.',
+        pinSea: 'Sea', pinOreum: 'Oreum', pinMandarin: 'Mandarin', routeTitle: 'Page route', step1Title: 'Gate', step1Desc: 'The page starts like a Jeju-style passport landing.', step2Title: 'Address', step2Desc: 'The roles of je-ju.net and hi.jeju.kr are separated.', step3Title: 'Record', step3Desc: 'A Jeju-inspired map and record mood is added.', step4Title: 'Mail', step4Desc: 'Private mail addresses are kept quietly.',
+        mailTitle: 'Private mail,<br />like a small stamp.', mailDesc: 'Mail addresses are not shown as loud inquiry buttons, but as small records stamped inside a private domain passport.', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
+      },
+      ja: {
+        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 済州感性の個人ドメインゲート。',
+        navProject: '済州入口', navAddress: '住所整理', navMap: '済州記録', navMail: '個人メール', navGate: 'Mail Gate',
+        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>こんにちは、</span>済州。', heroSubtitle: 'みかん色の風と波の間に置いた<br />小さな個人ドメインパスポート', heroDesc: '公開問い合わせサイトではなく、自分の住所と済州感性プロジェクトを一枚のパスポートのように整理する個人ゲートです。', heroBtnPrimary: 'パスポートを開く 🌊', heroBtnSecondary: '住所を見る 🍊', quickWorkspace: 'Private Domain', railA: 'みかん色の郵便', railB: 'ゆっくりした風', railC: '小さな住所', railD: '夕焼けスタンプ', bookKicker: 'JEJU PASSPORT', bookTitle: 'みかん色の住所<br />入国記録', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '静かな個人ドメインを済州みかん色のパスポートのように整理しました。',
+        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '済州感性ページの中心住所です。ランディング、リンク、小さなプロジェクトをこの住所にまとめます。', tagMain: '代表住所', tagJejuProject: '済州プロジェクト', tagLinks: 'リンク集', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '「こんにちは、済州」の雰囲気を持つ補助入口です。メイン住所へつなげたり、短い紹介ページとして使えます。', tagGate: '感性入口', tagSubLanding: '補助ランディング', tagPrivateAddress: '個人用住所',
+        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'ただのランディングではなく、<br />済州の入国スタンプのように。', projectDesc: '海、みかん、オルム、ドメインをパスポートスタンプのようにまとめました。普通のカード型サイトより記憶に残る構造です。', tileBigTitle: 'ゆっくり開く済州ムード', tileBigDesc: '波、紙の質感、パスポートスタンプの雰囲気で個人ドメインゲートを少し特別にしました。', tileWeatherTitle: 'みかん色の入口', tileWeatherDesc: '最初の画面は強い宣伝ではなく、静かに記憶に残る済州の挨拶のように構成しました。', tileLinksTitle: '住所マップ', tileLinksDesc: '二つの住所の役割をわかりやすく分け、一目で理解できるように配置します。', tileArchiveTitle: '個人メールゲート', tileArchiveDesc: 'メールは訪問者問い合わせ用ではなく、個人用住所を落ち着いて表示する領域です。',
+        pinSea: '海', pinOreum: 'オルム', pinMandarin: 'みかん色', routeTitle: 'ページの流れ', step1Title: '入口', step1Desc: '最初は済州パスポートのようなランディング画面から始まります。', step2Title: '住所', step2Desc: 'je-ju.netとhi.jeju.krの役割を分けます。', step3Title: '記録', step3Desc: '済州感性の地図と記録の雰囲気を加えます。', step4Title: 'メール', step4Desc: '個人メールアドレスを静かに整理します。',
+        mailTitle: '個人メールは<br />小さなスタンプのように。', mailDesc: 'メールアドレスは問い合わせボタンのように大きく見せず、個人ドメインパスポートに押された小さな記録のように置きます。', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
+      },
+      zh: {
+        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 济州风格个人域名入口。',
+        navProject: '济州入口', navAddress: '地址整理', navMap: '济州记录', navMail: '个人邮箱', navGate: 'Mail Gate',
+        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>你好，</span>济州。', heroSubtitle: '放在橘色微风与海浪之间的<br />小小个人域名护照', heroDesc: '这不是公开咨询网站，而是像一页护照一样整理个人地址和济州风格项目的私人入口。', heroBtnPrimary: '打开护照 🌊', heroBtnSecondary: '查看地址 🍊', quickWorkspace: 'Private Domain', railA: '橘光邮件', railB: '慢慢的风', railC: '小小地址', railD: '日落印章', bookKicker: 'JEJU PASSPORT', bookTitle: '橘光地址<br />入境记录', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '把安静的个人域名整理成济州橘光护照。',
+        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '济州风格页面的中心地址。落地页、链接和小项目都会放在这里。', tagMain: '代表地址', tagJejuProject: '济州项目', tagLinks: '链接集合', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '带有“你好，济州”感觉的辅助入口。可以跳转到主地址，也可以做成简短介绍页。', tagGate: '感性入口', tagSubLanding: '辅助落地页', tagPrivateAddress: '个人地址',
+        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '不只是落地页，<br />更像济州入境印章。', projectDesc: '把大海、橘子、오름和域名像护照印章一样组合起来，比普通卡片式主页更容易记住。', tileBigTitle: '慢慢打开的济州氛围', tileBigDesc: '用海浪、纸张质感和护照印章感，让个人域名入口更特别。', tileWeatherTitle: '橘光入口', tileWeatherDesc: '第一屏不是强烈宣传，而像一句安静又容易记住的济州问候。', tileLinksTitle: '地址地图', tileLinksDesc: '清楚区分两个地址的作用，让人一眼就能理解。', tileArchiveTitle: '个人邮箱入口', tileArchiveDesc: '邮箱不是访客咨询按钮，而是安静展示个人地址的区域。',
+        pinSea: '大海', pinOreum: '오름', pinMandarin: '橘光', routeTitle: '页面流程', step1Title: '入口', step1Desc: '一开始像济州护照一样展示落地页。', step2Title: '地址', step2Desc: '区分 je-ju.net 和 hi.jeju.kr 的角色。', step3Title: '记录', step3Desc: '加入济州风格地图和记录感。', step4Title: '邮箱', step4Desc: '安静整理个人邮箱地址。',
+        mailTitle: '个人邮箱，<br />像小小印章。', mailDesc: '邮箱地址不做成显眼的咨询按钮，而像个人域名护照里的小记录一样轻轻放着。', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
+      }
+    };
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.ko;
+      document.documentElement.lang = lang;
+      document.title = dict.pageTitle;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', dict.metaDesc);
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.dataset.i18n;
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key]) el.innerHTML = dict[key];
+      });
+
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        const active = btn.dataset.lang === lang;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+
+      localStorage.setItem('hiJejuLang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    applyLanguage(localStorage.getItem('hiJejuLang') || 'ko');
+
+    const cursorLight = document.querySelector('.cursor-light');
+    window.addEventListener('pointermove', (event) => {
+      if (!cursorLight) return;
+      cursorLight.style.left = `${event.clientX}px`;
+      cursorLight.style.top = `${event.clientY}px`;
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+    revealItems.forEach((item) => observer.observe(item));
+
+    const passport = document.querySelector('.passport');
+    const passportToggle = document.querySelector('.passport-toggle');
+    const bookClose = document.querySelector('.book-close');
+
+    function setPassportOpen(isOpen) {
+      if (!passport) return;
+      passport.style.transform = 'none';
+      passport.classList.toggle('open', isOpen);
+      document.body.classList.toggle('passport-locked', isOpen);
+      const book = passport.querySelector('.passport-book');
+      if (book) book.setAttribute('aria-hidden', String(!isOpen));
+      if (passportToggle) passportToggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    if (passportToggle) {
+      passportToggle.addEventListener('click', () => setPassportOpen(true));
+    }
+
+    if (bookClose) {
+      bookClose.addEventListener('click', () => setPassportOpen(false));
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setPassportOpen(false);
+    });
+
+    if (passport) {
+      passport.addEventListener('pointermove', (event) => {
+        if (passport.classList.contains('open')) return;
+        const rect = passport.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        passport.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+      });
+      passport.addEventListener('pointerleave', () => {
+        passport.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
+      });
+    }
+
+    const nav = document.querySelector('.nav-wrap');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > 180 && current > lastScroll) {
+        nav.style.transform = 'translateY(-12px)';
+        nav.style.opacity = '.62';
+      } else {
+        nav.style.transform = 'translateY(0)';
+        nav.style.opacity = '1';
+      }
+      lastScroll = current;
+    }, { passive: true });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
