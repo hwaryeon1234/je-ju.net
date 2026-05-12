@@ -3,3179 +3,1180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>je-ju.net — Private Island Gate</title>
-  <meta name="description" content="Hi, Jeju. 제주 감성의 개인 도메인 게이트." />
+  <title>Hi Jeju 🍊 — 제주도 여행 가이드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css');
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gowun+Batang:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/earlyaccess/jejugothic.css');
-    @import url('https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css');
-    @import url('https://fonts.googleapis.com/earlyaccess/jejuhallasan.css');
     :root {
-      --ink: #3b2518;
-      --muted: #8a684f;
-      --paper: #fff2d1;
-      --paper2: #fffaf0;
-      --sea: #2aa6a5;
-      --deep: #b84f18;
-      --orange: #ff9f1c;
-      --orange2: #f26722;
-      --green: #4caa72;
-      --line: rgba(89, 45, 16, .14);
-      --white: rgba(255,255,255,.80);
-      --shadow: 0 30px 90px rgba(209, 104, 25, .18);
-      --soft: 0 16px 38px rgba(209, 104, 25, .12);
-      --radius: 34px;
+      --orange: #FF6B2C;
+      --orange-light: #FFB347;
+      --orange-pale: #FFF0E6;
+      --teal: #00B4A6;
+      --teal-light: #B2E8E5;
+      --yellow: #FFD93D;
+      --green: #6BCB77;
+      --ink: #2D2016;
+      --muted: #7A5C44;
+      --bg: #FFFAF5;
+      --white: #FFFFFF;
+      --card-shadow: 0 8px 32px rgba(255,107,44,0.12);
+      --card-hover: 0 16px 48px rgba(255,107,44,0.22);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      min-height: 100vh;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
       color: var(--ink);
-      font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 12% 8%, rgba(255, 159, 28, .40), transparent 27%),
-        radial-gradient(circle at 86% 10%, rgba(255, 196, 86, .34), transparent 25%),
-        radial-gradient(circle at 72% 80%, rgba(42, 166, 165, .14), transparent 30%),
-        linear-gradient(135deg, #fff8df 0%, #ffe5af 45%, #fff7e8 100%);
       overflow-x: hidden;
-      word-break: keep-all;
     }
 
-    body::before {
-      content: "";
+    /* ── FLOATING DECO ── */
+    .deco-blob {
       position: fixed;
-      inset: 0;
-      z-index: -5;
-      pointer-events: none;
-      opacity: .36;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(184,79,24,.08) 0 1px, transparent 1px 42px),
-        repeating-linear-gradient(90deg, rgba(184,79,24,.07) 0 1px, transparent 1px 42px);
-      mask-image: linear-gradient(to bottom, #000, transparent 78%);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      pointer-events: none;
-      opacity: .22;
-      background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23a)' opacity='.45'/%3E%3C/svg%3E");
-      mix-blend-mode: multiply;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .cursor-light {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 430px;
-      height: 430px;
       border-radius: 50%;
-      transform: translate(-50%, -50%);
       pointer-events: none;
-      z-index: -3;
-      opacity: .56;
-      background: radial-gradient(circle, rgba(255,255,255,.72), transparent 62%);
+      z-index: -1;
+      filter: blur(60px);
+      opacity: 0.35;
     }
+    .blob1 { width: 500px; height: 500px; background: var(--orange-light); top: -100px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: var(--teal-light); bottom: 20%; left: -120px; }
+    .blob3 { width: 300px; height: 300px; background: var(--yellow); top: 50%; right: 10%; }
 
-    .topo {
-      position: fixed;
-      inset: auto -18vw -24vw -18vw;
-      height: 54vw;
-      min-height: 460px;
-      z-index: -2;
-      opacity: .6;
-      background:
-        radial-gradient(ellipse at 50% 20%, rgba(255,159,28,.46), rgba(242,103,34,.18) 42%, transparent 68%),
-        repeating-radial-gradient(ellipse at 50% 30%, rgba(184,79,24,.16) 0 2px, transparent 2px 28px);
-      filter: blur(1px);
-      border-radius: 50% 50% 0 0;
-    }
-
-    .page {
-      width: min(1240px, calc(100% - 36px));
-      margin: 0 auto;
-      padding: 18px 0 34px;
-    }
-
-    .nav-wrap {
+    /* ── NAV ── */
+    nav {
       position: sticky;
-      top: 16px;
-      z-index: 20;
-      transition: transform .32s ease, opacity .32s ease;
-    }
-
-    .nav {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      top: 0;
+      z-index: 100;
+      padding: 14px 32px;
+      display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.78);
-      background: rgba(255,255,255,.58);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 18px 42px rgba(209, 104, 25, .12);
+      justify-content: space-between;
+      background: rgba(255,250,245,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(255,107,44,0.08);
     }
 
-    .brand {
-      display: inline-flex;
+    .nav-logo {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 6px 12px 6px 6px;
-      border-radius: 999px;
-      font-weight: 1000;
-      letter-spacing: -.02em;
+      gap: 8px;
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-decoration: none;
     }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #fff;
-      background:
-        radial-gradient(circle at 34% 27%, #fff9b4 0 8%, transparent 9%),
-        linear-gradient(135deg, var(--orange), var(--orange2));
-      box-shadow: inset 0 -8px 18px rgba(107,38,8,.15), 0 12px 24px rgba(241,94,34,.18);
-      text-transform: lowercase;
-      font-size: .9rem;
-      font-weight: 760;
-      letter-spacing: -.04em;
-    }
+    .nav-logo .emoji { font-size: 1.6rem; }
 
     .nav-links {
       display: flex;
-      justify-content: center;
-      gap: 2px;
-      color: #6b3b20;
-      font-size: .9rem;
-      font-weight: 900;
-    }
-
-    .nav-links a {
-      padding: 10px 12px;
-      border-radius: 999px;
-      transition: background .2s ease, transform .2s ease;
-    }
-
-    .nav-links a:hover {
-      background: rgba(255,255,255,.68);
-      transform: translateY(-1px);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
       gap: 4px;
-      padding: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 8px 16px;
       border-radius: 999px;
-      background: rgba(255,255,255,.56);
-      border: 1px solid rgba(255,255,255,.72);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover {
+      background: var(--orange-pale);
+      color: var(--orange);
     }
 
-    .lang-btn {
-      width: 34px;
-      height: 34px;
-      border: 0;
-      border-radius: 50%;
-      background: transparent;
-      color: #385960;
-      font: inherit;
-      font-size: .76rem;
-      font-weight: 1000;
-      cursor: pointer;
-    }
-
-    .lang-btn.active {
-      color: #fff;
-      background: var(--ink);
-      box-shadow: 0 9px 18px rgba(22,48,57,.18);
-    }
-
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 16px;
+    .nav-cta {
+      padding: 10px 22px;
+      background: var(--orange);
+      color: white;
       border-radius: 999px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--orange), var(--orange2));
-      box-shadow: 0 13px 24px rgba(242,103,34,.24);
-      font-weight: 1000;
-      white-space: nowrap;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.22s;
+      box-shadow: 0 4px 16px rgba(255,107,44,0.3);
     }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,44,0.4); }
 
+    /* ── HERO ── */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, .93fr) minmax(420px, 1.07fr);
-      gap: 28px;
-      align-items: stretch;
-      padding: 62px 0 48px;
-    }
-
-    .passport {
-      position: relative;
-      min-height: 650px;
-      padding: clamp(24px, 4vw, 46px);
-      border-radius: 42px;
-      color: #fff;
-      background:
-        radial-gradient(circle at 82% 18%, rgba(255,255,255,.20), transparent 28%),
-        radial-gradient(circle at 20% 82%, rgba(255,220,118,.45), transparent 25%),
-        linear-gradient(145deg, #7a3a14, #f26722 55%, #ffb23a);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .passport::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,.22);
-      pointer-events: none;
-    }
-
-    .passport::after {
-      content: "JEJU";
-      position: absolute;
-      right: -18px;
-      bottom: -36px;
-      z-index: -1;
-      color: rgba(255,255,255,.07);
-      font-size: clamp(6rem, 18vw, 15rem);
-      line-height: .8;
-      font-weight: 1000;
-      letter-spacing: -.09em;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.20);
-      font-size: .88rem;
-      font-weight: 1000;
-      letter-spacing: .05em;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 6px rgba(255,140,42,.18);
-    }
-
-    .hero h1 {
-      margin: 34px 0 0;
-      font-size: clamp(4.4rem, 9vw, 8.8rem);
-      line-height: .9;
-      letter-spacing: -.065em;
-      font-weight: 1000;
-    }
-
-    .hero h1 span {
-      display: block;
-      color: rgba(255,255,255,.68);
-      font-size: .42em;
-      line-height: 1.1;
-      letter-spacing: -.04em;
-    }
-
-    .hero-subtitle {
-      width: min(100%, 620px);
-      margin: 28px 0 0;
-      font-size: clamp(1.26rem, 2.4vw, 2.05rem);
-      line-height: 1.25;
-      letter-spacing: -.035em;
-      font-weight: 1000;
-    }
-
-    .hero-desc {
-      max-width: 600px;
-      margin: 18px 0 0;
-      color: rgba(255,255,255,.77);
-      font-size: 1.05rem;
-      line-height: 1.82;
-      font-weight: 650;
-    }
-
-    .hero-actions,
-    .quick-row,
-    .ticket-tags,
-    .mail-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .hero-actions { margin-top: 28px; }
-    .quick-row { margin-top: 22px; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font: inherit;
-      cursor: pointer;
-      font-weight: 1000;
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-
-    .btn:hover { transform: translateY(-3px); }
-    .btn.primary { color: var(--ink); background: var(--paper2); box-shadow: 0 18px 34px rgba(4,49,58,.18); }
-    .btn.ghost { color: #fff; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); }
-
-    .quick-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: rgba(255,255,255,.86);
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.18);
-      font-size: .9rem;
-      font-weight: 900;
-    }
-
-    .passport-stamp {
-      position: absolute;
-      right: clamp(18px, 4vw, 46px);
-      bottom: clamp(22px, 4vw, 48px);
-      width: 170px;
-      aspect-ratio: 1;
+      min-height: 88vh;
       display: grid;
       place-items: center;
-      border: 4px double rgba(255,255,255,.56);
-      border-radius: 50%;
-      color: rgba(255,255,255,.70);
-      font-size: 1.05rem;
-      font-weight: 1000;
-      letter-spacing: .12em;
-      transform: rotate(-13deg);
+      padding: 60px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
       text-align: center;
+      max-width: 800px;
     }
 
-    .passport-stamp::before {
-      content: "🍊";
-      display: block;
-      font-size: 2.3rem;
-      letter-spacing: 0;
-    }
-
-    .gate-board {
-      display: grid;
-      gap: 16px;
-      align-content: stretch;
-    }
-
-    .boarding {
-      position: relative;
-      min-height: 262px;
-      padding: 26px;
-      border-radius: 34px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,255,255,.86);
-      box-shadow: var(--soft);
-      backdrop-filter: blur(22px);
-      overflow: hidden;
-    }
-
-    .boarding::before,
-    .boarding::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #fff8e7;
-      border: 1px solid rgba(22,48,57,.06);
-    }
-
-    .boarding::before { left: -16px; }
-    .boarding::after { right: -16px; }
-
-    .ticket-line { display: none !important; }
-
-    .ticket-kicker {
-      display: inline-flex;
-      padding: 8px 10px;
-      border-radius: 999px;
-      color: var(--orange2);
-      background: rgba(255,159,28,.16);
-      font-size: .78rem;
-      font-weight: 1000;
-      letter-spacing: .08em;
-    }
-
-    .domain-name {
-      margin: 20px 0 8px;
-      font-size: clamp(2.4rem, 5vw, 4.75rem);
-      line-height: 1;
-      letter-spacing: -.06em;
-      font-weight: 1000;
-      overflow-wrap: anywhere;
-    }
-
-    .boarding p {
-      max-width: 560px;
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-weight: 700;
-    }
-
-    .ticket-tags { margin-top: 20px; }
-
-    .tag {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      padding: 9px 11px;
-      border-radius: 999px;
-      color: #6b3b20;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,255,255,.86);
-      font-size: .88rem;
-      font-weight: 950;
-    }
-
-    .stub { display: none !important; }
-
-    .stub strong { display: none !important; }
-
-    section { padding: 58px 0; }
-
-    .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 22px;
-      margin-bottom: 22px;
-    }
-
-    .kicker {
-      color: var(--orange2);
-      font-size: .85rem;
-      font-weight: 1000;
-      letter-spacing: .08em;
-    }
-
-    h2 {
-      margin: 7px 0 0;
-      font-size: clamp(2rem, 4.4vw, 4.3rem);
-      line-height: 1.07;
-      letter-spacing: -.055em;
-      font-weight: 1000;
-    }
-
-    .section-desc {
-      max-width: 460px;
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.78;
-      font-weight: 700;
-    }
-
-    .stamp-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr .9fr;
-      gap: 16px;
-    }
-
-    .stamp-card {
-      position: relative;
-      min-height: 270px;
-      padding: 26px;
-      border-radius: 34px;
-      background: rgba(255,255,255,.64);
-      border: 1px solid rgba(255,255,255,.82);
-      box-shadow: var(--soft);
-      backdrop-filter: blur(20px);
-      overflow: hidden;
-      transition: transform .24s ease, box-shadow .24s ease;
-    }
-
-    .stamp-card:hover {
-      transform: translateY(-7px) rotate(-.4deg);
-      box-shadow: 0 26px 58px rgba(13, 91, 103, .15);
-    }
-
-    .stamp-card.big {
-      grid-row: span 2;
-      color: #fff;
-      background:
-        radial-gradient(circle at 84% 16%, rgba(255,255,255,.24), transparent 28%),
-        linear-gradient(145deg, #c55717, #ff8f1f 58%, #ffbf4b);
-    }
-
-    .stamp-card.wide { grid-column: span 2; }
-
-    .stamp-icon {
-      width: 68px;
-      height: 68px;
-      display: grid;
-      place-items: center;
-      border-radius: 24px;
-      background: rgba(255,255,255,.76);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 24px rgba(13,91,103,.08);
-      font-size: 1.9rem;
-    }
-
-    .stamp-card.big .stamp-icon { background: rgba(255,255,255,.18); }
-
-    .stamp-card h3 {
-      margin: 24px 0 8px;
-      font-size: clamp(1.28rem, 2.2vw, 1.92rem);
-      line-height: 1.24;
-      letter-spacing: -.04em;
-      font-weight: 1000;
-    }
-
-    .stamp-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-weight: 700;
-    }
-
-    .stamp-card.big p { color: rgba(255,255,255,.80); }
-
-    .mini-list {
-      display: flex;
-      flex-wrap: wrap;
       gap: 8px;
-      margin-top: 22px;
-    }
-
-    .mini {
-      display: inline-flex;
-      padding: 8px 10px;
+      padding: 8px 18px;
+      background: var(--orange-pale);
+      border: 2px solid rgba(255,107,44,0.2);
       border-radius: 999px;
-      color: #6b3b20;
-      background: rgba(255,255,255,.64);
-      border: 1px solid rgba(255,255,255,.72);
-      font-size: .86rem;
-      font-weight: 950;
-    }
-
-    .stamp-card.big .mini { color: #fff; background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.2); }
-
-    .map-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 16px;
-    }
-
-    .map-visual,
-    .route-card,
-    .mail-card {
-      border-radius: 36px;
-      border: 1px solid rgba(255,255,255,.78);
-      background: rgba(255,255,255,.64);
-      box-shadow: var(--soft);
-      backdrop-filter: blur(20px);
-    }
-
-    .map-visual {
-      position: relative;
-      min-height: 470px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 80% 18%, rgba(255,159,28,.30), transparent 26%),
-        radial-gradient(circle at 18% 80%, rgba(255,205,92,.28), transparent 28%),
-        rgba(255,255,255,.66);
-    }
-
-    .map-visual::before {
-      content: "";
-      position: absolute;
-      inset: 22px;
-      border: 1px dashed rgba(11,95,114,.20);
-      border-radius: 26px;
-    }
-
-    .jeju-shape {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(66%, 500px);
-      aspect-ratio: 1.85 / 1;
-      transform: translate(-50%, -44%) rotate(-8deg);
-      border-radius: 56% 44% 47% 53% / 58% 42% 58% 42%;
-      background:
-        radial-gradient(circle at 38% 38%, rgba(255,255,255,.32), transparent 13%),
-        linear-gradient(145deg, #80cc8d, #3e9e72);
-      box-shadow: inset -16px -18px 30px rgba(30,93,62,.12), 0 28px 54px rgba(33,118,103,.18);
-    }
-
-    .pin {
-      position: absolute;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.88);
-      color: #9f4918;
-      font-size: .9rem;
-      font-weight: 1000;
-      box-shadow: 0 12px 24px rgba(13,91,103,.10);
-      animation: bob 4s ease-in-out infinite;
-      white-space: nowrap;
-    }
-
-    .pin::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--orange);
-    }
-
-    .pin.a { left: 14%; top: 30%; animation-delay: -.4s; }
-    .pin.b { right: 13%; top: 44%; animation-delay: -2s; }
-    .pin.c { left: 36%; bottom: 23%; animation-delay: -3.2s; }
-
-    @keyframes bob { 50% { transform: translateY(-10px); } }
-
-    .route-card {
-      padding: 28px;
-    }
-
-    .route-card h3 {
-      margin: 0 0 18px;
-      font-size: clamp(1.55rem, 2.5vw, 2.2rem);
-      line-height: 1.18;
-      letter-spacing: -.04em;
-      font-weight: 1000;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 12px;
-    }
-
-    .time-item {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 12px;
-      align-items: start;
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(255,255,255,.72);
-    }
-
-    .num {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      color: #fff;
-      font-weight: 1000;
-      background: linear-gradient(135deg, var(--orange2), var(--orange));
-    }
-
-    .time-item strong {
-      display: block;
-      margin-bottom: 4px;
-      font-weight: 1000;
-    }
-
-    .time-item span {
-      display: block;
-      color: var(--muted);
-      line-height: 1.56;
+      font-size: 0.85rem;
       font-weight: 700;
-      font-size: .95rem;
+      color: var(--orange);
+      margin-bottom: 28px;
+      animation: floatIn 0.6s ease both;
     }
 
-    .mail-card {
-      position: relative;
-      margin: 48px 0 20px;
-      padding: clamp(26px, 5vw, 50px);
-      color: #fff;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,.24), transparent 20%),
-        radial-gradient(circle at 88% 22%, rgba(255,221,112,.42), transparent 24%),
-        linear-gradient(135deg, #6f3513, #e85f1e 56%, #ffaf35);
-      overflow: hidden;
-    }
-
-    .mail-card::after {
-      content: "MAIL";
-      position: absolute;
-      right: -8px;
-      bottom: -34px;
-      color: rgba(255,255,255,.08);
-      font-size: clamp(5rem, 14vw, 12rem);
-      line-height: .8;
-      font-weight: 1000;
-      letter-spacing: -.08em;
-    }
-
-    .mail-card h2,
-    .mail-card p,
-    .mail-row { position: relative; z-index: 1; }
-
-    .mail-card h2 { color: #fff; margin: 0; }
-
-    .mail-card p {
-      max-width: 660px;
-      margin: 18px 0 0;
-      color: rgba(255,255,255,.80);
-      line-height: 1.78;
-      font-weight: 700;
-    }
-
-    .mail-row { margin-top: 28px; }
-
-    .mail-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 48px;
-      padding: 0 15px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.24);
-      color: #fff;
-      font-weight: 950;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 24px 0 10px;
-      color: #687d84;
-      font-size: .92rem;
-      font-weight: 800;
-    }
-
-    .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .75s ease, transform .75s ease;
-    }
-
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 1080px) {
-      .nav { grid-template-columns: 1fr auto; border-radius: 28px; }
-      .nav-links { display: none; }
-      .hero,
-      .map-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 50px; }
-      .passport { min-height: 560px; }
-      .stamp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .stamp-card.big { grid-row: auto; }
-      .stamp-card.wide { grid-column: span 2; }
-      .section-head { align-items: flex-start; flex-direction: column; }
-    }
-
-    @media (max-width: 680px) {
-      .page { width: min(100% - 24px, 1240px); padding-top: 12px; }
-      .nav-wrap { top: 10px; }
-      .nav { display: flex; flex-direction: column; align-items: stretch; padding: 10px; }
-      .brand { justify-content: center; }
-      .nav-actions { flex-direction: column; }
-      .lang-switch, .nav-pill { width: 100%; justify-content: center; }
-      .passport { min-height: 600px; border-radius: 32px; padding: 24px; }
-      .passport::before { inset: 12px; border-radius: 24px; }
-      .passport-stamp { width: 122px; right: 24px; bottom: 28px; font-size: .82rem; }
-      .hero h1 { font-size: clamp(3.7rem, 20vw, 5rem); }
-      .hero-subtitle { font-size: 1.28rem; }
-      .hero-actions .btn { width: 100%; }
-      .boarding { min-height: auto; padding: 22px; }
-      .ticket-line, .stub { display: none; }
-      .domain-name { font-size: clamp(2.15rem, 12vw, 3rem); }
-      section { padding: 42px 0; }
-      h2 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
-      .stamp-grid { grid-template-columns: 1fr; }
-      .stamp-card.wide { grid-column: auto; }
-      .stamp-card,
-      .route-card,
-      .mail-card { padding: 22px; border-radius: 28px; }
-      .map-visual { min-height: 360px; border-radius: 28px; }
-      .pin { padding: 8px 10px; font-size: .78rem; }
-      .pin.b { right: 8%; }
-      .time-item { grid-template-columns: 38px 1fr; padding: 12px; }
-      .num { width: 38px; height: 38px; border-radius: 14px; }
-      .mail-chip { width: 100%; justify-content: center; text-align: center; }
-      footer { align-items: flex-start; flex-direction: column; }
-    }
-  
-
-    /* typography + multilingual overflow polish */
-    body {
-      text-rendering: geometricPrecision;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .brand-name {
-      letter-spacing: -.035em;
-      font-size: 1.02rem;
-      font-weight: 760;
-    }
-
-    .nav-links a {
-      padding-inline: 10px;
-    }
-
-    .hero-subtitle,
-    .hero-desc,
-    .stamp-card p,
-    .time-item span,
-    .mail-card p,
-    .boarding p {
-      overflow-wrap: anywhere;
-    }
-
-    .boarding .domain-name {
-      max-width: 100%;
-    }
-
-    .boarding p {
-      max-width: 100%;
-    }
-
-    .tag,
-    .mail-chip,
-    .quick-chip {
-      max-width: 100%;
-    }
-
-    html:lang(ja) body {
-      font-family: "Noto Sans JP", "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, sans-serif;
-      word-break: normal;
-    }
-
-    html:lang(zh) body {
-      font-family: "Noto Sans SC", "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, sans-serif;
-      word-break: normal;
-    }
-
-    html:lang(ja) .nav-links,
-    html:lang(zh) .nav-links {
-      font-size: .82rem;
-      gap: 0;
-    }
-
-    html:lang(ja) .nav-links a,
-    html:lang(zh) .nav-links a {
-      padding-inline: 8px;
-    }
-
-    html:lang(ja) .hero h1,
-    html:lang(zh) .hero h1 {
-      font-size: clamp(3.5rem, 7.4vw, 6.7rem);
-      letter-spacing: -.075em;
-    }
-
-    html:lang(ja) .hero h1 span,
-    html:lang(zh) .hero h1 span {
-      font-size: .36em;
-      letter-spacing: -.055em;
-    }
-
-    html:lang(ja) .hero-subtitle,
-    html:lang(zh) .hero-subtitle {
-      font-size: clamp(1.12rem, 2vw, 1.68rem);
-      line-height: 1.36;
-    }
-
-    html:lang(ja) .domain-name,
-    html:lang(zh) .domain-name {
-      font-size: clamp(2rem, 4.2vw, 3.85rem);
-      letter-spacing: -.045em;
-    }
-
-    html:lang(ja) .boarding p,
-    html:lang(zh) .boarding p {
-      font-size: .95rem;
-      line-height: 1.72;
-    }
-
-    html:lang(ja) h2,
-    html:lang(zh) h2 {
-      font-size: clamp(1.85rem, 3.7vw, 3.55rem);
-      letter-spacing: -.045em;
-      line-height: 1.16;
-    }
-
-    html:lang(ja) .stamp-card h3,
-    html:lang(zh) .stamp-card h3 {
-      font-size: clamp(1.12rem, 1.9vw, 1.58rem);
-      line-height: 1.34;
-    }
-
-    @media (max-width: 680px) {
-      .boarding .domain-name,
-      .boarding p {
-        max-width: 100%;
-      }
-
-      html:lang(ja) .hero h1,
-      html:lang(zh) .hero h1 {
-        font-size: clamp(3.15rem, 17vw, 4.35rem);
-      }
-    }
-
-    /* readability polish: 글자 숨 쉴 공간 확보 */
-    body {
-      letter-spacing: -0.012em;
-    }
-
-    p,
-    .hero-desc,
-    .boarding p,
-    .stamp-card p,
-    .section-desc,
-    .time-item span,
-    .mail-card p {
-      line-height: 1.9;
-      letter-spacing: -0.004em;
-    }
-
-    .hero-subtitle {
-      line-height: 1.38;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1,
-    h2,
-    .domain-name {
-      letter-spacing: -0.045em;
-    }
-
-    .stamp-card h3,
-    .route-card h3,
-    .time-item strong {
-      letter-spacing: -0.022em;
-      line-height: 1.36;
-    }
-
-    .boarding {
-      padding: 34px 34px 32px;
-    }
-
-    .boarding p {
-      margin-top: 12px;
-    }
-
-    .domain-name {
-      margin: 26px 0 10px;
-      line-height: 1.08;
-    }
-
-    .ticket-tags {
-      margin-top: 26px;
-      gap: 11px;
-    }
-
-    .tag,
-    .mini,
-    .quick-chip,
-    .mail-chip,
-    .ticket-kicker,
-    .nav-pill,
-    .nav-links a {
-      letter-spacing: -0.006em;
-    }
-
-    .stamp-card {
-      padding: 32px;
-    }
-
-    .stamp-card h3 {
-      margin-top: 28px;
-      margin-bottom: 12px;
-    }
-
-    .stamp-icon {
-      margin-bottom: 2px;
-    }
-
-    .mini-list {
-      margin-top: 28px;
-      gap: 10px;
-    }
-
-    .route-card {
-      padding: 34px;
-    }
-
-    .route-card h3 {
-      margin-bottom: 24px;
-    }
-
-    .timeline {
-      gap: 16px;
-    }
-
-    .time-item {
-      gap: 16px;
-      padding: 18px;
-    }
-
-    .time-item strong {
-      margin-bottom: 7px;
-    }
-
-    .mail-card p {
-      margin-top: 22px;
-    }
-
-    .mail-row {
-      margin-top: 34px;
-      gap: 12px;
-    }
-
-    html:lang(ja) body,
-    html:lang(zh) body {
-      letter-spacing: 0;
-    }
-
-    html:lang(ja) p,
-    html:lang(ja) .hero-desc,
-    html:lang(ja) .boarding p,
-    html:lang(ja) .stamp-card p,
-    html:lang(ja) .section-desc,
-    html:lang(ja) .time-item span,
-    html:lang(ja) .mail-card p,
-    html:lang(zh) p,
-    html:lang(zh) .hero-desc,
-    html:lang(zh) .boarding p,
-    html:lang(zh) .stamp-card p,
-    html:lang(zh) .section-desc,
-    html:lang(zh) .time-item span,
-    html:lang(zh) .mail-card p {
-      line-height: 2;
-      letter-spacing: .01em;
-    }
-
-    html:lang(ja) .hero-subtitle,
-    html:lang(zh) .hero-subtitle {
-      line-height: 1.55;
-      letter-spacing: .006em;
-    }
-
-    html:lang(ja) .stamp-card h3,
-    html:lang(zh) .stamp-card h3,
-    html:lang(ja) .route-card h3,
-    html:lang(zh) .route-card h3 {
-      line-height: 1.48;
-      letter-spacing: 0;
-    }
-
-    @media (max-width: 680px) {
-      .boarding,
-      .stamp-card,
-      .route-card,
-      .mail-card {
-        padding: 26px;
-      }
-
-      .hero-subtitle {
-        line-height: 1.48;
-      }
-
-      p,
-      .hero-desc,
-      .boarding p,
-      .stamp-card p,
-      .section-desc,
-      .time-item span,
-      .mail-card p {
-        line-height: 1.86;
-      }
-
-      .time-item {
-        gap: 14px;
-        padding: 16px;
-      }
-    }
-
-    /* final palette balance: 감귤 기본 + 바다 포인트 */
-    :root {
-      --ink: #362418;
-      --muted: #7b6250;
-      --paper: #fff1cf;
-      --paper2: #fffaf0;
-      --sea: #2aa6a0;
-      --deep: #9b4a19;
-      --orange: #ff9f1c;
-      --orange2: #ef6b22;
-      --green: #4fa66f;
-      --line: rgba(108, 62, 25, .14);
-      --shadow: 0 30px 90px rgba(210, 111, 28, .18);
-      --soft: 0 16px 38px rgba(210, 111, 28, .11);
-    }
-
-    body {
+    .hero h1 {
+      font-family: 'Gowun Dodum', serif;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(255, 159, 28, .34), transparent 27%),
-        radial-gradient(circle at 82% 13%, rgba(255, 197, 83, .30), transparent 25%),
-        radial-gradient(circle at 75% 82%, rgba(42, 166, 160, .12), transparent 30%),
-        linear-gradient(135deg, #fff8e5 0%, #ffe4aa 45%, #fff4d4 100%);
+      animation: floatIn 0.6s 0.1s ease both;
     }
-
-    body::before {
-      background-image:
-        repeating-linear-gradient(0deg, rgba(155,74,25,.075) 0 1px, transparent 1px 42px),
-        repeating-linear-gradient(90deg, rgba(155,74,25,.06) 0 1px, transparent 1px 42px);
-    }
-
-    .topo {
-      opacity: .42;
-      background:
-        radial-gradient(ellipse at 50% 20%, rgba(255,159,28,.42), rgba(239,107,34,.16) 42%, transparent 68%),
-        repeating-radial-gradient(ellipse at 50% 30%, rgba(155,74,25,.13) 0 2px, transparent 2px 28px);
-    }
-
-    .nav {
-      background: rgba(255, 250, 240, .68);
-      box-shadow: 0 18px 42px rgba(210, 111, 28, .12);
-    }
-
-    .nav-links,
-    .nav-links a,
-    .tag,
-    .mini,
-    .quick-chip {
-      color: #6d442b;
-    }
-
-    .nav-pill,
-    .num {
-      background: linear-gradient(135deg, #ff9f1c, #ef6b22);
-      box-shadow: 0 13px 24px rgba(239, 107, 34, .24);
-    }
-
-    .brand-mark {
-      background:
-        radial-gradient(circle at 34% 27%, #fff9b4 0 8%, transparent 9%),
-        linear-gradient(135deg, var(--orange), var(--orange2));
-    }
-
-    .passport {
-      background:
-        radial-gradient(circle at 82% 18%, rgba(255,255,255,.20), transparent 28%),
-        radial-gradient(circle at 22% 82%, rgba(255,220,115,.36), transparent 25%),
-        radial-gradient(circle at 96% 90%, rgba(42,166,160,.18), transparent 26%),
-        linear-gradient(145deg, #7a3b16, #e96a20 56%, #ffae35);
-      box-shadow: var(--shadow);
-    }
-
-    .ticket-kicker,
-    .kicker {
-      color: #e7601f;
-    }
-
-    .boarding,
-    .stamp-card,
-    .route-card,
-    .map-visual {
-      background: rgba(255, 253, 247, .72);
-      box-shadow: var(--soft);
-    }
-
-    .boarding {
-      border-color: rgba(255,255,255,.88);
-    }
-
-    .ticket-kicker {
-      background: rgba(255, 159, 28, .15);
-    }
-
-    .stamp-card.big {
-      background:
-        radial-gradient(circle at 84% 16%, rgba(255,255,255,.24), transparent 28%),
-        radial-gradient(circle at 16% 86%, rgba(42,166,160,.16), transparent 30%),
-        linear-gradient(145deg, #bf5319, #ff8d1f 58%, #ffbf4b);
-    }
-
-    .map-visual {
-      background:
-        radial-gradient(circle at 80% 18%, rgba(255,159,28,.28), transparent 26%),
-        radial-gradient(circle at 18% 80%, rgba(255,205,92,.24), transparent 28%),
-        rgba(255,253,247,.72);
-    }
-
-    .pin {
-      color: #9b4a19;
-    }
-
-    .pin::before {
-      background: var(--sea);
-    }
-
-    .mail-card {
-      background:
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,.24), transparent 20%),
-        radial-gradient(circle at 88% 22%, rgba(255,222,116,.34), transparent 24%),
-        radial-gradient(circle at 92% 88%, rgba(42,166,160,.15), transparent 25%),
-        linear-gradient(135deg, #7a3b16, #e96a20 56%, #ffaf35);
-      box-shadow: var(--shadow);
-    }
-
-    /* emotional custom layer: 감성 + 가벼운 폰트 */
-    body {
-      font-weight: 450;
-    }
-
-    .brand,
-    .nav-links,
-    .nav-pill,
-    .lang-btn,
-    .eyebrow,
-    .ticket-kicker,
-    .tag,
-    .mini,
-    .quick-chip,
-    .btn,
-    .mail-chip,
-    .pin,
-    footer {
-      font-weight: 650 !important;
-    }
-
-    .hero h1 {
-      font-weight: 760 !important;
-      letter-spacing: -0.038em !important;
-    }
-
-    h2,
-    .mail-card h2 {
-      font-family: "Gowun Batang", "Pretendard Variable", serif;
-      font-weight: 700 !important;
-      letter-spacing: -0.025em !important;
-      line-height: 1.14;
-    }
-
-    .hero-subtitle,
-    .section-desc,
-    .hero-desc,
-    .boarding p,
-    .stamp-card p,
-    .time-item span,
-    .mail-card p {
-      font-family: "Gowun Dodum", "Pretendard Variable", sans-serif;
-      font-weight: 400 !important;
-      letter-spacing: -0.002em !important;
-    }
-
-    .domain-name {
-      font-weight: 720 !important;
-      letter-spacing: -0.035em !important;
-    }
-
-    .stamp-card h3,
-    .route-card h3,
-    .time-item strong {
-      font-weight: 680 !important;
-      letter-spacing: -0.012em !important;
-    }
-
-    .passport {
-      isolation: isolate;
-    }
-
-    .passport::before {
-      border-style: dashed;
-      opacity: .74;
-    }
-
-    .passport::after {
-      font-weight: 760;
-      opacity: .9;
-    }
-
-    .citrus-doodle {
-      position: absolute;
-      right: clamp(26px, 5vw, 72px);
-      top: clamp(92px, 13vw, 142px);
-      width: 132px;
-      height: 132px;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 44% 56% 48% 52%;
-      background:
-        radial-gradient(circle at 35% 34%, rgba(255,255,255,.28), transparent 13%),
-        radial-gradient(circle, rgba(255,225,130,.30), transparent 62%);
-      transform: rotate(12deg);
-      opacity: .78;
-      animation: float-soft 7s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    .citrus-doodle::before,
-    .citrus-doodle::after,
-    .citrus-doodle i {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.34);
-    }
-
-    .citrus-doodle::after {
-      inset: 38px;
-      border-style: dashed;
-      opacity: .75;
-    }
-
-    .citrus-doodle i:nth-child(1) {
-      inset: 22px auto auto 50%;
-      width: 1px;
-      height: 88px;
-      border: 0;
-      border-left: 1px solid rgba(255,255,255,.28);
-      transform: rotate(28deg);
-      transform-origin: bottom;
-    }
-
-    .citrus-doodle i:nth-child(2) {
-      inset: 22px auto auto 50%;
-      width: 1px;
-      height: 88px;
-      border: 0;
-      border-left: 1px solid rgba(255,255,255,.25);
-      transform: rotate(-26deg);
-      transform-origin: bottom;
-    }
-
-    .citrus-doodle i:nth-child(3) {
-      inset: 50% auto auto 20px;
-      width: 90px;
-      height: 1px;
-      border: 0;
-      border-top: 1px solid rgba(255,255,255,.25);
-      transform: rotate(-8deg);
-    }
-
-    .hand-note {
-      position: absolute;
-      left: clamp(22px, 4vw, 52px);
-      bottom: clamp(126px, 11vw, 178px);
-      width: min(235px, calc(100% - 48px));
-      padding: 18px 18px 17px;
-      border-radius: 22px;
-      color: #5b321b;
-      background: rgba(255, 253, 240, .88);
-      border: 1px solid rgba(255,255,255,.70);
-      box-shadow: 0 20px 38px rgba(104, 43, 12, .16);
-      transform: rotate(-3.5deg);
-      backdrop-filter: blur(12px);
-      z-index: 2;
-    }
-
-    .hand-note::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -12px;
-      width: 74px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(255, 228, 164, .70);
-      border: 1px solid rgba(255,255,255,.48);
-      transform: translateX(-50%) rotate(4deg);
-      box-shadow: 0 8px 14px rgba(119, 68, 20, .08);
-    }
-
-    .hand-note span {
-      display: block;
-      margin-bottom: 8px;
-      color: #e76320;
-      font-family: "Gowun Dodum", sans-serif;
-      font-size: .82rem;
-      font-weight: 400;
-      letter-spacing: .02em;
-    }
-
-    .hand-note strong {
-      display: block;
-      font-family: "Gowun Batang", serif;
-      font-size: 1.04rem;
-      line-height: 1.45;
-      font-weight: 700;
-    }
-
-    .boarding {
-      transform: rotate(-.25deg);
-    }
-
-    .boarding:nth-child(2) {
-      transform: rotate(.35deg);
-    }
-
-    .boarding::before,
-    .boarding::after {
-      background: #fff0c9;
-      opacity: .95;
-    }
-
-    .boarding::before {
-      box-shadow: 0 0 0 10px rgba(255, 159, 28, .055);
-    }
-
-    .boarding::after {
-      box-shadow: 0 0 0 10px rgba(42, 166, 160, .055);
-    }
-
-    .mood-rail {
+    .hero h1 .highlight {
+      color: var(--orange);
       position: relative;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 38px;
-      margin-top: -18px;
+      display: inline-block;
     }
-
-    .mood-rail::before {
-      content: "";
+    .hero h1 .highlight::after {
+      content: '';
       position: absolute;
-      left: 4%;
-      right: 4%;
-      top: 50%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(149, 82, 32, .28), transparent);
+      bottom: 4px;
+      left: 0; right: 0;
+      height: 8px;
+      background: var(--yellow);
+      border-radius: 4px;
       z-index: -1;
+      opacity: 0.6;
     }
 
-    .mood-rail span {
-      display: grid;
-      min-height: 72px;
-      place-items: center;
-      padding: 12px;
-      border-radius: 24px 24px 28px 20px;
-      color: #724428;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,244,214,.76));
-      border: 1px solid rgba(255,255,255,.86);
-      box-shadow: 0 16px 32px rgba(210, 111, 28, .10);
-      font-family: "Gowun Dodum", sans-serif;
-      font-size: 1rem;
+    .hero-sub {
+      margin-top: 20px;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--muted);
+      line-height: 1.7;
       font-weight: 400;
-      text-align: center;
-      transform: rotate(-1.5deg);
-    }
-
-    .mood-rail span:nth-child(2) { transform: rotate(1.4deg); color: #287a76; }
-    .mood-rail span:nth-child(3) { transform: rotate(-.6deg); }
-    .mood-rail span:nth-child(4) { transform: rotate(1.8deg); color: #d85e20; }
-
-    .stamp-card {
-      border-radius: 36px 30px 40px 28px;
-    }
-
-    .stamp-card::after {
-      content: "";
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px dashed rgba(239, 107, 34, .24);
-      opacity: .75;
-    }
-
-    .stamp-card.big::after,
-    .mail-card::before {
-      border-color: rgba(255,255,255,.36);
-    }
-
-    .mail-card::before {
-      content: "";
-      position: absolute;
-      right: 34px;
-      top: 32px;
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 2px dashed rgba(255,255,255,.32);
-      transform: rotate(-18deg);
-    }
-
-    @keyframes float-soft {
-      0%, 100% { transform: translateY(0) rotate(12deg); }
-      50% { transform: translateY(-12px) rotate(17deg); }
-    }
-
-    html:lang(ja) .hero-subtitle,
-    html:lang(ja) .hero-desc,
-    html:lang(ja) .boarding p,
-    html:lang(ja) .stamp-card p,
-    html:lang(ja) .section-desc,
-    html:lang(ja) .time-item span,
-    html:lang(zh) .hero-subtitle,
-    html:lang(zh) .hero-desc,
-    html:lang(zh) .boarding p,
-    html:lang(zh) .stamp-card p,
-    html:lang(zh) .section-desc,
-    html:lang(zh) .time-item span {
-      font-family: inherit;
-      font-weight: 400 !important;
-    }
-
-    @media (max-width: 1080px) {
-      .mood-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hand-note { bottom: 112px; }
-    }
-
-    @media (max-width: 680px) {
-      .citrus-doodle {
-        width: 92px;
-        height: 92px;
-        top: 86px;
-        right: 22px;
-      }
-
-      .hand-note {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        margin-top: 28px;
-        width: 100%;
-        transform: rotate(-1.5deg);
-      }
-
-      .mood-rail {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: -10px;
-      }
-
-      .mood-rail span {
-        min-height: 62px;
-        font-size: .94rem;
-      }
-
-      .boarding,
-      .boarding:nth-child(2) {
-        transform: none;
-      }
-    }
-
-    /* hero overlap fix: 메모지는 오른쪽으로 빼고, 본문 영역 분리 */
-    .passport {
-      min-height: 720px;
-      padding-bottom: 54px;
-    }
-
-    .passport > .eyebrow,
-    .passport > h1,
-    .passport > .hero-subtitle,
-    .passport > .hero-desc,
-    .passport > .hero-actions,
-    .passport > .quick-row {
-      position: relative;
-      z-index: 3;
-    }
-
-    .hero-subtitle,
-    .hero-desc,
-    .hero-actions,
-    .quick-row {
-      max-width: min(100%, 455px);
-    }
-
-    .hero h1 {
-      max-width: 520px;
-    }
-
-    .hand-note {
-      left: auto !important;
-      right: clamp(24px, 4vw, 54px) !important;
-      top: 355px !important;
-      bottom: auto !important;
-      width: 218px !important;
-      transform: rotate(2.5deg) !important;
-      z-index: 4;
-    }
-
-    .passport-stamp {
-      width: 148px;
-      right: clamp(24px, 4vw, 48px);
-      bottom: 42px;
-      z-index: 2;
-      opacity: .82;
-    }
-
-    .citrus-doodle {
-      z-index: 1;
-      opacity: .52;
+      animation: floatIn 0.6s 0.2s ease both;
     }
 
     .hero-actions {
-      margin-top: 34px;
+      margin-top: 36px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: floatIn 0.6s 0.3s ease both;
     }
 
-    .quick-row {
-      margin-top: 24px;
-      padding-right: 120px;
-    }
-
-    @media (max-width: 1180px) {
-      .hero-subtitle,
-      .hero-desc,
-      .hero-actions,
-      .quick-row {
-        max-width: min(100%, 420px);
-      }
-
-      .hand-note {
-        top: 385px !important;
-        width: 205px !important;
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .passport {
-        min-height: auto;
-        padding-bottom: 32px;
-      }
-
-      .hero-subtitle,
-      .hero-desc,
-      .hero-actions,
-      .quick-row,
-      .hero h1 {
-        max-width: 100%;
-      }
-
-      .hand-note {
-        position: relative !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        width: min(360px, 100%) !important;
-        margin: 30px 0 0 !important;
-        transform: rotate(-1.5deg) !important;
-      }
-
-      .passport-stamp {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin: 28px 0 0 auto;
-      }
-
-      .quick-row {
-        padding-right: 0;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .passport {
-        min-height: auto !important;
-      }
-
-      .hand-note {
-        margin-top: 26px !important;
-        width: 100% !important;
-      }
-
-      .passport-stamp {
-        width: 118px;
-      }
-    }
-
-    /* real passport interaction: 펼치면 실제 여권 페이지 */
-    .passport-book {
-      position: absolute;
-      inset: 28px;
-      z-index: 8;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
-      min-height: calc(100% - 56px);
-      color: #4f2d1a;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: perspective(1200px) rotateX(8deg) scale(.92);
-      transform-origin: center;
-      transition: opacity .42s ease, visibility .42s ease, transform .55s cubic-bezier(.2,.8,.2,1);
-      filter: drop-shadow(0 28px 42px rgba(102, 44, 12, .26));
-    }
-
-    .passport.open .passport-book {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: perspective(1200px) rotateX(0deg) scale(1);
-    }
-
-    .passport.open > .eyebrow,
-    .passport.open > h1,
-    .passport.open > .hero-subtitle,
-    .passport.open > .hero-desc,
-    .passport.open > .hero-actions,
-    .passport.open > .quick-row,
-    .passport.open > .passport-stamp,
-    .passport.open > .citrus-doodle {
-      display: none !important;
-    }
-
-    .book-page {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(22px, 3vw, 34px);
-      background:
-        linear-gradient(90deg, rgba(135,76,26,.10), transparent 13%, transparent 87%, rgba(135,76,26,.10)),
-        radial-gradient(circle at 24% 18%, rgba(255, 184, 68, .23), transparent 28%),
-        linear-gradient(135deg, #fff8e7, #ffe9bd 58%, #fff6df);
-      border: 1px solid rgba(255,255,255,.92);
-      box-shadow: inset 0 0 0 1px rgba(128, 73, 22, .09);
-    }
-
-    .book-left {
-      border-radius: 30px 12px 12px 30px;
-      transform-origin: right center;
-      animation: leftOpen .7s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    .book-right {
-      border-radius: 12px 30px 30px 12px;
-      transform-origin: left center;
-      animation: rightOpen .7s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    .book-spine {
-      position: relative;
-      background:
-        linear-gradient(90deg, rgba(86,45,15,.20), rgba(255,255,255,.42), rgba(86,45,15,.18));
-      box-shadow: inset 8px 0 12px rgba(94,42,13,.12), inset -8px 0 12px rgba(255,255,255,.32);
-    }
-
-    .book-spine::before {
-      content: "";
-      position: absolute;
-      inset: 12px 7px;
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--orange);
+      color: white;
       border-radius: 999px;
-      background: rgba(122,63,20,.18);
-    }
-
-    .book-close {
-      position: absolute;
-      top: -14px;
-      right: -14px;
-      z-index: 12;
-      width: 42px;
-      height: 42px;
-      border: 0;
-      border-radius: 50%;
-      color: #fff;
-      background: rgba(80, 43, 23, .86);
-      box-shadow: 0 14px 26px rgba(88, 37, 12, .22);
-      font: inherit;
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .book-kicker {
-      display: inline-flex;
-      padding: 8px 11px;
-      border-radius: 999px;
-      color: #d85e20;
-      background: rgba(255,159,28,.14);
-      font-size: .76rem;
-      font-weight: 650;
-      letter-spacing: .08em;
-    }
-
-    .book-page h3 {
-      margin: 18px 0 22px;
-      font-family: "Gowun Batang", serif;
-      font-size: clamp(2rem, 4.4vw, 3.85rem);
-      line-height: 1.12;
-      letter-spacing: -.035em;
       font-weight: 700;
-      color: #4b2b1a;
-    }
-
-    .book-photo {
-      width: min(190px, 70%);
-      aspect-ratio: 4 / 5;
-      display: grid;
-      place-items: center;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 35% 30%, rgba(255,255,255,.80), transparent 22%),
-        linear-gradient(145deg, rgba(255,159,28,.30), rgba(42,166,160,.18));
-      border: 1px dashed rgba(126,68,21,.22);
-    }
-
-    .book-photo span {
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      filter: drop-shadow(0 12px 12px rgba(119,56,17,.18));
-    }
-
-    .book-lines {
-      margin-top: 20px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .book-lines span,
-    .book-info dt {
-      color: #9b6542;
-      font-size: .78rem;
-      font-weight: 650;
-      letter-spacing: .08em;
-    }
-
-    .book-lines strong {
-      font-size: 1.28rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
-    }
-
-    .book-stamp {
-      position: absolute;
-      right: 24px;
-      top: 22px;
-      width: 112px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 3px double rgba(239,107,34,.34);
-      color: rgba(216,94,32,.70);
-      font-weight: 700;
-      font-size: .9rem;
-      line-height: 1.2;
-      text-align: center;
-      transform: rotate(-12deg);
-    }
-
-    .book-info {
-      margin: clamp(88px, 11vw, 120px) 0 0;
-      display: grid;
-      gap: 15px;
-    }
-
-    .book-info div {
-      padding: 14px 0 12px;
-      border-bottom: 1px dashed rgba(126,68,21,.22);
-    }
-
-    .book-info dt,
-    .book-info dd { margin: 0; }
-
-    .book-info dd {
-      margin-top: 6px;
-      font-size: clamp(1.2rem, 2.3vw, 1.72rem);
-      font-weight: 650;
-      letter-spacing: -.02em;
-      overflow-wrap: anywhere;
-    }
-
-    .book-right p {
-      margin: 22px 0 0;
-      max-width: 360px;
-      color: #76543d;
-      font-family: "Gowun Dodum", sans-serif;
       font-size: 1rem;
-      line-height: 1.82;
-      font-weight: 400;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 24px rgba(255,107,44,0.35);
+      transition: all 0.22s;
     }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255,107,44,0.45); }
 
-    .book-page::after {
-      content: "";
+    .btn-ghost {
+      padding: 14px 32px;
+      background: white;
+      color: var(--ink);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(0,0,0,0.08);
+      transition: all 0.22s;
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    /* floating emojis */
+    .float-emoji {
       position: absolute;
-      inset: auto -20% -34% -20%;
-      height: 55%;
-      background: radial-gradient(ellipse at center, rgba(255,159,28,.13), transparent 62%);
+      font-size: 2.4rem;
+      animation: floatLoop 3s ease-in-out infinite;
       pointer-events: none;
+      user-select: none;
+    }
+    .fe1 { top: 14%; left: 8%; animation-delay: 0s; }
+    .fe2 { top: 22%; right: 9%; animation-delay: 0.8s; font-size: 2rem; }
+    .fe3 { bottom: 26%; left: 12%; animation-delay: 1.4s; font-size: 1.9rem; }
+    .fe4 { bottom: 20%; right: 8%; animation-delay: 0.4s; }
+    .fe5 { top: 55%; left: 5%; animation-delay: 2s; font-size: 1.7rem; }
+    .fe6 { top: 40%; right: 5%; animation-delay: 1.2s; font-size: 2.1rem; }
+
+    @keyframes floatLoop {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes leftOpen { from { transform: rotateY(20deg); } to { transform: rotateY(0deg); } }
-    @keyframes rightOpen { from { transform: rotateY(-20deg); } to { transform: rotateY(0deg); } }
-
-    @media (max-width: 680px) {
-      .passport-book {
-        position: relative;
-        inset: auto;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        min-height: auto;
-        margin-top: 24px;
-        filter: none;
-      }
-
-      .passport.open > .eyebrow,
-      .passport.open > h1,
-      .passport.open > .hero-subtitle,
-      .passport.open > .hero-desc,
-      .passport.open > .hero-actions,
-      .passport.open > .quick-row,
-      .passport.open > .passport-stamp,
-      .passport.open > .citrus-doodle {
-        display: none !important;
-      }
-
-      .book-spine { display: none; }
-      .book-left,
-      .book-right { border-radius: 26px; }
-      .book-close { top: -8px; right: -8px; }
-      .book-info { margin-top: 86px; }
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--orange);
+      padding: 20px 32px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+      color: white;
+    }
+    .stat-num {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      opacity: 0.88;
+      margin-top: 4px;
     }
 
-    /* fullscreen passport mode */
-    body.passport-locked {
+    /* ── SECTIONS ── */
+    .section {
+      padding: 80px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--orange-pale);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Gowun Dodum', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    /* ── COURSE CARDS ── */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-hover);
+      border-color: rgba(255,107,44,0.15);
+    }
+
+    .course-thumb {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      font-size: 4rem;
+      position: relative;
       overflow: hidden;
     }
-
-    .passport.open {
-      position: fixed;
+    .course-thumb .thumb-bg {
+      position: absolute;
       inset: 0;
-      z-index: 9999;
-      width: 100vw;
-      height: 100dvh;
-      min-height: 100dvh !important;
-      padding: clamp(22px, 4vw, 54px);
       border-radius: 0;
-      overflow: hidden;
-      transform: none !important;
+    }
+    .course-thumb .thumb-emoji {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    }
+
+    .course-body { padding: 22px; }
+    .course-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .course-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--orange-pale);
+      color: var(--orange);
+    }
+    .course-tag.teal { background: var(--teal-light); color: #00827A; }
+    .course-tag.green { background: #E8F8E9; color: #3D8B45; }
+    .course-tag.yellow { background: #FFF9D6; color: #997700; }
+
+    .course-name {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .course-info {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .course-footer {
+      padding: 14px 22px;
+      border-top: 1.5px solid rgba(0,0,0,0.06);
       display: flex;
       align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at 18% 12%, rgba(255,255,255,.25), transparent 22%),
-        radial-gradient(circle at 80% 18%, rgba(255,221,115,.34), transparent 26%),
-        radial-gradient(circle at 18% 84%, rgba(42,166,160,.16), transparent 28%),
-        linear-gradient(145deg, #7a3b16, #e96a20 55%, #ffae35);
+      justify-content: space-between;
     }
-
-    .passport.open::before {
-      inset: clamp(14px, 2.2vw, 28px);
-      border-radius: clamp(22px, 3vw, 36px);
-      border-color: rgba(255,255,255,.26);
-      z-index: 0;
+    .course-time {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
     }
-
-    .passport.open::after {
-      right: -2vw;
-      bottom: -4vw;
-      font-size: clamp(8rem, 24vw, 22rem);
-      opacity: .68;
+    .course-arrow {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 0.9rem;
+      transition: all 0.2s;
     }
+    .course-card:hover .course-arrow { transform: translateX(3px); }
 
-    .passport.open .passport-book {
-      position: relative;
-      inset: auto;
-      width: min(1420px, calc(100vw - clamp(36px, 8vw, 108px)));
-      height: min(820px, calc(100dvh - clamp(44px, 8vw, 108px)));
-      max-height: calc(100dvh - 72px);
-      min-height: 0;
-      grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
-      z-index: 10;
-      filter: drop-shadow(0 42px 70px rgba(80, 32, 8, .34));
-    }
-
-    .passport.open .book-page {
-      padding: clamp(28px, 4vw, 58px);
-    }
-
-    .passport.open .book-page h3 {
-      font-size: clamp(2.8rem, 6vw, 6.2rem);
-      margin-top: 26px;
-      margin-bottom: clamp(24px, 4vw, 46px);
-    }
-
-    .passport.open .book-photo {
-      width: min(280px, 56%);
-      max-height: 330px;
-    }
-
-    .passport.open .book-info {
-      margin-top: clamp(118px, 15vh, 170px);
-      gap: clamp(16px, 2.3vh, 26px);
-    }
-
-    .passport.open .book-info div {
-      padding: clamp(14px, 2vh, 22px) 0;
-    }
-
-    .passport.open .book-info dd {
-      font-size: clamp(1.6rem, 3vw, 2.8rem);
-    }
-
-    .passport.open .book-right p {
-      max-width: 520px;
-      font-size: clamp(1rem, 1.4vw, 1.22rem);
-    }
-
-    .passport.open .book-stamp {
-      width: clamp(110px, 13vw, 168px);
-      right: clamp(28px, 4vw, 58px);
-      top: clamp(28px, 4vw, 58px);
-      font-size: clamp(.9rem, 1.3vw, 1.15rem);
-    }
-
-    .passport.open .book-close {
-      position: fixed;
-      top: clamp(18px, 3vw, 34px);
-      right: clamp(18px, 3vw, 34px);
-      width: 52px;
-      height: 52px;
-      font-size: 1.75rem;
-      background: rgba(55, 30, 18, .82);
-      backdrop-filter: blur(12px);
-    }
-
-    @media (max-width: 900px) {
-      .passport.open {
-        padding: 18px;
-        overflow: auto;
-        align-items: start;
-      }
-
-      .passport.open .passport-book {
-        width: min(100%, 620px);
-        height: auto;
-        min-height: auto;
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin: 68px auto 28px;
-        filter: drop-shadow(0 28px 42px rgba(80, 32, 8, .26));
-      }
-
-      .passport.open .book-spine {
-        display: none;
-      }
-
-      .passport.open .book-left,
-      .passport.open .book-right {
-        border-radius: 30px;
-      }
-
-      .passport.open .book-page {
-        min-height: auto;
-        padding: 30px;
-      }
-
-      .passport.open .book-info {
-        margin-top: 110px;
-      }
-    }
-
-    /* 제주도 공식 감성 폰트 적용 */
-    body,
-    .nav,
-    .btn,
-    .tag,
-    .mini,
-    .quick-chip,
-    .mail-chip,
-    .pin,
-    .time-item,
-    .boarding p,
-    .stamp-card p,
-    .section-desc,
-    .mail-card p,
-    .hero-desc {
-      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif !important;
-      font-weight: 400 !important;
-    }
-
-    .brand-name,
-    .brand-mark,
-    .eyebrow,
-    .ticket-kicker,
-    .kicker,
-    .nav-pill,
-    .lang-btn,
-    .time-item strong,
-    .stamp-card h3,
-    .route-card h3,
-    .book-kicker,
-    .book-lines strong,
-    .book-info dd {
-      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif !important;
-      font-weight: 400 !important;
-    }
-
-    .hero h1,
-    .passport-stamp,
-    .book-stamp {
-      font-family: "Jeju Hallasan", "Jeju Gothic", "Pretendard Variable", sans-serif !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.018em !important;
-    }
-
-    .hero h1 {
-      line-height: .96;
-    }
-
-    .hero h1 span {
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.01em !important;
-    }
-
-    h2,
-    .mail-card h2,
-    .book-page h3 {
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.018em !important;
-    }
-
-    .domain-name {
-      font-family: "Jeju Gothic", "Pretendard Variable", Pretendard, sans-serif !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.018em !important;
-    }
-
-    .hero-subtitle {
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
-      font-weight: 400 !important;
-      line-height: 1.5;
-      letter-spacing: -0.01em !important;
-    }
-
-    .mood-rail span {
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
-      font-weight: 400 !important;
-    }
-
-    html:lang(ja) body,
-    html:lang(ja) .nav,
-    html:lang(ja) .btn,
-    html:lang(ja) .tag,
-    html:lang(ja) .mini,
-    html:lang(ja) .quick-chip,
-    html:lang(ja) .mail-chip,
-    html:lang(ja) .pin,
-    html:lang(ja) .time-item,
-    html:lang(ja) h2,
-    html:lang(ja) .mail-card h2,
-    html:lang(ja) .book-page h3,
-    html:lang(ja) .hero h1,
-    html:lang(ja) .hero-subtitle,
-    html:lang(ja) .hero-desc,
-    html:lang(ja) .boarding p,
-    html:lang(ja) .stamp-card p,
-    html:lang(ja) .section-desc,
-    html:lang(ja) .mail-card p,
-    html:lang(ja) .mood-rail span {
-      font-family: "Noto Sans JP", "Pretendard Variable", Pretendard, sans-serif !important;
-    }
-
-    html:lang(zh) body,
-    html:lang(zh) .nav,
-    html:lang(zh) .btn,
-    html:lang(zh) .tag,
-    html:lang(zh) .mini,
-    html:lang(zh) .quick-chip,
-    html:lang(zh) .mail-chip,
-    html:lang(zh) .pin,
-    html:lang(zh) .time-item,
-    html:lang(zh) h2,
-    html:lang(zh) .mail-card h2,
-    html:lang(zh) .book-page h3,
-    html:lang(zh) .hero h1,
-    html:lang(zh) .hero-subtitle,
-    html:lang(zh) .hero-desc,
-    html:lang(zh) .boarding p,
-    html:lang(zh) .stamp-card p,
-    html:lang(zh) .section-desc,
-    html:lang(zh) .mail-card p,
-    html:lang(zh) .mood-rail span {
-      font-family: "Noto Sans SC", "Pretendard Variable", Pretendard, sans-serif !important;
-    }
-
-    /* uploaded hero image */
-    .image-landing {
-      position: relative;
-      min-height: min(760px, calc(100dvh - 110px));
-      margin: 34px 0 38px;
+    /* ── SPOT SECTION ── */
+    .spots-header {
       display: flex;
       align-items: flex-end;
-      padding: clamp(22px, 4vw, 46px);
-      overflow: hidden;
-      border-radius: 44px;
-      border: 1px solid rgba(255,255,255,.72);
-      background:
-        linear-gradient(180deg, rgba(24, 41, 45, .02) 0%, rgba(31, 28, 20, .05) 48%, rgba(28, 25, 18, .42) 100%),
-        url("./assets/jeju-hero.png") center / cover no-repeat;
-      box-shadow: 0 34px 92px rgba(176, 87, 22, .18);
-      isolation: isolate;
-    }
-
-    .image-landing::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 32px;
-      border: 1px dashed rgba(255,255,255,.48);
-      pointer-events: none;
-    }
-
-    .image-landing::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(circle at 22% 78%, rgba(255,159,28,.16), transparent 28%);
-    }
-
-    .image-landing-content {
-      position: relative;
-      z-index: 2;
-      width: min(420px, 100%);
-      padding: 0;
-      border-radius: 0;
-      color: #fff;
-      background: transparent;
-      border: 0;
-      backdrop-filter: none;
-      box-shadow: none;
-      text-shadow: 0 6px 24px rgba(0,0,0,.42);
-    }
-
-    .image-badge {
-      display: inline-flex;
-      padding: 7px 11px;
-      border-radius: 999px;
-      color: #3d2819;
-      background: rgba(255, 246, 221, .82);
-      font-family: "Jeju Gothic", "Pretendard Variable", sans-serif;
-      font-size: .78rem;
-      font-weight: 400;
-      letter-spacing: -.01em;
-      text-shadow: none;
-    }
-
-    .image-landing h1 {
-      margin: 14px 0 0;
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif;
-      font-size: clamp(1.95rem, 3.8vw, 3.8rem);
-      line-height: 1.14;
-      font-weight: 400;
-      letter-spacing: -.025em;
-      text-shadow: 0 8px 26px rgba(0,0,0,.34);
-    }
-
-    .image-landing p {
-      margin: 12px 0 0;
-      max-width: 360px;
-      color: rgba(255,255,255,.88);
-      font-family: "Jeju Gothic", "Pretendard Variable", sans-serif;
-      font-size: .94rem;
-      line-height: 1.72;
-      font-weight: 400;
-    }
-
-    .image-actions {
-      display: flex;
+      justify-content: space-between;
+      margin-bottom: 32px;
       flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .spot-tabs {
+      display: flex;
       gap: 8px;
-      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .spot-tab {
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid rgba(0,0,0,0.07);
+      background: white;
+      color: var(--muted);
+    }
+    .spot-tab.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
     }
 
-    .image-landing .btn {
-      min-height: 44px;
-      padding: 0 15px;
-      font-size: .9rem;
+    .spot-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
     }
 
-    .image-landing .btn.ghost {
-      color: #fff;
-      background: rgba(255,255,255,.12);
-      border-color: rgba(255,255,255,.26);
+    .spot-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .spot-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover); }
+
+    .spot-card.big { grid-row: span 2; }
+
+    .spot-visual {
+      height: 160px;
+      display: grid;
+      place-items: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .spot-card.big .spot-visual { height: 280px; font-size: 5rem; }
+
+    .spot-body { padding: 18px; }
+    .spot-name {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .spot-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .spot-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* ── FOOD SECTION ── */
+    .food-scroll-wrap {
+      overflow: hidden;
+      margin: 32px -32px 0;
+      padding: 8px 32px 16px;
+    }
+    .food-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .food-scroll::-webkit-scrollbar { display: none; }
+
+    .food-card {
+      flex-shrink: 0;
+      width: 200px;
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .food-card:hover { transform: translateY(-5px) rotate(-1deg); }
+
+    .food-visual {
+      height: 130px;
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+    }
+    .food-body { padding: 14px; }
+    .food-name {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .food-info { font-size: 0.78rem; color: var(--muted); }
+    .food-price {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 10px;
+      background: var(--orange-pale);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* ── TIP CARDS ── */
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .tip-card {
+      padding: 28px 24px;
+      border-radius: 24px;
+      background: white;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s;
+    }
+    .tip-card:hover { transform: translateY(-5px); }
+
+    .tip-icon {
+      width: 54px; height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+    .tip-card h3 {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .tip-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── WEATHER ── */
+    .weather-strip {
+      background: linear-gradient(135deg, var(--teal) 0%, #00C9BB 100%);
+      border-radius: 32px;
+      padding: 40px 48px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .weather-left h3 {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .weather-left p { opacity: 0.88; line-height: 1.6; font-size: 0.95rem; }
+
+    .weather-seasons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .season-item {
+      background: rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 16px 20px;
+      text-align: center;
       backdrop-filter: blur(10px);
     }
+    .season-emoji { font-size: 1.8rem; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-top: 6px; }
+    .season-temp { opacity: 0.8; font-size: 0.8rem; margin-top: 2px; }
 
-    @media (max-width: 680px) {
-      .image-landing {
-        min-height: 560px;
-        margin-top: 20px;
-        border-radius: 30px;
-        padding: 18px;
-        background-position: center;
-      }
-
-      .image-landing::before {
-        inset: 10px;
-        border-radius: 22px;
-      }
-
-      .image-landing-content {
-        width: min(330px, 100%);
-      }
-
-      .image-landing h1 {
-        font-size: clamp(1.75rem, 10vw, 2.6rem);
-      }
-
-      .image-actions .btn {
-        width: 100%;
-      }
+    /* ── CTA ── */
+    .cta-section {
+      margin: 80px 32px;
+      background: linear-gradient(135deg, var(--orange) 0%, #FF9A3C 100%);
+      border-radius: 36px;
+      padding: 72px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    /* hero readability fix: 이미지 방해 없이 글자만 선명하게 */
-    .image-landing {
-      background:
-        radial-gradient(ellipse at 24% 70%, rgba(18, 14, 9, .68) 0%, rgba(18, 14, 9, .46) 34%, rgba(18, 14, 9, .18) 58%, transparent 76%),
-        linear-gradient(180deg, rgba(24, 41, 45, .02) 0%, rgba(31, 28, 20, .04) 48%, rgba(28, 25, 18, .30) 100%),
-        url("./assets/jeju-hero.png") center / cover no-repeat !important;
-    }
-
-    .image-landing-content {
-      text-shadow: 0 3px 10px rgba(0,0,0,.62), 0 16px 34px rgba(0,0,0,.42);
-    }
-
-    .image-landing-content::before {
-      content: "";
+    .cta-section::before {
+      content: '🍊';
       position: absolute;
-      z-index: -1;
-      inset: -20px -28px -18px -24px;
-      border-radius: 28px;
-      background: linear-gradient(90deg, rgba(26, 21, 14, .48), rgba(26, 21, 14, .20), transparent);
+      font-size: 12rem;
+      opacity: 0.1;
+      top: -20px;
+      right: -20px;
       pointer-events: none;
     }
-
-    .image-landing h1 {
-      color: #fffaf0;
-      text-shadow: 0 3px 9px rgba(0,0,0,.78), 0 18px 36px rgba(0,0,0,.46);
-    }
-
-    .image-landing p {
-      color: rgba(255,255,255,.96);
-      text-shadow: 0 2px 8px rgba(0,0,0,.70);
-    }
-
-    .image-badge {
-      background: rgba(255, 246, 221, .94);
-      box-shadow: 0 8px 18px rgba(0,0,0,.12);
-    }
-
-    .image-actions {
-      text-shadow: none;
-    }
-
-    /* hero text color tuning: 순백 제거, 감귤 크림 + 브라운 그림자 */
-    .image-landing-content {
-      text-shadow: none;
-    }
-
-    .image-landing h1 {
-      color: #ffe6a8 !important;
-      -webkit-text-stroke: .45px rgba(73, 39, 18, .38);
-      text-shadow:
-        0 2px 0 rgba(80, 42, 18, .34),
-        0 5px 14px rgba(38, 25, 12, .58),
-        0 18px 36px rgba(38, 25, 12, .34) !important;
-    }
-
-    .image-landing p {
-      color: #fff1cf !important;
-      text-shadow:
-        0 2px 7px rgba(42, 25, 11, .70),
-        0 10px 22px rgba(42, 25, 11, .36) !important;
-    }
-
-    .image-badge {
-      color: #563018 !important;
-      background: rgba(255, 232, 174, .92) !important;
-      box-shadow: 0 8px 18px rgba(64, 35, 14, .16);
-    }
-
-    .image-landing-content::before {
-      background: linear-gradient(90deg, rgba(56, 31, 14, .34), rgba(56, 31, 14, .13), transparent) !important;
-    }
-
-    /* hero glass readability: 검정 덩어리 제거, 은은한 유리막 */
-    .image-landing {
-      background:
-        radial-gradient(ellipse at 23% 70%, rgba(255, 232, 174, .26) 0%, rgba(255, 232, 174, .13) 34%, rgba(255,255,255,.04) 58%, transparent 76%),
-        linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(35, 28, 20, .03) 48%, rgba(38, 26, 15, .18) 100%),
-        url("./assets/jeju-hero.png") center / cover no-repeat !important;
-    }
-
-    .image-landing-content {
-      width: min(440px, 100%);
-      padding: clamp(16px, 2.2vw, 24px);
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,246,221,.10));
-      border: 1px solid rgba(255,255,255,.32);
-      backdrop-filter: blur(12px) saturate(1.08);
-      -webkit-backdrop-filter: blur(12px) saturate(1.08);
-      box-shadow: 0 20px 54px rgba(74, 39, 14, .16), inset 0 1px 0 rgba(255,255,255,.34);
-    }
-
-    .image-landing-content::before {
-      inset: 0 !important;
-      border-radius: inherit !important;
-      background:
-        radial-gradient(circle at 18% 16%, rgba(255,255,255,.30), transparent 30%),
-        linear-gradient(90deg, rgba(255, 238, 190, .18), rgba(255, 238, 190, .05), transparent) !important;
-      filter: none !important;
-    }
-
-    .image-landing h1 {
-      color: #ffeec4 !important;
-      -webkit-text-stroke: .35px rgba(80, 43, 18, .34);
-      text-shadow:
-        0 2px 0 rgba(80, 42, 18, .26),
-        0 5px 14px rgba(38, 25, 12, .46),
-        0 18px 36px rgba(38, 25, 12, .26) !important;
-    }
-
-    .image-landing p {
-      color: #fff7e7 !important;
-      text-shadow: 0 2px 8px rgba(42, 25, 11, .46) !important;
-    }
-
-    /* final hero direction: 유리카드 제거, 작은 엽서 라벨 느낌 */
-    .image-landing {
-      align-items: flex-end;
-      justify-content: flex-start;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.00) 0%, rgba(255,255,255,.00) 48%, rgba(77, 42, 18, .16) 100%),
-        url("./assets/jeju-hero.png") center / cover no-repeat !important;
-    }
-
-    .image-landing-content {
-      width: min(370px, 100%) !important;
-      padding: 18px 18px 17px !important;
-      border-radius: 22px 22px 26px 18px !important;
-      color: #4a2d1d !important;
-      background:
-        linear-gradient(135deg, rgba(255, 246, 220, .90), rgba(255, 229, 171, .76)) !important;
-      border: 1px solid rgba(255,255,255,.70) !important;
-      box-shadow: 0 16px 34px rgba(69, 38, 17, .14) !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      transform: rotate(-1.2deg);
-      text-shadow: none !important;
-    }
-
-    .image-landing-content::before {
-      content: "";
+    .cta-section::after {
+      content: '🌊';
       position: absolute;
-      left: 22px;
-      top: -9px;
-      width: 86px;
-      height: 18px;
+      font-size: 8rem;
+      opacity: 0.1;
+      bottom: -10px;
+      left: 20px;
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-family: 'Gowun Dodum', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white;
+      margin-bottom: 14px;
+    }
+    .cta-section p { color: rgba(255,255,255,0.88); font-size: 1.05rem; margin-bottom: 32px; line-height: 1.7; }
+
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      padding: 14px 32px;
+      background: white;
+      color: var(--orange);
       border-radius: 999px;
-      background: rgba(255, 216, 139, .78) !important;
-      border: 1px solid rgba(255,255,255,.46);
-      box-shadow: 0 6px 12px rgba(86, 48, 18, .08);
-      transform: rotate(3deg);
-      pointer-events: none;
-      z-index: 1;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.22s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
     }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
 
-    .image-badge {
-      padding: 0 !important;
-      color: #d85e20 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      font-size: .78rem !important;
-      letter-spacing: .03em !important;
+    .btn-outline-white {
+      padding: 14px 32px;
+      background: transparent;
+      color: white;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: all 0.22s;
     }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
-    .image-landing h1 {
-      margin-top: 10px !important;
-      color: #3e2618 !important;
-      font-size: clamp(1.72rem, 3.2vw, 3.05rem) !important;
-      line-height: 1.13 !important;
-      -webkit-text-stroke: 0 !important;
-      text-shadow: none !important;
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 32px;
+      text-align: center;
     }
-
-    .image-landing p {
-      max-width: 310px !important;
-      margin-top: 10px !important;
-      color: #70513b !important;
-      font-size: .86rem !important;
-      line-height: 1.68 !important;
-      text-shadow: none !important;
+    .footer-logo {
+      font-family: 'Gowun Dodum', serif;
+      font-size: 1.6rem;
+      color: white;
+      margin-bottom: 10px;
     }
-
-    .image-actions {
-      margin-top: 15px !important;
-      gap: 7px !important;
+    .footer-tagline { font-size: 0.9rem; margin-bottom: 28px; }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
     }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange-light); }
+    .footer-copy { font-size: 0.8rem; opacity: 0.4; }
 
-    .image-landing .btn {
-      min-height: 38px !important;
-      padding: 0 13px !important;
-      font-size: .82rem !important;
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    .image-landing .btn.primary {
-      background: #fffaf0 !important;
-      color: #3e2618 !important;
-      box-shadow: 0 9px 18px rgba(72, 39, 17, .12) !important;
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .course-grid { grid-template-columns: 1fr 1fr; }
+      .spot-grid { grid-template-columns: 1fr 1fr; }
+      .spot-card.big { grid-row: span 1; }
+      .tip-grid { grid-template-columns: 1fr 1fr; }
+      .weather-seasons { grid-template-columns: 1fr 1fr; }
     }
-
-    .image-landing .btn.ghost {
-      color: #5a3924 !important;
-      background: rgba(255,255,255,.38) !important;
-      border-color: rgba(111, 72, 40, .14) !important;
-      backdrop-filter: none !important;
-    }
-
-    @media (max-width: 680px) {
-      .image-landing-content {
-        width: min(300px, 100%) !important;
-        padding: 15px !important;
-        transform: rotate(-.6deg);
-      }
-
-      .image-landing h1 {
-        font-size: clamp(1.45rem, 8vw, 2.05rem) !important;
-      }
-
-      .image-landing p {
-        font-size: .8rem !important;
-      }
-    }
-
-    /* final hero overlay: 배경 최대 보존, 글자만 얇게 */
-    .image-landing {
-      padding: clamp(20px, 3vw, 34px) !important;
-      align-items: flex-end !important;
-      justify-content: flex-start !important;
-      background:
-        linear-gradient(180deg, transparent 0%, transparent 64%, rgba(72, 38, 16, .08) 100%),
-        url("./assets/jeju-hero.png") center / cover no-repeat !important;
-    }
-
-    .image-landing::before {
-      inset: 14px !important;
-      border-radius: 30px !important;
-      border-color: rgba(255,255,255,.28) !important;
-      opacity: .45 !important;
-    }
-
-    .image-landing-content {
-      width: min(315px, 74%) !important;
-      padding: 0 !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      transform: none !important;
-      color: #fff4d4 !important;
-      text-shadow: 0 2px 8px rgba(61, 34, 14, .72), 0 10px 24px rgba(61, 34, 14, .38) !important;
-    }
-
-    .image-landing-content::before {
-      display: none !important;
-    }
-
-    .image-badge {
-      display: inline-flex !important;
-      padding: 0 !important;
-      color: rgba(255, 236, 184, .94) !important;
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      font-size: .72rem !important;
-      letter-spacing: .07em !important;
-      text-shadow: 0 2px 7px rgba(61, 34, 14, .62) !important;
-    }
-
-    .image-landing h1 {
-      margin-top: 8px !important;
-      color: #fff1bf !important;
-      font-size: clamp(1.55rem, 3vw, 2.85rem) !important;
-      line-height: 1.13 !important;
-      -webkit-text-stroke: .25px rgba(67, 37, 15, .32) !important;
-      text-shadow: 0 2px 8px rgba(61, 34, 14, .76), 0 12px 28px rgba(61, 34, 14, .44) !important;
-    }
-
-    .image-landing p {
-      max-width: 270px !important;
-      margin-top: 8px !important;
-      color: rgba(255, 247, 226, .92) !important;
-      font-size: .78rem !important;
-      line-height: 1.58 !important;
-      text-shadow: 0 2px 7px rgba(61, 34, 14, .72) !important;
-    }
-
-    .image-actions {
-      margin-top: 10px !important;
-      gap: 6px !important;
-    }
-
-    .image-landing .btn {
-      min-height: 32px !important;
-      padding: 0 10px !important;
-      font-size: .74rem !important;
-      border-radius: 999px !important;
-    }
-
-    .image-landing .btn.primary {
-      color: #412717 !important;
-      background: rgba(255, 247, 226, .82) !important;
-      box-shadow: 0 8px 16px rgba(60, 34, 14, .12) !important;
-    }
-
-    .image-landing .btn.ghost {
-      color: rgba(255, 247, 226, .96) !important;
-      background: rgba(55, 31, 14, .18) !important;
-      border-color: rgba(255,255,255,.22) !important;
-      box-shadow: none !important;
-    }
-
-    @media (max-width: 680px) {
-      .image-landing-content {
-        width: min(270px, 82%) !important;
-      }
-
-      .image-landing h1 {
-        font-size: clamp(1.35rem, 7vw, 2rem) !important;
-      }
-
-      .image-landing p {
-        display: none !important;
-      }
-
-      .image-actions .btn {
-        width: auto !important;
-      }
-    }
-
-    /* hero reset: 사진 위 글자 느낌 제거, 캡션을 이미지 밖으로 분리 */
-    .image-landing {
-      min-height: min(760px, calc(100dvh - 110px)) !important;
-      margin: 34px 0 124px !important;
-      padding: 0 !important;
-      display: block !important;
-      overflow: visible !important;
-      background: url("./assets/jeju-hero.png") center / cover no-repeat !important;
-      border-radius: 44px !important;
-      border: 1px solid rgba(255,255,255,.78) !important;
-      box-shadow: 0 34px 92px rgba(176, 87, 22, .16) !important;
-    }
-
-    .image-landing::before,
-    .image-landing::after {
-      display: none !important;
-    }
-
-    .image-landing-content {
-      position: absolute !important;
-      right: clamp(18px, 4vw, 48px) !important;
-      bottom: -82px !important;
-      z-index: 4 !important;
-      width: min(520px, calc(100% - 36px)) !important;
-      padding: 18px 20px !important;
-      display: grid !important;
-      grid-template-columns: 1fr auto !important;
-      column-gap: 18px !important;
-      align-items: center !important;
-      color: #3d2618 !important;
-      background: rgba(255, 250, 238, .90) !important;
-      border: 1px solid rgba(255,255,255,.82) !important;
-      border-radius: 28px !important;
-      box-shadow: 0 20px 44px rgba(88, 45, 14, .14) !important;
-      backdrop-filter: blur(10px) saturate(1.05) !important;
-      -webkit-backdrop-filter: blur(10px) saturate(1.05) !important;
-      transform: none !important;
-      text-shadow: none !important;
-    }
-
-    .image-landing-content::before {
-      display: none !important;
-    }
-
-    .image-badge {
-      grid-column: 1 / -1 !important;
-      width: fit-content !important;
-      margin-bottom: 8px !important;
-      padding: 0 !important;
-      color: #e7601f !important;
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      font-size: .76rem !important;
-      letter-spacing: .06em !important;
-      text-shadow: none !important;
-    }
-
-    .image-landing h1 {
-      margin: 0 !important;
-      color: #3d2618 !important;
-      font-family: "Jeju Myeongjo", "Jeju Gothic", serif !important;
-      font-size: clamp(1.35rem, 2.2vw, 2.2rem) !important;
-      line-height: 1.18 !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.018em !important;
-      -webkit-text-stroke: 0 !important;
-      text-shadow: none !important;
-    }
-
-    .image-landing p {
-      grid-column: 1 !important;
-      margin: 8px 0 0 !important;
-      max-width: 340px !important;
-      color: #76543d !important;
-      font-size: .84rem !important;
-      line-height: 1.62 !important;
-      text-shadow: none !important;
-    }
-
-    .image-actions {
-      grid-column: 2 !important;
-      grid-row: 2 / span 2 !important;
-      margin: 0 !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 7px !important;
-      align-self: center !important;
-      text-shadow: none !important;
-    }
-
-    .image-landing .btn {
-      min-height: 36px !important;
-      padding: 0 13px !important;
-      font-size: .78rem !important;
-      border-radius: 999px !important;
-      white-space: nowrap !important;
-    }
-
-    .image-landing .btn.primary {
-      color: #fff !important;
-      background: linear-gradient(135deg, #ff9f1c, #ef6b22) !important;
-      box-shadow: 0 10px 20px rgba(239, 107, 34, .18) !important;
-    }
-
-    .image-landing .btn.ghost {
-      color: #6b3b20 !important;
-      background: rgba(255,255,255,.56) !important;
-      border-color: rgba(111, 72, 40, .14) !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-    }
-
-    @media (max-width: 680px) {
-      .image-landing {
-        min-height: 500px !important;
-        margin: 20px 0 150px !important;
-        border-radius: 30px !important;
-        background-position: center !important;
-      }
-
-      .image-landing-content {
-        left: 12px !important;
-        right: 12px !important;
-        bottom: -128px !important;
-        width: auto !important;
-        padding: 16px !important;
-        grid-template-columns: 1fr !important;
-        border-radius: 22px !important;
-      }
-
-      .image-landing h1 {
-        font-size: clamp(1.25rem, 7vw, 1.8rem) !important;
-      }
-
-      .image-landing p {
-        display: block !important;
-        max-width: 100% !important;
-        font-size: .78rem !important;
-      }
-
-      .image-actions {
-        grid-column: 1 !important;
-        grid-row: auto !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        margin-top: 12px !important;
-      }
-
-      .image-actions .btn {
-        width: auto !important;
-      }
+    @media (max-width: 600px) {
+      nav { padding: 12px 20px; }
+      .nav-links { display: none; }
+      .section { padding: 56px 20px; }
+      .course-grid { grid-template-columns: 1fr; }
+      .spot-grid { grid-template-columns: 1fr; }
+      .tip-grid { grid-template-columns: 1fr 1fr; }
+      .weather-strip { padding: 28px; }
+      .weather-seasons { grid-template-columns: 1fr 1fr; }
+      .cta-section { padding: 48px 28px; margin: 48px 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="cursor-light" aria-hidden="true"></div>
-  <div class="topo" aria-hidden="true"></div>
 
-  <div class="page">
-    <header class="nav-wrap">
-      <nav class="nav" aria-label="주요 메뉴">
-        <a class="brand" href="#top" aria-label="je-ju.net 홈">
-          <span class="brand-mark">je</span>
-          <span class="brand-name">je-ju.net</span>
-        </a>
+  <div class="deco-blob blob1"></div>
+  <div class="deco-blob blob2"></div>
+  <div class="deco-blob blob3"></div>
 
-        <div class="nav-links" aria-label="페이지 이동">
-          <a href="#project" data-i18n="navProject">제주입구</a>
-          <a href="#address" data-i18n="navAddress">주소정리</a>
-          <a href="#map" data-i18n="navMap">제주기록</a>
-          <a href="#mail" data-i18n="navMail">개인메일</a>
-        </div>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="emoji">🍊</span> Hi Jeju
+    </a>
+    <ul class="nav-links">
+      <li><a href="#courses">코스 추천</a></li>
+      <li><a href="#spots">명소</a></li>
+      <li><a href="#food">맛집</a></li>
+      <li><a href="#tips">여행 팁</a></li>
+    </ul>
+    <a href="#courses" class="nav-cta">여행 시작하기 →</a>
+  </nav>
 
-        <div class="nav-actions">
-          <div class="lang-switch" aria-label="언어 선택">
-            <button type="button" class="lang-btn active" data-lang="ko">KR</button>
-            <button type="button" class="lang-btn" data-lang="en">EN</button>
-            <button type="button" class="lang-btn" data-lang="ja">JP</button>
-            <button type="button" class="lang-btn" data-lang="zh">CN</button>
-          </div>
-          <a class="nav-pill" href="#mail" data-i18n="navGate">Mail Gate</a>
-        </div>
-      </nav>
-    </header>
+  <!-- HERO -->
+  <section class="hero">
+    <span class="float-emoji fe1">🍊</span>
+    <span class="float-emoji fe2">🌊</span>
+    <span class="float-emoji fe3">🐴</span>
+    <span class="float-emoji fe4">⛰️</span>
+    <span class="float-emoji fe5">🌺</span>
+    <span class="float-emoji fe6">🐠</span>
 
-    <main id="top">
-      <section class="image-landing reveal" aria-label="je-ju.net 제주 대표 이미지">
-        <div class="image-landing-content">
-          <span class="image-badge">je-ju.net</span>
-          <h1 data-i18n-html="imageHeroTitle">제주를 잇다,<br />우리를 잇다</h1>
-          <p data-i18n="imageHeroDesc">제주 감귤빛과 바다 감성을 담은 개인 도메인 게이트.</p>
-          <div class="image-actions">
-            <button class="btn primary passport-toggle top-passport-toggle" type="button" data-i18n="imageBtnPassport">여권 펼치기 🍊</button>
-            <a class="btn ghost" href="#address" data-i18n="imageBtnAddress">주소 보기</a>
-          </div>
-        </div>
-      </section>
+    <div class="hero-inner">
+      <div class="hero-badge">✈️ 제주도 여행의 모든 것</div>
+      <h1>
+        제주도에서<br>
+        <span class="highlight">특별한 하루</span>를<br>
+        만들어봐요
+      </h1>
+      <p class="hero-sub">
+        맛집부터 숨은 명소까지 — 현지인처럼 즐기는<br>
+        제주도 여행 가이드 🌿
+      </p>
+      <div class="hero-actions">
+        <a href="#courses" class="btn-primary">🗺️ 코스 보러가기</a>
+        <a href="#spots" class="btn-ghost">🌸 명소 탐색</a>
+      </div>
+    </div>
+  </section>
 
-      <section class="hero">
-        <div class="passport reveal">
-          <div class="eyebrow" data-i18n="eyebrow">PRIVATE ISLAND GATE</div>
-          <h1 data-i18n-html="heroTitle"><span>안녕,</span>제주.</h1>
-          <div class="hero-subtitle" data-i18n-html="heroSubtitle">귤빛 바람과 파도 사이에 둔<br />작은 개인 도메인 여권</div>
-          <p class="hero-desc" data-i18n="heroDesc">공개 문의 사이트보다는, 내가 쓰는 주소와 제주 감성 프로젝트를 한 장의 여권처럼 정리해두는 개인 게이트입니다.</p>
-
-          <div class="hero-actions">
-            <button class="btn primary passport-toggle" type="button" data-i18n="heroBtnPrimary" aria-expanded="false">여권 펼치기 🌊</button>
-            <a class="btn ghost" href="#address" data-i18n="heroBtnSecondary">주소 확인 🍊</a>
-          </div>
-
-          <div class="quick-row" aria-label="요약 정보">
-            <span class="quick-chip">je-ju.net</span>
-            <span class="quick-chip">hi.jeju.kr</span>
-            <span class="quick-chip" data-i18n="quickWorkspace">Private Domain</span>
-          </div>
-
-          <div class="passport-stamp">ISLAND<br />GATE</div>
-
-          <div class="citrus-doodle" aria-hidden="true">
-            <i></i><i></i><i></i>
-          </div>
-
-          <div class="passport-book" aria-hidden="true">
-            <button class="book-close" type="button" aria-label="여권 닫기">×</button>
-            <div class="book-page book-left">
-              <div class="book-kicker" data-i18n="bookKicker">JEJU PASSPORT</div>
-              <h3 data-i18n-html="bookTitle">귤빛 주소<br />입국 기록</h3>
-              <div class="book-photo" aria-hidden="true">
-                <span>🍊</span>
-              </div>
-              <div class="book-lines">
-                <span data-i18n="bookOwner">OWNER / PRIVATE</span>
-                <strong>HI, JEJU</strong>
-              </div>
-            </div>
-            <div class="book-spine" aria-hidden="true"></div>
-            <div class="book-page book-right">
-              <div class="book-stamp">JEJU<br />ENTRY</div>
-              <dl class="book-info">
-                <div><dt data-i18n="bookMain">MAIN DOMAIN</dt><dd>je-ju.net</dd></div>
-                <div><dt data-i18n="bookSub">SUB ENTRANCE</dt><dd>hi.jeju.kr</dd></div>
-                <div><dt data-i18n="bookMail">MAIL</dt><dd>hi@je-ju.net</dd></div>
-              </dl>
-              <p data-i18n="bookDesc">조용한 개인 도메인을 제주 감귤빛 여권처럼 정리했습니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <aside class="gate-board reveal" id="address" aria-label="도메인 보딩패스">
-          <article class="boarding">
-            <div class="ticket-line" aria-hidden="true"></div>
-            <div class="ticket-kicker" data-i18n="mainSiteLabel">MAIN DOMAIN</div>
-            <div class="domain-name">je-ju.net</div>
-            <p data-i18n="mainSiteDesc">제주 감성 페이지의 중심 주소입니다. 랜딩, 링크, 작은 프로젝트를 이 주소에 모아둡니다.</p>
-            <div class="ticket-tags"><span class="tag" data-i18n="tagMain">대표 주소</span><span class="tag" data-i18n="tagJejuProject">제주 프로젝트</span><span class="tag" data-i18n="tagLinks">링크 모음</span></div>
-            <div class="stub">Gate<strong>01</strong></div>
-          </article>
-
-          <article class="boarding">
-            <div class="ticket-line" aria-hidden="true"></div>
-            <div class="ticket-kicker" data-i18n="subEntranceLabel">SUB ENTRANCE</div>
-            <div class="domain-name">hi.jeju.kr</div>
-            <p data-i18n="subEntranceDesc">“안녕, 제주” 느낌의 보조 입구입니다. 메인 주소로 연결하거나 짧은 소개 페이지로 쓰기 좋습니다.</p>
-            <div class="ticket-tags"><span class="tag" data-i18n="tagGate">감성 입구</span><span class="tag" data-i18n="tagSubLanding">보조 랜딩</span><span class="tag" data-i18n="tagPrivateAddress">개인용 주소</span></div>
-            <div class="stub">Gate<strong>02</strong></div>
-          </article>
-        </aside>
-      </section>
-
-      <section class="mood-rail reveal" aria-label="제주 감성 메모">
-        <span data-i18n="railA">귤빛 우편</span>
-        <span data-i18n="railB">느린 바람</span>
-        <span data-i18n="railC">작은 주소</span>
-        <span data-i18n="railD">노을 도장</span>
-      </section>
-
-      <section id="project" class="reveal">
-        <div class="section-head">
-          <div>
-            <div class="kicker" data-i18n="projectKicker">JEJU PASSPORT NOTES</div>
-            <h2 data-i18n-html="projectTitle">그냥 랜딩이 아니라,<br />제주 입국 도장처럼.</h2>
-          </div>
-          <p class="section-desc" data-i18n="projectDesc">바다, 귤, 오름, 도메인을 여권 스탬프처럼 묶었습니다. 흔한 카드형 홈페이지보다 조금 더 기억에 남는 구조입니다.</p>
-        </div>
-
-        <div class="stamp-grid">
-          <article class="stamp-card big">
-            <div class="stamp-icon">🌊</div>
-            <h3 data-i18n="tileBigTitle">느리게 열리는 제주 무드</h3>
-            <p data-i18n="tileBigDesc">파도와 종이 질감, 여권 도장 느낌으로 개인 도메인 게이트를 조금 더 특별하게 만들었습니다.</p>
-            <div class="mini-list"><span class="mini">passport</span><span class="mini">wave</span><span class="mini">private</span></div>
-          </article>
-
-          <article class="stamp-card">
-            <div class="stamp-icon">🍊</div>
-            <h3 data-i18n="tileWeatherTitle">귤빛 입구</h3>
-            <p data-i18n="tileWeatherDesc">첫 화면은 강한 홍보보다, 조용히 기억나는 제주 인사말처럼 보이게 구성했습니다.</p>
-          </article>
-
-          <article class="stamp-card">
-            <div class="stamp-icon">🗺️</div>
-            <h3 data-i18n="tileLinksTitle">주소 지도</h3>
-            <p data-i18n="tileLinksDesc">두 주소의 역할을 복잡하지 않게 나누고, 한눈에 이해되도록 배치합니다.</p>
-          </article>
-
-          <article class="stamp-card wide">
-            <div class="stamp-icon">✉️</div>
-            <h3 data-i18n="tileArchiveTitle">개인 메일 게이트</h3>
-            <p data-i18n="tileArchiveDesc">메일은 방문자 문의용이 아니라, 개인적으로 쓰는 주소를 차분하게 표시하는 영역으로 정리합니다.</p>
-            <div class="mini-list"><span class="mini">hi@je-ju.net</span><span class="mini">Google Workspace</span></div>
-          </article>
-        </div>
-      </section>
-
-      <section id="map" class="reveal">
-        <div class="map-grid">
-          <div class="map-visual" aria-label="제주 감성 지도">
-            <div class="jeju-shape"></div>
-            <div class="pin a" data-i18n="pinSea">바다</div>
-            <div class="pin b" data-i18n="pinOreum">오름</div>
-            <div class="pin c" data-i18n="pinMandarin">귤빛</div>
-          </div>
-
-          <aside class="route-card">
-            <h3 data-i18n="routeTitle">페이지 흐름</h3>
-            <div class="timeline">
-              <div class="time-item"><div class="num">1</div><div><strong data-i18n="step1Title">입구</strong><span data-i18n="step1Desc">처음에는 제주 여권 같은 랜딩 화면으로 시작합니다.</span></div></div>
-              <div class="time-item"><div class="num">2</div><div><strong data-i18n="step2Title">주소</strong><span data-i18n="step2Desc">je-ju.net과 hi.jeju.kr의 역할을 분리합니다.</span></div></div>
-              <div class="time-item"><div class="num">3</div><div><strong data-i18n="step3Title">기록</strong><span data-i18n="step3Desc">제주 감성의 지도와 기록 느낌을 더합니다.</span></div></div>
-              <div class="time-item"><div class="num">4</div><div><strong data-i18n="step4Title">메일</strong><span data-i18n="step4Desc">개인용 메일 주소를 조용하게 정리합니다.</span></div></div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="mail" class="mail-card reveal">
-        <h2 data-i18n-html="mailTitle">개인 메일은<br />작은 도장처럼.</h2>
-        <p data-i18n="mailDesc">메일 주소는 방문자 문의 버튼처럼 크게 노출하지 않고, 개인 도메인 여권에 찍힌 작은 기록처럼 가볍게 둡니다.</p>
-        <div class="mail-row" aria-label="개인 메일 주소"><span class="mail-chip">hi@je-ju.net</span><span class="mail-chip">hi@hi.jeju.kr</span><span class="mail-chip">Google Workspace</span></div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> <span data-i18n="footerCopy">Hi, Jeju. Private island passport.</span></div>
-      <div class="footer-links"><a href="#top" data-i18n="footerTop">Top</a><a href="#address" data-i18n="footerAddress">Address</a><a href="#mail" data-i18n="footerMail">Mail</a></div>
-    </footer>
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">큐레이션 스팟</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">추천 코스</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">맛집 리뷰</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">여행자 평점</div>
+    </div>
   </div>
 
+  <!-- COURSES -->
+  <section class="section reveal" id="courses">
+    <div>
+      <div class="section-tag">🗺️ 추천 코스</div>
+      <h2 class="section-title">취향대로 골라요<br>제주 여행 코스</h2>
+      <p class="section-desc">혼자도, 둘이도, 가족도 — 모든 여행자를 위한 맞춤 코스예요</p>
+    </div>
+
+    <div class="course-grid">
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #FFE0CC, #FFB347);"></div>
+          <span class="thumb-emoji">🌅</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag">인기</span>
+            <span class="course-tag yellow">동부</span>
+          </div>
+          <div class="course-name">동쪽 감성 드라이브</div>
+          <div class="course-info">성산일출봉 → 섭지코지 → 우도 → 김녕해변까지 이어지는 인생 드라이브 코스</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 1일 코스</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #B2F0E8, #00C9BB);"></div>
+          <span class="thumb-emoji">🌿</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag teal">자연</span>
+            <span class="course-tag green">힐링</span>
+          </div>
+          <div class="course-name">한라산 등반 코스</div>
+          <div class="course-info">관음사 → 백록담 → 영실 코스로 완주하는 제주 최고봉 등산 루트</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 당일 코스</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #FFD6F0, #FF96CA);"></div>
+          <span class="thumb-emoji">🍜</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag">맛집</span>
+            <span class="course-tag yellow">시내</span>
+          </div>
+          <div class="course-name">제주시 맛집 투어</div>
+          <div class="course-info">동문시장 고기국수 → 흑돼지 → 옥돔구이 → 한라봉 디저트까지 먹방 코스</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 반나절</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #D6F0FF, #5BB8FF);"></div>
+          <span class="thumb-emoji">🤿</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag teal">액티비티</span>
+          </div>
+          <div class="course-name">해양 스포츠 데이</div>
+          <div class="course-info">스노클링, 서핑, 카약까지 — 중문해수욕장 일대에서 즐기는 바다 액티비티</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 1일 코스</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #E8FFD6, #6BCB77);"></div>
+          <span class="thumb-emoji">📸</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag green">감성</span>
+            <span class="course-tag">SNS</span>
+          </div>
+          <div class="course-name">인생사진 스팟 투어</div>
+          <div class="course-info">비자림 → 사려니숲길 → 카멜리아힐 → 새별오름 — 인생샷 보장 코스</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 1일 코스</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb">
+          <div class="thumb-bg" style="background: linear-gradient(135deg, #FFF3CC, #FFD93D);"></div>
+          <span class="thumb-emoji">👨‍👩‍👧</span>
+        </div>
+        <div class="course-body">
+          <div class="course-tags">
+            <span class="course-tag yellow">가족</span>
+          </div>
+          <div class="course-name">아이와 함께 제주</div>
+          <div class="course-info">테디베어뮤지엄 → 제주민속촌 → 함덕해수욕장 — 아이들이 좋아하는 코스</div>
+        </div>
+        <div class="course-footer">
+          <span class="course-time">⏱ 1~2일</span>
+          <span class="course-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SPOTS -->
+  <section class="section reveal" id="spots">
+    <div class="spots-header">
+      <div>
+        <div class="section-tag">🌸 명소 탐색</div>
+        <h2 class="section-title">꼭 가봐야 할<br>제주 인기 명소</h2>
+      </div>
+      <div class="spot-tabs">
+        <div class="spot-tab active" onclick="filterTab(this,'all')">전체</div>
+        <div class="spot-tab" onclick="filterTab(this,'nature')">자연</div>
+        <div class="spot-tab" onclick="filterTab(this,'culture')">문화</div>
+        <div class="spot-tab" onclick="filterTab(this,'beach')">해변</div>
+      </div>
+    </div>
+
+    <div class="spot-grid">
+
+      <div class="spot-card big">
+        <div class="spot-visual" style="background: linear-gradient(160deg, #FFD6AA, #FF8A3C); font-size:5rem;">🌋</div>
+        <div class="spot-body">
+          <div class="spot-name">성산일출봉</div>
+          <div class="spot-desc">유네스코 세계문화유산, 제주의 상징. 일출 명소로 유명하며 전망대에서 우도와 광치기해변이 보여요.</div>
+          <div class="spot-rating">⭐ 4.9 · 후기 12,340개</div>
+        </div>
+      </div>
+
+      <div class="spot-card">
+        <div class="spot-visual" style="background: linear-gradient(135deg, #D0F0C0, #5DBB63);">🌲</div>
+        <div class="spot-body">
+          <div class="spot-name">비자림</div>
+          <div class="spot-desc">천년 넘은 비자나무 2,800그루가 가득한 신비로운 숲길</div>
+          <div class="spot-rating">⭐ 4.8 · 8,200개</div>
+        </div>
+      </div>
+
+      <div class="spot-card">
+        <div class="spot-visual" style="background: linear-gradient(135deg, #C0E8FF, #60B8FF);">🌊</div>
+        <div class="spot-body">
+          <div class="spot-name">함덕해수욕장</div>
+          <div class="spot-desc">에메랄드빛 투명한 물색, 제주에서 제일 이쁜 해변</div>
+          <div class="spot-rating">⭐ 4.8 · 9,100개</div>
+        </div>
+      </div>
+
+      <div class="spot-card">
+        <div class="spot-visual" style="background: linear-gradient(135deg, #F5D0FF, #CC77FF);">🐎</div>
+        <div class="spot-body">
+          <div class="spot-name">새별오름</div>
+          <div class="spot-desc">억새 명소, 일몰 때 방문하면 SNS 인생샷 보장</div>
+          <div class="spot-rating">⭐ 4.7 · 6,800개</div>
+        </div>
+      </div>
+
+      <div class="spot-card">
+        <div class="spot-visual" style="background: linear-gradient(135deg, #FFE4B5, #FFA500);">🏝️</div>
+        <div class="spot-body">
+          <div class="spot-name">우도</div>
+          <div class="spot-desc">제주도 속 작은 섬. 우도땅콩, 흑돼지, 성게비빔밥이 유명해요</div>
+          <div class="spot-rating">⭐ 4.9 · 15,600개</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOD -->
+  <section class="section reveal" id="food">
+    <div class="section-tag">🍜 맛집 가이드</div>
+    <h2 class="section-title">제주에 왔으면<br>이건 꼭 먹어요!</h2>
+    <p class="section-desc">제주 토박이들이 찜한 찐 맛집과 제주에서만 먹을 수 있는 음식들</p>
+
+    <div class="food-scroll-wrap">
+      <div class="food-scroll">
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #FFE8CC, #FFBE7A);">🍜</div>
+          <div class="food-body">
+            <div class="food-name">고기국수</div>
+            <div class="food-info">제주 대표 향토음식, 진한 돼지육수</div>
+            <span class="food-price">8,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #FFD6D6, #FF8080);">🥩</div>
+          <div class="food-body">
+            <div class="food-name">제주 흑돼지</div>
+            <div class="food-info">본토와 다른 쫄깃한 식감, 제주 필수</div>
+            <span class="food-price">12,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #D6F0FF, #70C8FF);">🦑</div>
+          <div class="food-body">
+            <div class="food-name">성게 미역국</div>
+            <div class="food-info">제주 바다의 맛, 해녀 할머니표</div>
+            <span class="food-price">14,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #FFF3CC, #FFD700);">🍊</div>
+          <div class="food-body">
+            <div class="food-name">한라봉 디저트</div>
+            <div class="food-info">제주 한라봉으로 만든 케이크, 아이스크림</div>
+            <span class="food-price">6,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #E0FFD6, #7DD87D);">🥜</div>
+          <div class="food-body">
+            <div class="food-name">우도 땅콩</div>
+            <div class="food-info">우도에서만 나는 고소한 흑땅콩 간식</div>
+            <span class="food-price">5,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #F5D0FF, #CC77FF);">🐟</div>
+          <div class="food-body">
+            <div class="food-name">옥돔구이</div>
+            <div class="food-info">제주 특산 생선, 담백하고 고소한 맛</div>
+            <span class="food-price">25,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #CCF5FF, #00D0CC);">🍦</div>
+          <div class="food-body">
+            <div class="food-name">오메기떡</div>
+            <div class="food-info">제주 전통 떡, 쑥 향 가득한 인절미</div>
+            <span class="food-price">3,000원~</span>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-visual" style="background: linear-gradient(135deg, #FFE0CC, #FF8C66);">🍶</div>
+          <div class="food-body">
+            <div class="food-name">고사리육개장</div>
+            <div class="food-info">제주 향토 명물, 든든한 한 끼</div>
+            <span class="food-price">10,000원~</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="section reveal" id="tips">
+    <div class="section-tag">💡 여행 꿀팁</div>
+    <h2 class="section-title">제주 여행 전<br>꼭 알고 가세요!</h2>
+    <p class="section-desc">처음 가도 현지인처럼 즐길 수 있는 실용 정보들 모았어요</p>
+
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #FFF0E6;">🚗</div>
+        <h3>렌터카 필수!</h3>
+        <p>대중교통이 불편해요. 국제면허증 있으면 더 편하게 이동 가능! 공항 근처 렌터카 업체 미리 예약 필수.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #E8F8FF;">☀️</div>
+        <h3>자외선 차단 필수</h3>
+        <p>제주도 햇볕은 생각보다 강해요. SPF 50 이상 선크림 챙기고, 선글라스와 모자도 준비하세요!</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #F0FFE8;">💦</div>
+        <h3>날씨 변화 대비</h3>
+        <p>제주도는 날씨가 자주 바뀌어요. 갑작스러운 비에 대비해 경량 우비나 우산을 챙겨두면 좋아요.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #FFF8E0;">🎫</div>
+        <h3>입장권 사전 예매</h3>
+        <p>성산일출봉, 제주도립미술관 등 인기 명소는 미리 예매하면 현장 대기 없이 바로 입장 가능!</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #F5E0FF;">📱</div>
+        <h3>카카오맵 활용</h3>
+        <p>제주도는 카카오맵이 더 정확해요. 맛집 영업시간, 리뷰, 주차 정보까지 한 번에 확인!</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #E0FFF5;">🌊</div>
+        <h3>해수욕 최적 시기</h3>
+        <p>7~8월이 성수기, 해수 온도는 7월 말~8월이 가장 높아요. 한적하게 즐기려면 6월이나 9월 추천!</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #FFF0F0;">🍊</div>
+        <h3>감귤 직거래 장터</h3>
+        <p>도로 곳곳에 감귤 직거래 판매소가 있어요. 마트보다 훨씬 저렴하고 신선한 제주 감귤 사세요!</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: #E8F0FF;">🏨</div>
+        <h3>숙소 위치 전략</h3>
+        <p>제주시 중심 vs 서귀포 — 동쪽 여행이면 제주시, 서쪽·남쪽 여행이면 서귀포 숙소를 골라요!</p>
+      </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div class="weather-strip">
+      <div class="weather-left">
+        <h3>🌡️ 계절별 날씨 정보</h3>
+        <p>제주도는 아열대 기후라<br>연중 언제 가도 즐길 수 있어요!</p>
+      </div>
+      <div class="weather-seasons">
+        <div class="season-item">
+          <div class="season-emoji">🌸</div>
+          <div class="season-name">봄 (3~5월)</div>
+          <div class="season-temp">10~18°C · 유채꽃</div>
+        </div>
+        <div class="season-item">
+          <div class="season-emoji">☀️</div>
+          <div class="season-name">여름 (6~8월)</div>
+          <div class="season-temp">23~30°C · 해수욕</div>
+        </div>
+        <div class="season-item">
+          <div class="season-emoji">🍂</div>
+          <div class="season-name">가을 (9~11월)</div>
+          <div class="season-temp">14~22°C · 억새</div>
+        </div>
+        <div class="season-item">
+          <div class="season-emoji">❄️</div>
+          <div class="season-name">겨울 (12~2월)</div>
+          <div class="season-temp">5~10°C · 눈꽃</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <h2>지금 바로 제주 여행을<br>계획해볼까요? 🌺</h2>
+    <p>맞춤 코스 추천부터 숙소, 맛집까지<br>Hi Jeju가 도와드릴게요!</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white">🗺️ 코스 추천 받기</a>
+      <a href="#" class="btn-outline-white">📍 명소 모두 보기</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">🍊 Hi Jeju</div>
+    <div class="footer-tagline">제주도 여행의 모든 것</div>
+    <div class="footer-links">
+      <a href="#">코스 추천</a>
+      <a href="#">인기 명소</a>
+      <a href="#">맛집 가이드</a>
+      <a href="#">여행 꿀팁</a>
+      <a href="#">날씨 정보</a>
+      <a href="#">숙소 추천</a>
+    </div>
+    <div class="footer-copy">© 2025 Hi Jeju. 제주도 여행자들을 위한 가이드 🌊</div>
+  </footer>
+
   <script>
-    const translations = {
-      ko: {
-        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 제주 감성의 개인 도메인 게이트.',
-        navProject: '제주입구', navAddress: '주소정리', navMap: '제주기록', navMail: '개인메일', navGate: 'Mail Gate', imageHeroTitle: '제주를 잇다,<br />우리를 잇다', imageHeroDesc: '제주 감귤빛과 바다 감성을 담은 개인 도메인 게이트.', imageBtnPassport: '여권 펼치기 🍊', imageBtnAddress: '주소 보기',
-        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>안녕,</span>제주.', heroSubtitle: '귤빛 바람과 파도 사이에 둔<br />작은 개인 도메인 여권', heroDesc: '공개 문의 사이트보다는, 내가 쓰는 주소와 제주 감성 프로젝트를 한 장의 여권처럼 정리해두는 개인 게이트입니다.', heroBtnPrimary: '여권 펼치기 🌊', heroBtnSecondary: '주소 확인 🍊', quickWorkspace: 'Private Domain', railA: '귤빛 우편', railB: '느린 바람', railC: '작은 주소', railD: '노을 도장', bookKicker: 'JEJU PASSPORT', bookTitle: '귤빛 주소<br />입국 기록', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '조용한 개인 도메인을 제주 감귤빛 여권처럼 정리했습니다.',
-        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '제주 감성 페이지의 중심 주소입니다. 랜딩, 링크, 작은 프로젝트를 이 주소에 모아둡니다.', tagMain: '대표 주소', tagJejuProject: '제주 프로젝트', tagLinks: '링크 모음', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '“안녕, 제주” 느낌의 보조 입구입니다. 메인 주소로 연결하거나 짧은 소개 페이지로 쓰기 좋습니다.', tagGate: '감성 입구', tagSubLanding: '보조 랜딩', tagPrivateAddress: '개인용 주소',
-        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '그냥 랜딩이 아니라,<br />제주 입국 도장처럼.', projectDesc: '바다, 귤, 오름, 도메인을 여권 스탬프처럼 묶었습니다. 흔한 카드형 홈페이지보다 조금 더 기억에 남는 구조입니다.', tileBigTitle: '느리게 열리는 제주 무드', tileBigDesc: '파도와 종이 질감, 여권 도장 느낌으로 개인 도메인 게이트를 조금 더 특별하게 만들었습니다.', tileWeatherTitle: '귤빛 입구', tileWeatherDesc: '첫 화면은 강한 홍보보다, 조용히 기억나는 제주 인사말처럼 보이게 구성했습니다.', tileLinksTitle: '주소 지도', tileLinksDesc: '두 주소의 역할을 복잡하지 않게 나누고, 한눈에 이해되도록 배치합니다.', tileArchiveTitle: '개인 메일 게이트', tileArchiveDesc: '메일은 방문자 문의용이 아니라, 개인적으로 쓰는 주소를 차분하게 표시하는 영역으로 정리합니다.',
-        pinSea: '바다', pinOreum: '오름', pinMandarin: '귤빛', routeTitle: '페이지 흐름', step1Title: '입구', step1Desc: '처음에는 제주 여권 같은 랜딩 화면으로 시작합니다.', step2Title: '주소', step2Desc: 'je-ju.net과 hi.jeju.kr의 역할을 분리합니다.', step3Title: '기록', step3Desc: '제주 감성의 지도와 기록 느낌을 더합니다.', step4Title: '메일', step4Desc: '개인용 메일 주소를 조용하게 정리합니다.',
-        mailTitle: '개인 메일은<br />작은 도장처럼.', mailDesc: '메일 주소는 방문자 문의 버튼처럼 크게 노출하지 않고, 개인 도메인 여권에 찍힌 작은 기록처럼 가볍게 둡니다.', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
-      },
-      en: {
-        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. A private Jeju-inspired domain gate.',
-        navProject: 'Gate', navAddress: 'Address', navMap: 'Record', navMail: 'Mail', navGate: 'Mail Gate', imageHeroTitle: 'Connecting Jeju,<br />connecting us', imageHeroDesc: 'A private domain gate with Jeju mandarin light and ocean mood.', imageBtnPassport: 'Open passport 🍊', imageBtnAddress: 'View address',
-        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>Hi,</span>Jeju.', heroSubtitle: 'A small private domain passport<br />between mandarin wind and waves', heroDesc: 'Rather than a public inquiry site, this is a private gate that keeps my addresses and Jeju-inspired projects like a passport page.', heroBtnPrimary: 'Open passport 🌊', heroBtnSecondary: 'View address 🍊', quickWorkspace: 'Private Domain', railA: 'Orange mail', railB: 'Slow breeze', railC: 'Small address', railD: 'Sunset stamp', bookKicker: 'JEJU PASSPORT', bookTitle: 'Orange address<br />entry record', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: 'A quiet personal domain arranged like a Jeju mandarin passport.',
-        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: 'The main address for the Jeju-inspired page. Landing pages, links, and small projects gather here.', tagMain: 'Main address', tagJejuProject: 'Jeju project', tagLinks: 'Links', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: 'A soft secondary gate with the feeling of “Hi, Jeju.” Good for redirecting to the main site or hosting a short intro.', tagGate: 'Soft gate', tagSubLanding: 'Sub landing', tagPrivateAddress: 'Private address',
-        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'Not just a landing page,<br />more like a Jeju entry stamp.', projectDesc: 'The sea, mandarins, oreum, and domains are grouped like passport stamps, making the structure more memorable than ordinary cards.', tileBigTitle: 'A slow Jeju mood', tileBigDesc: 'Waves, paper texture, and passport-stamp details make the private domain gate feel more special.', tileWeatherTitle: 'Mandarin-colored gate', tileWeatherDesc: 'The first impression feels like a quiet Jeju greeting, not loud promotion.', tileLinksTitle: 'Address map', tileLinksDesc: 'The roles of the two addresses are separated clearly and arranged for quick understanding.', tileArchiveTitle: 'Private mail gate', tileArchiveDesc: 'Mail is not treated as a visitor inquiry button, but as a calm display of personal addresses.',
-        pinSea: 'Sea', pinOreum: 'Oreum', pinMandarin: 'Mandarin', routeTitle: 'Page route', step1Title: 'Gate', step1Desc: 'The page starts like a Jeju-style passport landing.', step2Title: 'Address', step2Desc: 'The roles of je-ju.net and hi.jeju.kr are separated.', step3Title: 'Record', step3Desc: 'A Jeju-inspired map and record mood is added.', step4Title: 'Mail', step4Desc: 'Private mail addresses are kept quietly.',
-        mailTitle: 'Private mail,<br />like a small stamp.', mailDesc: 'Mail addresses are not shown as loud inquiry buttons, but as small records stamped inside a private domain passport.', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
-      },
-      ja: {
-        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 済州感性の個人ドメインゲート。',
-        navProject: '済州入口', navAddress: '住所整理', navMap: '済州記録', navMail: '個人メール', navGate: 'Mail Gate', imageHeroTitle: '済州をつなぎ、<br />私たちをつなぐ', imageHeroDesc: '済州のみかん色と海の感性を込めた個人ドメインゲート。', imageBtnPassport: 'パスポートを開く 🍊', imageBtnAddress: '住所を見る',
-        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>こんにちは、</span>済州。', heroSubtitle: 'みかん色の風と波の間に置いた<br />小さな個人ドメインパスポート', heroDesc: '公開問い合わせサイトではなく、自分の住所と済州感性プロジェクトを一枚のパスポートのように整理する個人ゲートです。', heroBtnPrimary: 'パスポートを開く 🌊', heroBtnSecondary: '住所を見る 🍊', quickWorkspace: 'Private Domain', railA: 'みかん色の郵便', railB: 'ゆっくりした風', railC: '小さな住所', railD: '夕焼けスタンプ', bookKicker: 'JEJU PASSPORT', bookTitle: 'みかん色の住所<br />入国記録', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '静かな個人ドメインを済州みかん色のパスポートのように整理しました。',
-        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '済州感性ページの中心住所です。ランディング、リンク、小さなプロジェクトをこの住所にまとめます。', tagMain: '代表住所', tagJejuProject: '済州プロジェクト', tagLinks: 'リンク集', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '「こんにちは、済州」の雰囲気を持つ補助入口です。メイン住所へつなげたり、短い紹介ページとして使えます。', tagGate: '感性入口', tagSubLanding: '補助ランディング', tagPrivateAddress: '個人用住所',
-        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: 'ただのランディングではなく、<br />済州の入国スタンプのように。', projectDesc: '海、みかん、オルム、ドメインをパスポートスタンプのようにまとめました。普通のカード型サイトより記憶に残る構造です。', tileBigTitle: 'ゆっくり開く済州ムード', tileBigDesc: '波、紙の質感、パスポートスタンプの雰囲気で個人ドメインゲートを少し特別にしました。', tileWeatherTitle: 'みかん色の入口', tileWeatherDesc: '最初の画面は強い宣伝ではなく、静かに記憶に残る済州の挨拶のように構成しました。', tileLinksTitle: '住所マップ', tileLinksDesc: '二つの住所の役割をわかりやすく分け、一目で理解できるように配置します。', tileArchiveTitle: '個人メールゲート', tileArchiveDesc: 'メールは訪問者問い合わせ用ではなく、個人用住所を落ち着いて表示する領域です。',
-        pinSea: '海', pinOreum: 'オルム', pinMandarin: 'みかん色', routeTitle: 'ページの流れ', step1Title: '入口', step1Desc: '最初は済州パスポートのようなランディング画面から始まります。', step2Title: '住所', step2Desc: 'je-ju.netとhi.jeju.krの役割を分けます。', step3Title: '記録', step3Desc: '済州感性の地図と記録の雰囲気を加えます。', step4Title: 'メール', step4Desc: '個人メールアドレスを静かに整理します。',
-        mailTitle: '個人メールは<br />小さなスタンプのように。', mailDesc: 'メールアドレスは問い合わせボタンのように大きく見せず、個人ドメインパスポートに押された小さな記録のように置きます。', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
-      },
-      zh: {
-        pageTitle: 'je-ju.net — Private Island Gate', metaDesc: 'Hi, Jeju. 济州风格个人域名入口。',
-        navProject: '济州入口', navAddress: '地址整理', navMap: '济州记录', navMail: '个人邮箱', navGate: 'Mail Gate', imageHeroTitle: '连接济州，<br />连接我们', imageHeroDesc: '融合济州橘光与海风氛围的个人域名入口。', imageBtnPassport: '打开护照 🍊', imageBtnAddress: '查看地址',
-        eyebrow: 'PRIVATE ISLAND GATE', heroTitle: '<span>你好，</span>济州。', heroSubtitle: '放在橘色微风与海浪之间的<br />小小个人域名护照', heroDesc: '这不是公开咨询网站，而是像一页护照一样整理个人地址和济州风格项目的私人入口。', heroBtnPrimary: '打开护照 🌊', heroBtnSecondary: '查看地址 🍊', quickWorkspace: 'Private Domain', railA: '橘光邮件', railB: '慢慢的风', railC: '小小地址', railD: '日落印章', bookKicker: 'JEJU PASSPORT', bookTitle: '橘光地址<br />入境记录', bookOwner: 'OWNER / PRIVATE', bookMain: 'MAIN DOMAIN', bookSub: 'SUB ENTRANCE', bookMail: 'MAIL', bookDesc: '把安静的个人域名整理成济州橘光护照。',
-        mainSiteLabel: 'MAIN DOMAIN', mainSiteDesc: '济州风格页面的中心地址。落地页、链接和小项目都会放在这里。', tagMain: '代表地址', tagJejuProject: '济州项目', tagLinks: '链接集合', subEntranceLabel: 'SUB ENTRANCE', subEntranceDesc: '带有“你好，济州”感觉的辅助入口。可以跳转到主地址，也可以做成简短介绍页。', tagGate: '感性入口', tagSubLanding: '辅助落地页', tagPrivateAddress: '个人地址',
-        projectKicker: 'JEJU PASSPORT NOTES', projectTitle: '不只是落地页，<br />更像济州入境印章。', projectDesc: '把大海、橘子、오름和域名像护照印章一样组合起来，比普通卡片式主页更容易记住。', tileBigTitle: '慢慢打开的济州氛围', tileBigDesc: '用海浪、纸张质感和护照印章感，让个人域名入口更特别。', tileWeatherTitle: '橘光入口', tileWeatherDesc: '第一屏不是强烈宣传，而像一句安静又容易记住的济州问候。', tileLinksTitle: '地址地图', tileLinksDesc: '清楚区分两个地址的作用，让人一眼就能理解。', tileArchiveTitle: '个人邮箱入口', tileArchiveDesc: '邮箱不是访客咨询按钮，而是安静展示个人地址的区域。',
-        pinSea: '大海', pinOreum: '오름', pinMandarin: '橘光', routeTitle: '页面流程', step1Title: '入口', step1Desc: '一开始像济州护照一样展示落地页。', step2Title: '地址', step2Desc: '区分 je-ju.net 和 hi.jeju.kr 的角色。', step3Title: '记录', step3Desc: '加入济州风格地图和记录感。', step4Title: '邮箱', step4Desc: '安静整理个人邮箱地址。',
-        mailTitle: '个人邮箱，<br />像小小印章。', mailDesc: '邮箱地址不做成显眼的咨询按钮，而像个人域名护照里的小记录一样轻轻放着。', footerCopy: 'je-ju.net. Private island passport.', footerTop: 'Top', footerAddress: 'Address', footerMail: 'Mail'
-      }
-    };
-
-    function applyLanguage(lang) {
-      const dict = translations[lang] || translations.ko;
-      document.documentElement.lang = lang;
-      document.title = dict.pageTitle;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', dict.metaDesc);
-
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.dataset.i18n;
-        if (dict[key]) el.textContent = dict[key];
-      });
-
-      document.querySelectorAll('[data-i18n-html]').forEach((el) => {
-        const key = el.dataset.i18nHtml;
-        if (dict[key]) el.innerHTML = dict[key];
-      });
-
-      document.querySelectorAll('.lang-btn').forEach((btn) => {
-        const active = btn.dataset.lang === lang;
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-pressed', String(active));
-      });
-
-      localStorage.setItem('hiJejuLang', lang);
-    }
-
-    document.querySelectorAll('.lang-btn').forEach((btn) => {
-      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
-    });
-
-    applyLanguage(localStorage.getItem('hiJejuLang') || 'ko');
-
-    const cursorLight = document.querySelector('.cursor-light');
-    window.addEventListener('pointermove', (event) => {
-      if (!cursorLight) return;
-      cursorLight.style.left = `${event.clientX}px`;
-      cursorLight.style.top = `${event.clientY}px`;
-    });
-
-    const revealItems = document.querySelectorAll('.reveal');
+    // reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.14 });
-    revealItems.forEach((item) => observer.observe(item));
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
 
-    const passport = document.querySelector('.passport');
-    const passportToggle = document.querySelector('.passport-toggle');
-    const passportToggles = document.querySelectorAll('.passport-toggle');
-    const bookClose = document.querySelector('.book-close');
-
-    function setPassportOpen(isOpen) {
-      if (!passport) return;
-      passport.style.transform = 'none';
-      passport.classList.toggle('open', isOpen);
-      document.body.classList.toggle('passport-locked', isOpen);
-      const book = passport.querySelector('.passport-book');
-      if (book) book.setAttribute('aria-hidden', String(!isOpen));
-      if (passportToggle) passportToggle.setAttribute('aria-expanded', String(isOpen));
+    // spot tab filter (UI only)
+    function filterTab(el, type) {
+      document.querySelectorAll('.spot-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
     }
-
-    passportToggles.forEach((toggle) => {
-      toggle.addEventListener('click', () => setPassportOpen(true));
-    });
-
-    if (bookClose) {
-      bookClose.addEventListener('click', () => setPassportOpen(false));
-    }
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setPassportOpen(false);
-    });
-
-    if (passport) {
-      passport.addEventListener('pointermove', (event) => {
-        if (passport.classList.contains('open')) return;
-        const rect = passport.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        passport.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-      });
-      passport.addEventListener('pointerleave', () => {
-        passport.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
-      });
-    }
-
-    const nav = document.querySelector('.nav-wrap');
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const current = window.scrollY;
-      if (current > 180 && current > lastScroll) {
-        nav.style.transform = 'translateY(-12px)';
-        nav.style.opacity = '.62';
-      } else {
-        nav.style.transform = 'translateY(0)';
-        nav.style.opacity = '1';
-      }
-      lastScroll = current;
-    }, { passive: true });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
