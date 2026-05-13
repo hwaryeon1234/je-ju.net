@@ -203,25 +203,24 @@
     @media (max-width: 600px) { nav { padding: 12px 20px; } .nav-links { display: none; } .section { padding: 56px 20px; } .course-grid { grid-template-columns: 1fr; } .spot-grid { grid-template-columns: 1fr; } .tip-grid { grid-template-columns: 1fr 1fr; } .weather-strip { padding: 28px; } .weather-seasons { grid-template-columns: 1fr 1fr; } .cta-section { padding: 48px 28px; margin: 48px 20px; } .modal-body { padding: 20px; } .modal-header { height: 200px; padding: 20px; } .modal-header-title { font-size: 1.5rem; } .modal-header-emoji { font-size: 4rem; } }
   
 
-    /* TOP IMAGE HERO — 이미지 안 가림 / 완전 이미지 중심 */
+    /* TOP IMAGE HERO — PC에서는 너무 꽉 차지 않게 여백/최대폭 적용 */
     .showcase-hero {
       min-height: auto;
       display: block;
-      padding: 0;
+      padding: clamp(18px, 2.4vw, 34px) clamp(24px, 5vw, 88px) 14px;
       margin: 0;
-      background: #FFFAF5;
+      background: linear-gradient(180deg, #FFFAF5 0%, #FFF6EC 100%);
       overflow: hidden;
     }
     .hero-frame {
-      width: 100%;
-      max-width: none;
-      margin: 0;
+      width: min(100%, 1240px);
+      margin: 0 auto;
       position: relative;
-      border-radius: 0;
+      border-radius: 28px;
       overflow: hidden;
       background: #FFFAF5;
-      border: 0;
-      box-shadow: none;
+      border: 1px solid rgba(255,107,44,0.10);
+      box-shadow: 0 22px 62px rgba(45,32,22,0.08);
       isolation: isolate;
     }
     .hero-frame::after { content: none; }
@@ -253,14 +252,14 @@
       background: #FFFAF5;
     }
     .hero-thumbbar {
-      width: 100%;
-      margin: 0;
-      padding: 8px 0 10px;
+      width: min(100%, 1240px);
+      margin: 10px auto 0;
+      padding: 0 0 2px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
-      background: #FFFAF5;
+      background: transparent;
     }
     .hero-thumb {
       width: 9px;
@@ -295,10 +294,107 @@
       border-bottom: 1px solid rgba(255,107,44,0.08);
       box-shadow: 0 8px 26px rgba(45,32,22,0.05);
     }
-    @media (max-width: 760px) {
-      .hero-thumbbar { padding: 7px 0 9px; }
+    @media (max-width: 1024px) {
+      .showcase-hero {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+      .hero-frame { border-radius: 22px; }
+    }
+    @media (max-width: 820px) {
+      .showcase-hero {
+        padding: 0 0 8px;
+        background: #FFFAF5;
+      }
+      .hero-frame {
+        width: 100%;
+        max-width: none;
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+      }
+      .hero-thumbbar {
+        width: 100%;
+        margin: 0;
+        padding: 7px 0 9px;
+        background: #FFFAF5;
+      }
       .hero-thumb { width: 8px; height: 8px; }
       .hero-thumb.active { width: 22px; }
+    }
+
+
+    /* MOBILE NAV FIX — 모바일에서 밀림/가로삐져나감 방지 */
+    .nav-cta .cta-short { display: none; }
+    @media (max-width: 820px) {
+      nav {
+        height: 58px;
+        min-height: 58px;
+        padding: 9px 14px;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+      .nav-logo {
+        flex: 0 0 auto;
+        font-size: 1.12rem;
+        line-height: 1;
+        white-space: nowrap;
+        min-width: 0;
+      }
+      .nav-links {
+        display: none !important;
+      }
+      .nav-cta {
+        flex: 0 0 auto;
+        margin-left: auto;
+        padding: 9px 14px;
+        font-size: 0.82rem;
+        line-height: 1;
+        white-space: nowrap;
+        box-shadow: 0 4px 14px rgba(255,107,44,0.20);
+      }
+      .hero-slides {
+        aspect-ratio: 1672 / 941;
+      }
+      .hero-slide img {
+        object-position: center center;
+      }
+    }
+    @media (max-width: 520px) {
+      nav {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .nav-logo {
+        font-size: 1rem;
+        gap: 6px;
+      }
+      .nav-cta {
+        padding: 8px 11px;
+        font-size: 0.78rem;
+      }
+      .nav-cta .cta-full { display: none; }
+      .nav-cta .cta-short { display: inline; }
+      .hero-thumbbar {
+        padding: 6px 0 8px;
+        gap: 7px;
+      }
+    }
+    @media (max-width: 360px) {
+      nav {
+        height: 54px;
+        min-height: 54px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .nav-logo { font-size: 0.95rem; }
+      .nav-cta {
+        padding: 8px 10px;
+        font-size: 0.74rem;
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-slide { transition: none; }
@@ -320,7 +416,7 @@
     <li><a href="#food">맛집</a></li>
     <li><a href="#tips">여행 팁</a></li>
   </ul>
-  <a href="#courses" class="nav-cta">여행 시작하기 →</a>
+  <a href="#courses" class="nav-cta"><span class="cta-full">여행 시작하기</span><span class="cta-short">시작</span><span aria-hidden="true"> →</span></a>
 </nav>
 
 
